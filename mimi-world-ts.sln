@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "mimi-world-ts", "mimi-world-ts.esproj", "{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AA53F0-D1DD-4E9A-92E0-09DECB46E3BB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75BB4963-4F48-41E6-AC61-BF7381319E3E}
+	EndGlobalSection
+EndGlobal
