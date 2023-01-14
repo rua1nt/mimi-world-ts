@@ -59,3 +59,34 @@ a {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+/* buttons */
+.blue_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue-color);
+    color: #fff;
+
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    cursor: pointer;
+
+    gap: 6px;
+    padding: 8.5px 12px;
+}
+
+.blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.768);
+}
