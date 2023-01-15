@@ -60,6 +60,7 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+
 /* buttons */
 .blue_btn {
     display: flex;
@@ -91,6 +92,7 @@ code {
     background: rgba(255, 255, 255, 0.768);
 }
 
+
 /* hover */
 .hover1:hover {
     background: var(--bg-secondary);
@@ -98,4 +100,15 @@ code {
 
 .hover2:hover {
     background: var(--bg-third);
+}
+
+
+/* scrollbar */
+.scrollbar::-webkit-scrollbar {
+    width: 9px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background: #aeaeafa1;
+    border-radius: 5px;
 }
