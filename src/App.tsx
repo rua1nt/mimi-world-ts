@@ -8,15 +8,17 @@ import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 
 import "./App.css";
+import "./firebase/firebaseui-styling.global.css";
 
 function App() {
     return (
         <div>
             <Routes>
-                <Route element={<LoggedInRoutes />}>
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/" element={<Home />} />
-                </Route>
+                <Route path="/" element={<Home />} />
+
+                <Route path="/profile" element={<Profile />} />
+                {/* <Route element={<LoggedInRoutes />}>
+                </Route> */}
 
                 <Route element={<NotLoggedInRoutes />}>
                     <Route path="/login" element={<Login />} />

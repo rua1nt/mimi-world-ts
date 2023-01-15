@@ -14,23 +14,30 @@ import {
     Search,
     Watch,
 } from "../../svg";
-import useClickOutside from "../../helpers/clickOutside";
 
+import LoginMenu from "./LoginMenu";
 import SearchMenu from "./SearchMenu";
 import AllMenu from "./AllMenu";
 import UserMenu from "./userMenu";
+import useClickOutside from "../../helpers/clickOutside";
 import "./style.css";
 
 export default function Header() {
     const color = "#65676b";
     const { user } = useSelector((user) => ({ ...user }));
 
+    const [showLoginMenu, setShowLoginMenu] = useState(false);
     const [showSearchMenu, setShowSearchMenu] = useState(false);
     const [showAllMenu, setShowAllMenu] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
 
+    const loginMenu = useRef(null);
     const allmenu = useRef(null);
     const usermenu = useRef(null);
+
+    useClickOutside(loginMenu, () => {
+        setShowLoginMenu(false);
+    });
 
     useClickOutside(allmenu, () => {
         setShowAllMenu(false);
@@ -43,11 +50,25 @@ export default function Header() {
     return (
         <header>
             <div className="header_left">
-                <Link to="/" className="header_logo">
+                {/* <Link to="/" className="header_logo">
                     <div className="circle">
                         <Logo />
                     </div>
-                </Link>
+                </Link> */}
+                <div className="circle" ref={loginMenu}>
+                    <div
+                        className="circle_icon-center"
+                        onClick={() => {
+                            setShowLoginMenu((prev) => !prev);
+                        }}
+                    >
+                        <Logo />
+                    </div>
+                    {showLoginMenu && (
+                        <LoginMenu isSignedIn={user ? true : false} />
+                    )}
+                </div>
+
                 <div
                     className="search search1"
                     onClick={() => {
@@ -57,7 +78,7 @@ export default function Header() {
                     <Search color={color} />
                     <input
                         type="text"
-                        placeholder="Search Facebook"
+                        placeholder="Search mimi..."
                         className="hide_input"
                     />
                 </div>
@@ -92,8 +113,9 @@ export default function Header() {
             <div className="header_right">
                 <Link to="/profile" className="profile_link hover1">
                     <img src={user?.picture} alt="" />
-                    <span>{user?.first_name}</span>
+                    <span>{user?.first_name || "Mimi"}</span>
                 </Link>
+
                 <div className="circle_icon hover1" ref={allmenu}>
                     <div
                         className="circle_icon-center"
@@ -105,6 +127,7 @@ export default function Header() {
                     </div>
                     {showAllMenu && <AllMenu />}
                 </div>
+
                 <div className="circle_icon hover1">
                     <Messenger />
                     <div className="right_notification">9+</div>
@@ -113,6 +136,7 @@ export default function Header() {
                     <Notifications />
                     <div className="right_notification">9+</div>
                 </div>
+
                 <div className="circle_icon hover1" ref={usermenu}>
                     <div
                         className="circle_icon-center"
