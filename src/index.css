@@ -92,6 +92,8 @@ code {
     background: rgba(255, 255, 255, 0.768);
 }
 
+/* buttons */
+
 
 /* hover */
 .hover1:hover {
@@ -102,8 +104,14 @@ code {
     background: var(--bg-third);
 }
 
+.hover3:hover {
+    background: #d4d6da3a;
+}
 
-/* scrollbar */
+/* hover */
+
+
+/* scroll bar */
 .scrollbar::-webkit-scrollbar {
     width: 9px;
 }
@@ -112,3 +120,22 @@ code {
     background: #aeaeafa1;
     border-radius: 5px;
 }
+
+/* scroll bar */
+
+
+/* Circles */
+.small_circle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: var(--bg-third);
+    margin-right: 11px;
+}
+
+/* Circles */
