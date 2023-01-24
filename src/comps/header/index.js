@@ -23,7 +23,7 @@ import useClickOutside from "../../helpers/clickOutside";
 import "./style.css";
 
 export default function Header() {
-    const color = "#65676b";
+    const color_secondary = "#65676b";
     const { user } = useSelector((user) => ({ ...user }));
 
     const [showLoginMenu, setShowLoginMenu] = useState(false);
@@ -75,7 +75,7 @@ export default function Header() {
                         setShowSearchMenu(true);
                     }}
                 >
-                    <Search color={color} />
+                    <Search color={color_secondary} />
                     <input
                         type="text"
                         placeholder="Search mimi..."
@@ -85,7 +85,7 @@ export default function Header() {
             </div>
             {showSearchMenu && (
                 <SearchMenu
-                    color={color}
+                    color={color_secondary}
                     setShowSearchMenu={setShowSearchMenu}
                 />
             )}
@@ -95,18 +95,18 @@ export default function Header() {
                     <HomeActive />
                 </Link>
                 <Link to="/" className="middle_icon hover1">
-                    <Friends color={color} />
+                    <Friends color={color_secondary} />
                     <div className="middle_notification">9+</div>
                 </Link>
                 <Link to="/" className="middle_icon hover1">
-                    <Watch color={color} />
+                    <Watch color={color_secondary} />
                     <div className="middle_notification">9+</div>
                 </Link>
                 <Link to="/" className="middle_icon hover1">
-                    <Market color={color} />
+                    <Market color={color_secondary} />
                 </Link>
                 <Link to="/" className="middle_icon hover1">
-                    <Gaming color={color} />
+                    <Gaming color={color_secondary} />
                 </Link>
             </div>
 
