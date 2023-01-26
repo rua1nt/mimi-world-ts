@@ -118,6 +118,7 @@ header {
 /* header_right */
 .header_right {
     display: flex;
+    align-items: center;
     position: absolute;
     right: 8px;
     top: 50%;
@@ -129,17 +130,19 @@ header {
     align-items: center;
     gap: 5px;
     cursor: pointer;
-    padding: 3px 10px 3px 6px;
-    border-radius: 50px;
+    /* padding: 3px 10px 3px 6px; */
+    padding: 0 10px 0 5px;
+    border-radius: 20px;
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    margin-right: 10px;
+    margin-right: 8px;
+    background: var(--bg-forth);
 }
 
 .profile_link img {
-    width: 28.7px;
-    height: 28.7px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 1px solid #b0b3b8;
     transform: translateX(-1px);
@@ -147,6 +150,7 @@ header {
 
 .profile_link span {
     margin-bottom: 3px;
+    font-size: 15px;
 }
 
 .circle_icon {
@@ -441,14 +445,14 @@ header {
 .mmenu_header {
     display: flex;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 10px;
     gap: 10px;
 }
 
 .mmenu_header img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -462,7 +466,7 @@ header {
 .mmenu_col span:first-of-type {
     color: var(--color-primary);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
     letter-spacing: 1px;
 }
 
@@ -471,7 +475,7 @@ header {
 }
 
 .mmenu_main {
-    padding: 10px;
+    padding: 5px 10px;
     margin-top: 5px;
     display: flex;
     align-items: center;

@@ -20,12 +20,13 @@
     --dark-color-primary: #242526;
     --dark-color-secondary: #b0b3b8;
 
+    --btn-hover: #D7D9DF;
+    --divider: #ced0d4;
+    --border-color: #ccced2;
+
     --blue-color: #1876f2;
     --light-blue-color: #e7f3ff;
     --green-color: #42b72a;
-
-    --divider: #ced0d4;
-    --border-color: #ccced2;
 
     --shadow-1: rgba(0, 0, 0, 0.2);
     --shadow-2: rgba(0, 0, 0, 0.1);
@@ -106,6 +107,10 @@ code {
 
 .hover3:hover {
     background: #d4d6da3a;
+}
+
+.hover9:hover {
+    background: var(--btn-hover);
 }
 
 /* hover */

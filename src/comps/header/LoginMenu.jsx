@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import Cookies from "js-cookie";
+import firebaseAuth from "../../firebase/firebase-config";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import {
     DiscordLoginButton,
@@ -13,28 +18,16 @@ import {
 } from "react-social-login-buttons";
 import { Gmail } from "../../svg";
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-// import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-
-import firebaseConfig from "../../firebase/firebase-config";
-// firebase.initializeApp(firebaseConfig);
-
 // Configure FirebaseUI.
-const uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: "redirect",
-    // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: "/profile",
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    ],
-};
+// const uiConfig = {
+//     signInOptions: [
+//         firebase.auth.EmailAuthProvider.PROVIDER_ID,
+//         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+//         firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+//         firebase.auth.GithubAuthProvider.PROVIDER_ID,
+//     ],
+// };
 
 export default function LoginMenu({ isSignedIn }) {
     const login_menu_btn = {
@@ -43,63 +36,78 @@ export default function LoginMenu({ isSignedIn }) {
         marginBottom: "1rem",
     };
 
-    // const [isSignedIn, setIsSignedIn] = useState(false);
-    // const dispatch = useDispatch();
-    // const { user } = useSelector((user) => ({ ...user }));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const unregisterAuthObserver = firebase
-    //         .auth()
-    //         .onAuthStateChanged((user) => {
-    //             // setIsSignedIn(!!user);
+    const emailSignIn = () => {
+        navigate("/login");
+    };
 
-    //             // dispatch({ type: "LOGIN", payload: user });
-    //             // Cookies.set("user", JSON.stringify(user));
-    //             console.log("auth-", user);
-    //         });
-    //     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
-    // }, []);
+    const googleSignIn = () => {
+        const authProvider = new GoogleAuthProvider();
+        signInWithPopup(firebaseAuth, authProvider)
+            .then((result) => {
+                const data = {
+                    displayName: result.user.displayName,
+                    email: result.user.email,
+                    phoneNumber: result.user.phoneNumber,
+                    photoURL: result.user.photoURL,
+                    uid: result.user.uid,
+                };
+                dispatch({ type: "LOGIN", payload: data });
+                Cookies.set("user", JSON.stringify(data));
+                toast.success(`Welcome, ${data.displayName}!`);
+            })
+            .catch((error) => {
+                toast.error(`${error.code}: ${error.message}`);
+            });
+    };
+
+    const defaultSignIn = () => {
+        alert("503 Service Unavailable\n(Đang bận trông Mi năm sau làm)");
+    };
 
     if (!isSignedIn) {
         return (
             <div className="login_menu">
                 <div className="login_menu_header">Welcome</div>
-                {/* <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/> */}
 
                 <GoogleLoginButton
                     icon={Gmail}
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={emailSignIn}
                 >
-                    <span>Email address</span>
+                    <span>Log in with Email</span>
                 </GoogleLoginButton>
+
                 <GoogleLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={googleSignIn}
                 />
+
                 <FacebookLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={defaultSignIn}
                 />
                 <InstagramLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={defaultSignIn}
                 />
                 <TwitterLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={defaultSignIn}
                 />
                 <TelegramLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={defaultSignIn}
                 />
                 <DiscordLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={defaultSignIn}
                 />
                 <GithubLoginButton
                     style={login_menu_btn}
-                    onClick={() => alert("503 Service Unavailable")}
+                    onClick={defaultSignIn}
                 />
             </div>
         );

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import DotLoader from "react-spinners/DotLoader";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Cookies from "js-cookie";
+import DotLoader from "react-spinners/DotLoader";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
@@ -53,12 +53,26 @@ export default function LoginForm({ setVisible }) {
         }
     };
 
+    useEffect(() => {
+        toast("🦄 Welcome to Mi-book", {
+            position: "top-left",
+            autoClose: 15000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }, []);
+
     return (
         <div className="login_wrap">
             <div className="login_1">
+                <span>Special Edition For Mimi 🚀</span>
                 <img src="../../icons/facebook.svg" alt="" />
                 <span>
-                    Facebook helps you connect and share with the people in your
+                    Mi-book helps you connect and share with the people in your
                     life.
                 </span>
             </div>

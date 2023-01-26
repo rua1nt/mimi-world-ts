@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Login from "./pages/login";
 import Profile from "./pages/profile";
@@ -9,10 +10,12 @@ import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 
 import "./App.css";
 import "./firebase/firebaseui-styling.global.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     return (
         <div>
+            <ToastContainer theme="colored" />
             <Routes>
                 <Route path="/" element={<Home />} />
 
