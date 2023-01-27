@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -29,13 +28,15 @@ import { Gmail } from "../../svg";
 //     ],
 // };
 
-export default function LoginMenu({ isSignedIn }) {
-    const login_menu_btn = {
+const styles = {
+    login_menu_btn: {
         height: "40px",
         fontSize: "1rem",
         marginBottom: "1rem",
-    };
+    },
+};
 
+export default function LoginMenu({ user }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -64,49 +65,65 @@ export default function LoginMenu({ isSignedIn }) {
     };
 
     const defaultSignIn = () => {
-        alert("503 Service Unavailable\n(Đang bận trông Mi năm sau làm)");
+        alert(
+            "503 Service Unavailable\n(Phím này để cho vui thôi, mai..mốt làm, xõa Mi ơi)"
+        );
     };
 
-    if (!isSignedIn) {
+    const partiallyHideEmail = (email) => {
+        let elements = email.split("@");
+        let prefix;
+        if (elements[0].length > 3) {
+            prefix =
+                elements[0].substring(0, 3) +
+                "*".repeat(elements[0].length - 3);
+        } else {
+            prefix = elements[0][0] + "*".repeat(elements[0].length - 1);
+        }
+        let ret = prefix + "@" + elements[1];
+        return ret;
+    };
+
+    if (!user) {
         return (
             <div className="login_menu">
                 <div className="login_menu_header">Welcome</div>
 
                 <GoogleLoginButton
                     icon={Gmail}
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={emailSignIn}
                 >
                     <span>Log in with Email</span>
                 </GoogleLoginButton>
 
                 <GoogleLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={googleSignIn}
                 />
 
                 <FacebookLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={defaultSignIn}
                 />
                 <InstagramLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={defaultSignIn}
                 />
                 <TwitterLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={defaultSignIn}
                 />
                 <TelegramLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={defaultSignIn}
                 />
                 <DiscordLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={defaultSignIn}
                 />
                 <GithubLoginButton
-                    style={login_menu_btn}
+                    style={styles.login_menu_btn}
                     onClick={defaultSignIn}
                 />
             </div>
@@ -114,13 +131,16 @@ export default function LoginMenu({ isSignedIn }) {
     }
 
     return (
-        <div className="login_menu">
-            <div className="login_menu_header">Sign-out</div>
-            {/* <p>Welcome, {firebase.auth().currentUser.displayName}!</p>
-            <a onClick={() => firebase.auth().signOut()}>Sign-out</a> */}
-
-            {/* <p>Welcome {firebase.auth().currentUser.displayName}!</p> */}
-            {/* <a onClick={() => firebase.auth().signOut()}>Sign-out</a> */}
+        <div className="logout_menu">
+            <div className="logout_menu_header">
+                {partiallyHideEmail(firebaseAuth.currentUser.email)}
+            </div>
+            <button
+                className="logout_btn"
+                onClick={async () => await firebaseAuth.signOut()}
+            >
+                Log Out
+            </button>
         </div>
     );
 }

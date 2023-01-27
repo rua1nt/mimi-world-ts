@@ -13,6 +13,7 @@ import {
     Notifications,
     Search,
     Watch,
+    UserFocus,
 } from "../../svg";
 
 import LoginMenu from "./LoginMenu";
@@ -62,11 +63,17 @@ export default function Header() {
                             setShowLoginMenu((prev) => !prev);
                         }}
                     >
-                        <Logo />
+                        {user ? (
+                            <img
+                                className="header_profile_img"
+                                src={user?.photoURL}
+                                alt=""
+                            />
+                        ) : (
+                            <UserFocus className={"ping"} color={"#1b74e4"} />
+                        )}
                     </div>
-                    {showLoginMenu && (
-                        <LoginMenu isSignedIn={user ? true : false} />
-                    )}
+                    {showLoginMenu && <LoginMenu user={user} />}
                 </div>
 
                 <div
@@ -111,12 +118,12 @@ export default function Header() {
             </div>
 
             <div className="header_right">
-                <Link to="/profile" className="profile_link hover1">
+                {/* <Link to="/profile" className="profile_link hover9">
                     <img src={user?.photoURL} alt="" />
                     <span>{user?.displayName}</span>
-                </Link>
+                </Link> */}
 
-                <div className="circle_icon hover1" ref={allmenu}>
+                <div className="circle_icon hover9" ref={allmenu}>
                     <div
                         className="circle_icon-center"
                         onClick={() => {
@@ -128,16 +135,16 @@ export default function Header() {
                     {showAllMenu && <AllMenu />}
                 </div>
 
-                <div className="circle_icon hover1">
+                <div className="circle_icon hover9">
                     <Messenger />
                     <div className="right_notification">9+</div>
                 </div>
-                <div className="circle_icon hover1">
+                <div className="circle_icon hover9">
                     <Notifications />
                     <div className="right_notification">9+</div>
                 </div>
 
-                <div className="circle_icon hover1" ref={usermenu}>
+                <div className="circle_icon hover9" ref={usermenu}>
                     <div
                         className="circle_icon-center"
                         onClick={() => {

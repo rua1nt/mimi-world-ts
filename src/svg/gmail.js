@@ -3,8 +3,8 @@ function Gmail({ color }) {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
-            width="26px"
-            height="26px"
+            width="26"
+            height="26"
             fill={color}
         >
             <path

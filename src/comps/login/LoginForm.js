@@ -69,7 +69,7 @@ export default function LoginForm({ setVisible }) {
     return (
         <div className="login_wrap">
             <div className="login_1">
-                <span>Special Edition For Mimi 🚀</span>
+                <span>MiBook Special Edition 🚀</span>
                 <img src="../../icons/facebook.svg" alt="" />
                 <span>
                     Mi-book helps you connect and share with the people in your

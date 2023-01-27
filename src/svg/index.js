@@ -21,6 +21,7 @@ import Plus from "./plus";
 import Public from "./public";
 import Return from "./return";
 import Search from "./search";
+import UserFocus from "./userFocus";
 import Watch from "./watch";
 
 export {
@@ -31,6 +32,7 @@ export {
     Market,
     Gaming,
     Gmail,
+    UserFocus,
     Menu,
     Messenger,
     Notifications,

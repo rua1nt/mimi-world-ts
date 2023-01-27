@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import DisplayAccessibility from "./DisplayAccessibility";
 import HelpSupport from "./HelpSupport";
 import SettingsPrivacy from "./SettingsPrivacy";
+import CurrentUser from "./CurrentUser";
 
 export default function UserMenu({ user }) {
     const [visible, setVisible] = useState(0);
@@ -10,15 +11,17 @@ export default function UserMenu({ user }) {
         <div className="mmenu">
             {visible === 0 && (
                 <div>
-                    <Link to="/profile" className="mmenu_header hover3">
+                    <CurrentUser user={user} />
+                    {/* <Link to="/profile" className="mmenu_header hover2">
                         <img src={user?.photoURL} alt="" />
                         <div className="mmenu_col">
                             <span>{user?.displayName}</span>
                             <span>See your profile</span>
                         </div>
                     </Link>
-                    <div className="mmenu_splitter"></div>
-                    <div className="mmenu_main hover3">
+                    <div className="mmenu_splitter"></div> */}
+
+                    <div className="mmenu_main hover1">
                         <div className="small_circle">
                             <i className="report_filled_icon"></i>
                         </div>
@@ -30,6 +33,7 @@ export default function UserMenu({ user }) {
                         </div>
                     </div>
                     <div className="mmenu_splitter"></div>
+
                     <div
                         className="mmenu_item hover3"
                         onClick={() => {
