@@ -1,7 +1,5 @@
-import { useRef } from "react";
-import { menu, create } from "../../data/allMenu";
-import useClickOutside from "../../helpers/clickOutside";
 import AllMenuItem from "./AllMenuItem";
+import { menu, create } from "../../data/allMenu";
 
 export default function AllMenu() {
     return (

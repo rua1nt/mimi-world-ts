@@ -1,49 +1,53 @@
-import Logo from "./logo";
-import HomeActive from "./homeActive";
+import ArrowDown1 from "./arrowDow1";
+import ArrowDown from "./arrowDown";
+import ArrowRight from "./arrowRight";
+import Dots from "./dots";
+import Feeling from "./feeling";
 import Friends from "./friends.js";
-import Watch from "./watch";
-import Market from "./market";
+import FriendsActive from "./friendsActive";
 import Gaming from "./gaming";
+import Gmail from "./gmail";
+import Home from "./home";
+import HomeActive from "./homeActive";
+import LiveVideo from "./liveVideo";
+import Logo from "./logo";
+import Market from "./market";
 import Menu from "./menu";
 import Messenger from "./messenger";
-import ArrowDown from "./arrowDown";
-import Notifications from "./notifications";
-import Search from "./search";
-import Return from "./return";
-import ArrowDown1 from "./arrowDow1";
-import Plus from "./plus";
-import ArrowRight from "./arrowRight";
-import LiveVideo from "./liveVideo";
-import Photo from "./photo";
-import Feeling from "./feeling";
-import Dots from "./dots";
-import Public from "./public";
 import NewRoom from "./newRoom";
-import Home from "./home";
-import FriendsActive from "./friendsActive";
+import Notifications from "./notifications";
+import Photo from "./photo";
+import Plus from "./plus";
+import Public from "./public";
+import Return from "./return";
+import Search from "./search";
+import UserFocus from "./userFocus";
+import Watch from "./watch";
 
 export {
-  Logo,
-  HomeActive,
-  Friends,
-  Watch,
-  Market,
-  Gaming,
-  Menu,
-  Messenger,
-  Notifications,
-  ArrowDown,
-  Search,
-  Return,
-  ArrowDown1,
-  Plus,
-  ArrowRight,
-  LiveVideo,
-  Photo,
-  Feeling,
-  Dots,
-  Public,
-  NewRoom,
-  Home,
-  FriendsActive,
+    Logo,
+    HomeActive,
+    Friends,
+    Watch,
+    Market,
+    Gaming,
+    Gmail,
+    UserFocus,
+    Menu,
+    Messenger,
+    Notifications,
+    ArrowDown,
+    Search,
+    Return,
+    ArrowDown1,
+    Plus,
+    ArrowRight,
+    LiveVideo,
+    Photo,
+    Feeling,
+    Dots,
+    Public,
+    NewRoom,
+    Home,
+    FriendsActive,
 };
