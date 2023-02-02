@@ -133,10 +133,10 @@ export default function LoginMenu({ user }) {
     return (
         <div className="logout_menu">
             <div className="logout_menu_header">
-                {partiallyHideEmail(firebaseAuth.currentUser.email)}
+                {partiallyHideEmail(user.email)}
             </div>
             <button
-                className="logout_btn"
+                className="logout_btn hvr-bounce-to-right"
                 onClick={async () => await firebaseAuth.signOut()}
             >
                 Log Out
