@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { left } from "../../../data/home";
 import LeftLink from "./LeftLink";
 import Shortcut from "./Shortcut";
-import { ArrowDown1 } from "../../../svg";
+import { ArrowDown1, Logo } from "../../../svg";
 import "./style.css";
 
 export default function LeftHome({ user }) {
@@ -11,13 +11,13 @@ export default function LeftHome({ user }) {
 
     return (
         <div className="left_home scrollbar">
-            {/* <Link to="/profile" className="left_link hover1">
+            {/* <Link to="/profile" className="left_link hover9">
                 <img src={user?.picture} alt="" />
                 <span>
                     {user?.first_name} {user.last_name}
                 </span>
             </Link> */}
-            {left.slice(0, 8).map((link, i) => (
+            {left.slice(0, 7).map((link, i) => (
                 <LeftLink
                     key={i}
                     img={link.img}
@@ -27,7 +27,7 @@ export default function LeftHome({ user }) {
             ))}
             {!visible && (
                 <div
-                    className="left_link hover1"
+                    className="left_link hover9"
                     onClick={() => {
                         setVisible(true);
                     }}
@@ -40,7 +40,7 @@ export default function LeftHome({ user }) {
             )}
             {visible && (
                 <div className="more_left">
-                    {left.slice(8, left.length).map((link, i) => (
+                    {left.slice(7, left.length).map((link, i) => (
                         <LeftLink
                             key={i}
                             img={link.img}
@@ -49,7 +49,7 @@ export default function LeftHome({ user }) {
                         />
                     ))}
                     <div
-                        className="left_link hover1 "
+                        className="left_link hover9"
                         onClick={() => {
                             setVisible(false);
                         }}
@@ -62,39 +62,45 @@ export default function LeftHome({ user }) {
                 </div>
             )}
             <div className="splitter"></div>
+
             <div className="shortcut">
                 <div className="heading">Your Shortcuts</div>
-                <div className="edit_shortcut">Edit</div>
+                <div className="edit_shortcut hover2">Edit</div>
             </div>
             <div className="shortcut_list">
                 <Shortcut
-                    link="https://www.facebook.com/rua1hc"
-                    img="../../images/ytb.png"
-                    name="My Youtube channel"
+                    link="https://www.facebook.com/thaoly.huynhngoc"
+                    name="Facebook"
+                    svg={<Logo className="shortcut_item_svg" />}
                 />
                 <Shortcut
-                    link="https://www.facebook.com/rua1hc"
+                    link="https://www.facebook.com/thaoly.huynhngoc"
+                    img="../../images/ytb.png"
+                    name="Youtube"
+                />
+                <Shortcut
+                    link="https://www.facebook.com/thaoly.huynhngoc"
                     img="../../images/insta.png"
-                    name="My Instagram"
+                    name="Instagram"
                 />
             </div>
-            <div
-                className={`fb_copyright ${visible && "relative_fb_copyright"}`}
-            >
-                <Link to="/">Privacy </Link>
-                <span>. </span>
-                <Link to="/">Terms </Link>
-                <span>. </span>
-                <Link to="/">Advertising </Link>
-                <span>. </span>
+
+            <div className="fb_copyright relative_fb_copyright">
+                <Link to="/">Privacy</Link>
+                <span> . </span>
+                <Link to="/">Terms</Link>
+                <span> . </span>
+                <Link to="/">Advertising</Link>
+                <span> . </span>
                 <Link to="/">
-                    Ad Choices <i className="ad_choices_icon"></i>{" "}
+                    <span>Ad Choices </span>
+                    <i className="ad_choices_icon"></i>
                 </Link>
-                <span>. </span>
-                <Link to="/"></Link>Cookies <span>. </span>
-                <Link to="/">More </Link>
-                <span>. </span> <br />
-                Meta © 2023
+                <span> . </span>
+                <Link to="/">Cookies</Link>
+                <span> . </span>
+                <Link to="/">More</Link>
+                <span> . Meta © 2023</span>
             </div>
         </div>
     );

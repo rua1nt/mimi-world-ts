@@ -1,6 +1,12 @@
-function Logo() {
+function Logo({ className }) {
     return (
-        <svg width="40" height="40" fill="url(#jsc_s_b)" viewBox="0 0 36 36">
+        <svg
+            className={className}
+            width="40"
+            height="40"
+            fill="url(#jsc_s_b)"
+            viewBox="0 0 36 36"
+        >
             <defs>
                 <linearGradient
                     id="jsc_s_b"

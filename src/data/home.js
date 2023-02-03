@@ -4,8 +4,8 @@ export const left = [
         img: "friends",
     },
     {
-        text: "Memories",
-        img: "memories",
+        text: "Most Recent",
+        img: "recent",
     },
     {
         text: "Groups",
@@ -22,16 +22,8 @@ export const left = [
         notification: "9 new videos",
     },
     {
-        text: "Saved",
-        img: "saved",
-    },
-    {
-        text: "Pages",
-        img: "pages",
-    },
-    {
-        text: "Events",
-        img: "events",
+        text: "Memories",
+        img: "memories",
     },
     {
         text: "Ad Center",
@@ -42,28 +34,16 @@ export const left = [
         img: "ads",
     },
     {
-        text: "Campus",
-        img: "campus",
-    },
-    {
         text: "Climate science center",
         img: "climate",
-    },
-    {
-        text: "Community Help",
-        img: "community",
-    },
-    {
-        text: "COVID-19 Information Centrer",
-        img: "covid",
     },
     {
         text: "Emotional health",
         img: "emotional",
     },
     {
-        text: "Facebook Pay",
-        img: "pay",
+        text: "Events",
+        img: "events",
     },
     {
         text: "Favorites",
@@ -78,10 +58,6 @@ export const left = [
         img: "gaming",
     },
     {
-        text: "Jobs",
-        img: "jobs",
-    },
-    {
         text: "Live videos",
         img: "live",
     },
@@ -94,8 +70,12 @@ export const left = [
         img: "messkids",
     },
     {
-        text: "Most recent",
-        img: "recent",
+        text: "Facebook Pay",
+        img: "pay",
+    },
+    {
+        text: "Pages",
+        img: "pages",
     },
     {
         text: "Play Games",
@@ -106,8 +86,28 @@ export const left = [
         img: "recentad",
     },
     {
+        text: "Jobs",
+        img: "jobs",
+    },
+    {
+        text: "Campus",
+        img: "campus",
+    },
+    {
+        text: "Community Help",
+        img: "community",
+    },
+    {
+        text: "COVID-19 Information Centrer",
+        img: "covid",
+    },
+    {
         text: "Weather",
         img: "weather",
+    },
+    {
+        text: "Saved",
+        img: "saved",
     },
 ];
 
