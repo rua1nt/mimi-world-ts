@@ -42,6 +42,10 @@ export const left = [
         img: "emotional",
     },
     {
+        text: "Weather",
+        img: "weather",
+    },
+    {
         text: "Events",
         img: "events",
     },
@@ -98,12 +102,8 @@ export const left = [
         img: "community",
     },
     {
-        text: "COVID-19 Information Centrer",
+        text: "COVID-19 Centrer",
         img: "covid",
-    },
-    {
-        text: "Weather",
-        img: "weather",
     },
     {
         text: "Saved",
@@ -112,29 +112,29 @@ export const left = [
 ];
 
 export const stories = [
-    // {
-    //     profile_picture: "../../stories/profile1.jpg",
-    //     profile_name: "Elon Musk",
-    //     image: "../../stories/1.jpg",
-    // },
+    {
+        profile_picture: "../../stories/profile1.jpg",
+        profile_name: "Huỳnh Ngọc Thảo Ly",
+        image: "../../stories/1.jpg",
+    },
     {
         profile_picture: "../../stories/profile2.jpg",
-        profile_name: "South park",
-        image: "../../stories/2.png",
+        profile_name: "Maneki Neko",
+        image: "../../stories/2.jpeg",
     },
     {
         profile_picture: "../../stories/profile3.png",
-        profile_name: "The Sopranos",
+        profile_name: "Pokemon",
         image: "../../stories/3.jpg",
     },
     {
-        profile_picture: "../../stories/profile4.jfif",
-        profile_name: "Football World",
+        profile_picture: "../../stories/profile4.png",
+        profile_name: "Doraemon",
         image: "../../stories/4.jpg",
     },
     {
-        profile_picture: "../../stories/profile5.png",
-        profile_name: "The Witcher Wild Hunt",
-        image: "../../stories/5.jfif",
+        profile_picture: "../../stories/profile4.png",
+        profile_name: "Reserved",
+        image: "../../stories/4.jpg",
     },
 ];

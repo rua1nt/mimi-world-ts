@@ -100,7 +100,7 @@ export default function LeftHome({ user }) {
                 <Link to="/">Cookies</Link>
                 <span> . </span>
                 <Link to="/">More</Link>
-                <span> . Meta © 2023</span>
+                <span> . Mimi © 2023</span>
             </div>
         </div>
     );

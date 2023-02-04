@@ -55,7 +55,7 @@ export default function Footer() {
             </div>
             <div className="login_footer_wrap">
                 <Link to="/" style={{ fontSize: "12px" }}>
-                    Meta © 2023
+                    Mimi © 2023
                 </Link>
             </div>
         </footer>
