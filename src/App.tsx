@@ -1,22 +1,32 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+import Login from "./pages/login";
+import Profile from "./pages/profile";
+import Home from "./pages/home";
+import LoggedInRoutes from "./routes/LoggedInRoutes";
+import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
+
 import "./App.css";
+import "./firebase/firebaseui-styling.global.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div>
+            <ToastContainer theme="colored" />
+            <Routes>
+                <Route path="/" element={<Home />} />
+
+                <Route element={<LoggedInRoutes />}>
+                    <Route path="/profile" element={<Profile />} />
+                </Route>
+
+                <Route element={<NotLoggedInRoutes />}>
+                    <Route path="/login" element={<Login />} />
+                </Route>
+            </Routes>
         </div>
     );
 }
