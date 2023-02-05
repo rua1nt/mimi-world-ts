@@ -6,9 +6,14 @@ export default function CreatePost({ user }) {
     return (
         <div className="createPost">
             <div className="createPost_header">
-                <img src={user?.photoURL} alt="" />
+                <img
+                    src={
+                        user ? user.photoURL : "../../../images/default_pic.png"
+                    }
+                    alt=""
+                />
                 <div className="open_post hover2">
-                    What's on your mind, {user?.first_name}
+                    What's on your mind, {user?.displayName}?
                 </div>
             </div>
             <div className="create_splitter"></div>

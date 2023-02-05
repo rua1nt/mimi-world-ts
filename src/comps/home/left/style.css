@@ -151,6 +151,10 @@
     padding-right: 2px;
 }
 
+.fb_copyright a:hover {
+    text-decoration: underline;
+}
+
 .relative_fb_copyright {
     position: relative;
     width: 97%;

@@ -31,9 +31,7 @@ export default function Stories({ user }) {
         <div className="stories">
             <div className="create_story_card">
                 <img
-                    src={
-                        user ? user.photoURL : "../../../images/default_pic.png"
-                    }
+                    src={user?.photoURL || "../../../images/default_pic.png"}
                     alt=""
                     className="create_story_img"
                 />

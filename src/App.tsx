@@ -7,6 +7,7 @@ import Profile from "./pages/profile";
 import Home from "./pages/home";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
+import Activate from "./pages/home/activate";
 
 import "./App.css";
 import "./firebase/firebaseui-styling.global.css";
@@ -18,6 +19,7 @@ function App() {
             <ToastContainer theme="colored" />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/activate/:token" element={<Activate />} />
 
                 <Route element={<LoggedInRoutes />}>
                     <Route path="/profile" element={<Profile />} />

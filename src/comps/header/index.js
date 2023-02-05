@@ -25,7 +25,7 @@ import "./style.css";
 
 export default function Header() {
     const color_secondary = "#65676b";
-    const { user } = useSelector((user) => ({ ...user }));
+    const { user } = useSelector((state) => ({ ...state }));
 
     const [showLoginMenu, setShowLoginMenu] = useState(false);
     const [showSearchMenu, setShowSearchMenu] = useState(false);
