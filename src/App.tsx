@@ -8,6 +8,7 @@ import Home from "./pages/home";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import Activate from "./pages/home/activate";
+import Reset from "./pages/reset";
 
 import "./App.css";
 import "./firebase/firebaseui-styling.global.css";
@@ -28,6 +29,8 @@ function App() {
                 <Route element={<NotLoggedInRoutes />}>
                     <Route path="/login" element={<Login />} />
                 </Route>
+
+                <Route path="/reset" element={<Reset />} />
             </Routes>
         </div>
     );
