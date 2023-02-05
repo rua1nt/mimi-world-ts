@@ -73,7 +73,12 @@ export default function Header() {
                             <UserFocus className={"ping"} color={"#1b74e4"} />
                         )}
                     </div>
-                    {showLoginMenu && <LoginMenu user={user} />}
+                    {showLoginMenu && (
+                        <LoginMenu
+                            user={user}
+                            setShowLoginMenu={setShowLoginMenu}
+                        />
+                    )}
                 </div>
 
                 <div

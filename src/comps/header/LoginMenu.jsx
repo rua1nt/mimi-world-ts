@@ -36,7 +36,7 @@ const styles = {
     },
 };
 
-export default function LoginMenu({ user }) {
+export default function LoginMenu({ user, setShowLoginMenu }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -62,12 +62,22 @@ export default function LoginMenu({ user }) {
             .catch((error) => {
                 toast.error(`${error.code}: ${error.message}`);
             });
+        setShowLoginMenu((prev) => !prev);
     };
 
     const defaultSignIn = () => {
         alert(
             "503 Service Unavailable\n(Phím này để cho vui thôi, mai..mốt làm, xõa Mi ơi)"
         );
+    };
+
+    const defaultSignOut = async () => {
+        await firebaseAuth.signOut();
+
+        Cookies.set("user", "");
+        dispatch({ type: "LOGOUT" });
+        // navigate("/login");
+        setShowLoginMenu((prev) => !prev);
     };
 
     const partiallyHideEmail = (email) => {
@@ -137,7 +147,7 @@ export default function LoginMenu({ user }) {
             </div>
             <button
                 className="logout_btn hvr-bounce-to-right"
-                onClick={async () => await firebaseAuth.signOut()}
+                onClick={defaultSignOut}
             >
                 Log Out
             </button>
