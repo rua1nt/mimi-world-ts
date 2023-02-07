@@ -8,7 +8,7 @@ import Profile from "./pages/profile";
 import Home from "./pages/home";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
-import Activate from "./pages/home/Activate1";
+import Activate from "./pages/home/Activate";
 import Reset from "./pages/reset";
 import CreatePostPopup from "./comps/createPostPopup";
 
