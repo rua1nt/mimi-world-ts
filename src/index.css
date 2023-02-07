@@ -135,6 +135,13 @@ code {
 /* hover */
 
 
+.card {
+  height: 500px;
+  width: 500px;
+  background: red;
+}
+
+
 /* scroll bar */
 .scrollbar::-webkit-scrollbar {
     width: 9px;

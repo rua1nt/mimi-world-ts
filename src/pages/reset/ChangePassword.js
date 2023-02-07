@@ -42,9 +42,9 @@ export default function ChangePassword({
             // );
             setError("");
             navigate("/");
-        } catch (error) {
+        } catch (ex) {
             setLoading(false);
-            setError(error.response.data.message);
+            setError(ex.response.data.message);
         }
     };
 
