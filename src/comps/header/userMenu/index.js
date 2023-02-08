@@ -24,7 +24,6 @@ export default function UserMenu({ user }) {
         <div className="mmenu">
             {visible === 0 && (
                 <div>
-                    <CurrentUser user={user} />
                     {/* <Link to="/profile" className="mmenu_header hover2">
                         <img src={user?.photoURL} alt="" />
                         <div className="mmenu_col">
@@ -33,6 +32,7 @@ export default function UserMenu({ user }) {
                         </div>
                     </Link>
                     <div className="mmenu_splitter"></div> */}
+                    <CurrentUser user={user} />
 
                     <div className="mmenu_main hover1">
                         <div className="small_circle">

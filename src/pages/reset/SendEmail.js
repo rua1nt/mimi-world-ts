@@ -20,7 +20,7 @@ export default function SendEmail({
             // );
             setError("");
             setVisible(2);
-      setLoading(false);
+            setLoading(false);
         } catch (ex) {
             setLoading(false);
             setError(ex.response.data.message);

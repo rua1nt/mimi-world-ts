@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -36,7 +35,7 @@ export default function SearchAccount({
             });
             setVisible(1);
             setError("");
-      setLoading(false);
+            setLoading(false);
         } catch (ex) {
             setLoading(false);
             setError(ex.response.data.message);
