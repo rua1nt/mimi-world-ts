@@ -7,19 +7,21 @@ import CreatePost from "../../comps/createPost";
 import SendVerification from "../../comps/home/sendVerification";
 import "./style.css";
 
-export default function Home() {
+export default function Home({ setVisible }) {
     const { user } = useSelector((state) => ({ ...state }));
 
     return (
         <div className="home">
             <Header />
             <LeftHome user={user} />
+
             <div className="home_middle">
                 {/* {user.verified === false && <SendVerification user={user} />} */}
                 {user?.verified && <SendVerification user={user} />}
                 <Stories user={user} />
-                <CreatePost user={user} />
+                <CreatePost user={user} setVisible={setVisible} />
             </div>
+
             <RightHome user={user} />
         </div>
     );

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -17,13 +17,17 @@ import "./firebase/firebaseui-styling.global.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+    const [visible, setVisible] = useState<boolean>(false);
     const { user } = useSelector((state: any) => ({ ...state }));
+
     return (
         <div>
-            <CreatePostPopup user={user} />
             <ToastContainer theme="colored" />
+
+            {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
+
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home setVisible={setVisible} />} />
                 <Route path="/activate/:token" element={<Activate />} />
 
                 <Route element={<LoggedInRoutes />}>

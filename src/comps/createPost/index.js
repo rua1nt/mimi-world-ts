@@ -1,8 +1,8 @@
 import { Feeling, LiveVideo, Photo } from "../../svg";
-import UserMenu from "../header/userMenu";
+// import UserMenu from "../header/userMenu";
 import "./style.css";
 
-export default function CreatePost({ user }) {
+export default function CreatePost({ user, setVisible }) {
     return (
         <div className="createPost">
             <div className="createPost_header">
@@ -10,11 +10,17 @@ export default function CreatePost({ user }) {
                     src={user?.photoURL || "../../../images/default_pic.png"}
                     alt=""
                 />
-                <div className="open_post hover2">
-                    What's on your mind, {user?.displayName || "Mimi"}?
+                <div
+                    className="open_post hover2"
+                    onClick={() => setVisible(true)}
+                >
+                    {user
+                        ? `Đi Đu Đưa Ko, ${user.displayName}?`
+                        : "Đi Đu Đưa Ko, Mimi?"}
                 </div>
             </div>
             <div className="create_splitter"></div>
+
             <div className="createPost_body">
                 <div className="createPost_icon hover1">
                     <LiveVideo color="#f3425f" />
