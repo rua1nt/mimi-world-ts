@@ -38,7 +38,8 @@ export default function SearchAccount({
             setLoading(false);
         } catch (ex) {
             setLoading(false);
-            setError(ex.response.data.message);
+            // setError(ex.response.data.message);
+            setError(ex.message);
         }
     };
 

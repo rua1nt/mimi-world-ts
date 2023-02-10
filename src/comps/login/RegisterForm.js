@@ -97,10 +97,11 @@ export default function RegisterForm({ setVisible }) {
         Cookies.set("user", JSON.stringify(rest));
         navigate("/");
       }, 2000);
-    } catch (error) {
+    } catch (ex) {
       setLoading(false);
       setSuccess("");
-      setError(error.response.data.message);
+      // setError(ex.response.data.message);
+      setError(ex.message);
     }
   };
   return (

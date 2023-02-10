@@ -59,8 +59,8 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                 Cookies.set("user", JSON.stringify(data));
                 toast.success(`Welcome, ${data.displayName}!`);
             })
-            .catch((error) => {
-                toast.error(`${error.code}: ${error.message}`);
+            .catch((ex) => {
+                toast.error(`${ex.code}: ${ex.message}`);
             });
         setShowLoginMenu((prev) => !prev);
     };

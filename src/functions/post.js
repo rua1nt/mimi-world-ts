@@ -23,8 +23,9 @@ export const createPost = async (
         },
       }
     );
-    return data;
-  } catch (error) {
-    return error.response.data.message;
+    return "ok";
+  } catch (ex) {
+    // return ex.response.data.message;
+    return ex.message;
   }
 };

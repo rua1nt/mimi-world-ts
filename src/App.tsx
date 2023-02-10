@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     const [visible, setVisible] = useState<boolean>(false);
-    const { user } = useSelector((state: any) => ({ ...state }));
+    const { user, error } = useSelector((state: any) => ({ ...state }));
 
     return (
         <div>

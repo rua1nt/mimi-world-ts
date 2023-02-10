@@ -49,7 +49,8 @@ export default function LoginForm({ setVisible }) {
             navigate("/");
         } catch (ex) {
             setLoading(false);
-            setError(ex.response.data.message);
+            // setError(ex.response.data.message);
+            setError(ex.message);
         }
     };
 

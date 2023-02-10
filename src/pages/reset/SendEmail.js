@@ -23,7 +23,8 @@ export default function SendEmail({
             setLoading(false);
         } catch (ex) {
             setLoading(false);
-            setError(ex.response.data.message);
+            // setError(ex.response.data.message);
+            setError(ex.message);
         }
     };
 
