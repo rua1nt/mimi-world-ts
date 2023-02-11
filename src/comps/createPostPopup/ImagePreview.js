@@ -8,17 +8,39 @@ export default function ImagePreview({
     images,
     setImages,
     setShowPrev,
+    setError,
 }) {
     const imageInputRef = useRef(null);
 
     const handleImages = (e) => {
         let files = Array.from(e.target.files);
         files.forEach((img) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(img);
-            reader.onload = (readerEvent) => {
-                setImages((images) => [...images, readerEvent.target.result]);
-            };
+            console.log(img);
+            if (
+                img.type !== "image/jpeg" &&
+                img.type !== "image/png" &&
+                img.type !== "image/webp" &&
+                img.type !== "image/gif"
+            ) {
+                setError(
+                    `${img.name} format is unsupported ! only Jpeg, Png, Webp, Gif are allowed.`
+                );
+                files = files.filter((item) => item.name !== img.name);
+                return;
+            } else if (img.size > 1024 * 1024) {
+                setError(`${img.name} size is too large max 5mb allowed.`);
+                files = files.filter((item) => item.name !== img.name);
+                return;
+            } else {
+                const reader = new FileReader();
+                reader.readAsDataURL(img);
+                reader.onload = (readerEvent) => {
+                    setImages((images) => [
+                        ...images,
+                        readerEvent.target.result,
+                    ]);
+                };
+            }
         });
     };
 
@@ -33,6 +55,7 @@ export default function ImagePreview({
             <div className="add_pics_wrap">
                 <input
                     type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
                     multiple
                     hidden
                     ref={imageInputRef}
@@ -48,9 +71,7 @@ export default function ImagePreview({
                             </button>
                             <button
                                 className="hover1"
-                                onClick={() => {
-                                    imageInputRef.current.click();
-                                }}
+                                onClick={() => imageInputRef.current.click()}
                             >
                                 <i className="addPhoto_icon"></i>
                                 Add Photos/Videos
@@ -95,10 +116,8 @@ export default function ImagePreview({
                             <i className="exit_icon"></i>
                         </div>
                         <div
-                            className="add_col"
-                            onClick={() => {
-                                imageInputRef.current.click();
-                            }}
+                            className="add_col hover3"
+                            onClick={() => imageInputRef.current.click()}
                         >
                             <div className="add_circle">
                                 <i className="addPhoto_icon"></i>
@@ -114,7 +133,7 @@ export default function ImagePreview({
                         <i className="phone_icon"></i>
                     </div>
                     <div className="mobile_text">
-                        Add phots from your mobile device.
+                        Add photos from your mobile device.
                     </div>
                     <span className="addphone_btn">Add</span>
                 </div>

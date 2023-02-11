@@ -85,21 +85,22 @@ code {
 }
 
 .gray_btn {
-  border: none;
-  outline: none;
-  background: var(--bg-secondary);
-  padding: 8.5px 12px;
-  border-radius: 7px;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 14px;
-  color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
+    border: none;
+    outline: none;
+    background: var(--bg-secondary);
+    padding: 8.5px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
 }
+
 /* buttons */
 
 
@@ -136,15 +137,15 @@ code {
 
 
 .card {
-  height: 500px;
-  width: 500px;
-  background: red;
+    height: 500px;
+    width: 500px;
+    background: red;
 }
 
 
 /* scroll bar */
 .scrollbar::-webkit-scrollbar {
-    width: 9px;
+    width: 8px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
