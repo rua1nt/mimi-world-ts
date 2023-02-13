@@ -63,6 +63,8 @@ code {
 }
 
 
+
+
 /* buttons */
 .blue_btn {
     display: flex;
@@ -114,6 +116,14 @@ code {
     background: rgba(255, 255, 255, 0.768);
 }
 
+
+/* filter */
+.filter1:hover {
+    /* filter: invert(5%); */
+    /* filter: sepia(10%); */
+    opacity: 1;
+    /* transform: scale(1.1); */
+}
 
 
 /* hover */

@@ -8,6 +8,7 @@ export default function SendVerification({ user }) {
 
     const sendVerificationLink = async () => {
         try {
+            // TODO: https://firebase.google.com/docs/auth/web/manage-users?hl=en&authuser=0#send_a_user_a_verification_email
             const { data } = await axios.post(
                 `${process.env.REACT_APP_BACKEND_URL}/sendVerification`,
                 {},

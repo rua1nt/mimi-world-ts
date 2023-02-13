@@ -14,6 +14,7 @@ export default function SendEmail({
     const sendEmail = async () => {
         try {
             setLoading(true);
+            // TODO: https://firebase.google.com/docs/auth/web/manage-users?hl=en&authuser=0#send_a_password_reset_email
             // await axios.post(
             //     `${process.env.REACT_APP_BACKEND_URL}/sendResetPasswordCode`,
             //     { email }

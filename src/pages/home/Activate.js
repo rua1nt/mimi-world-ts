@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../comps/header";
-// import LeftHome from "../../comps/home/left";
+import LeftHome from "../../comps/home/left";
 // import RightHome from "../../comps/home/right";
-import Stories from "../../comps/home/stories";
+// import Stories from "../../comps/home/stories";
 // import CreatePost from "../../comps/createPost";
 import ActivateForm from "./ActivateForm";
 import "./style.css";
@@ -17,6 +17,7 @@ export default function Activate() {
     const navigate = useNavigate();
 
     const { token } = useParams();
+
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ export default function Activate() {
     const activateAccount = async () => {
         try {
             setLoading(true);
+            // TODO: verify attached token url via email by sendVerificationLink()
             const { data } = await axios.post(
                 `${process.env.REACT_APP_BACKEND_URL}/activate`,
                 { token },
@@ -74,10 +76,12 @@ export default function Activate() {
                     loading={loading}
                 />
             )}
+
             <Header />
-            <div className="home_middle">
+            <LeftHome user={user} />
+            {/* <div className="home_middle">
                 <Stories />
-            </div>
+            </div> */}
         </div>
     );
 }

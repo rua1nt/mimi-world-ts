@@ -76,6 +76,7 @@ export default function RegisterForm({ setVisible }) {
 
   const registerSubmit = async () => {
     try {
+      // TODO: https://firebase.google.com/docs/auth/web/password-auth?hl=en&authuser=0#create_a_password-based_account
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/register`,
         {

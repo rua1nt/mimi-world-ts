@@ -52,7 +52,9 @@ export default function ImagePreview({
                 setText={setText}
                 type2
             />
-            <div className="add_pics_wrap">
+            <div
+                className={images?.length ? "add_pics_wrap" : "add_pics_empty"}
+            >
                 <input
                     type="file"
                     accept="image/jpeg,image/png,image/webp,image/gif"
@@ -62,7 +64,7 @@ export default function ImagePreview({
                     onChange={handleImages}
                 />
 
-                {images && images.length ? (
+                {images?.length ? (
                     <div className="add_pics_inside1 p0">
                         <div className="preview_actions">
                             <button className="hover1">
@@ -94,7 +96,7 @@ export default function ImagePreview({
                                     : images.length === 3
                                     ? "preview3"
                                     : images.length === 4
-                                    ? "preview4 "
+                                    ? "preview4"
                                     : images.length === 5
                                     ? "preview5"
                                     : images.length % 2 === 0
@@ -106,37 +108,40 @@ export default function ImagePreview({
                                 <img src={img} key={i} alt="" />
                             ))}
                         </div>
+                        <div className="create_gap"></div>
                     </div>
                 ) : (
-                    <div className="add_pics_inside1">
-                        <div
-                            className="small_white_circle"
-                            onClick={() => setShowPrev(false)}
-                        >
-                            <i className="exit_icon"></i>
-                        </div>
-                        <div
-                            className="add_col hover3"
-                            onClick={() => imageInputRef.current.click()}
-                        >
-                            <div className="add_circle">
-                                <i className="addPhoto_icon"></i>
+                    <>
+                        <div className="add_pics_inside1">
+                            <div
+                                className="small_white_circle"
+                                onClick={() => setShowPrev(false)}
+                            >
+                                <i className="exit_icon"></i>
                             </div>
-                            <span>Add Photos/Videos</span>
-                            <span>or drag and drop</span>
+                            <div
+                                className="add_col hover3"
+                                onClick={() => imageInputRef.current.click()}
+                            >
+                                <div className="add_circle">
+                                    <i className="addPhoto_icon"></i>
+                                </div>
+                                <span>Add Photos/Videos</span>
+                                <span>or drag and drop</span>
+                            </div>
                         </div>
-                    </div>
-                )}
 
-                <div className="add_pics_inside2">
-                    <div className="add_circle">
-                        <i className="phone_icon"></i>
-                    </div>
-                    <div className="mobile_text">
-                        Add photos from your mobile device.
-                    </div>
-                    <span className="addphone_btn">Add</span>
-                </div>
+                        <div className="add_pics_inside2">
+                            <div className="add_circle">
+                                <i className="phone_icon"></i>
+                            </div>
+                            <div className="mobile_text">
+                                Add photos from your mobile device.
+                            </div>
+                            <span className="addphone_btn">Add</span>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
