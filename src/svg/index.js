@@ -10,7 +10,7 @@ import Gmail from "./gmail";
 import Home from "./home";
 import HomeActive from "./homeActive";
 import LiveVideo from "./liveVideo";
-import Logo from "./logo";
+import FbLogo from "./fbLogo";
 import Market from "./market";
 import Menu from "./menu";
 import Messenger from "./messenger";
@@ -25,7 +25,7 @@ import UserFocus from "./userFocus";
 import Watch from "./watch";
 
 export {
-    Logo,
+    FbLogo,
     HomeActive,
     Friends,
     Watch,

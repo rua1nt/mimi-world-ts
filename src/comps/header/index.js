@@ -6,7 +6,7 @@ import {
     Friends,
     Gaming,
     HomeActive,
-    Logo,
+    FbLogo,
     Market,
     Menu,
     Messenger,
@@ -53,7 +53,7 @@ export default function Header() {
             <div className="header_left">
                 {/* <Link to="/" className="header_logo">
                     <div className="circle">
-                        <Logo />
+                        <FbLogo />
                     </div>
                 </Link> */}
                 <div className="circle" ref={loginMenu}>
@@ -66,7 +66,7 @@ export default function Header() {
                         {user ? (
                             <img
                                 className="header_profile_img"
-                                src={user?.photoURL}
+                                src={user.photoURL}
                                 alt=""
                             />
                         ) : (

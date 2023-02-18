@@ -7,7 +7,7 @@ export default function RightHome({ user }) {
 
     return (
         <div className="right_home">
-            <div className="heading">Sponsored</div>
+            <div className="right_home_heading">Sponsored</div>
             <div className="splitter1"></div>
 
             <div className="contacts_wrap">
@@ -27,6 +27,7 @@ export default function RightHome({ user }) {
                 </div>
 
                 <div className="contacts_list">
+                    <Contact user={user} />
                     <Contact user={user} />
                 </div>
             </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { left } from "../../../data/home";
 import LeftLink from "./LeftLink";
 import Shortcut from "./Shortcut";
-import { ArrowDown1, Logo } from "../../../svg";
+import { ArrowDown1, FbLogo } from "../../../svg";
 import "./style.css";
 
 export default function LeftHome({ user }) {
@@ -71,7 +71,7 @@ export default function LeftHome({ user }) {
                 <Shortcut
                     link="https://www.facebook.com/thaoly.huynhngoc"
                     name="Facebook"
-                    svg={<Logo className="shortcut_item_svg" />}
+                    svg={<FbLogo className="shortcut_item_svg" />}
                 />
                 <Shortcut
                     link="https://www.facebook.com/thaoly.huynhngoc"

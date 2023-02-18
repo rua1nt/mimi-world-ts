@@ -1,4 +1,4 @@
-function Logo({ className }) {
+function FbLogo({ className }) {
     return (
         <svg
             className={className}
@@ -28,4 +28,4 @@ function Logo({ className }) {
     );
 }
 
-export default Logo;
+export default FbLogo;

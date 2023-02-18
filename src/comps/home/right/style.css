@@ -1,15 +1,24 @@
 .right_home {
     position: fixed;
-    left: 80.7vw;
+    /* left: 82vw; */
+    right: 1vw;
     top: 4rem;
-    width: 17vw;
+    width: 16vw;
+}
+
+.right_home_heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-secondary);
+    padding: 10px 5px;
 }
 
 .splitter1 {
-    height: 1.3px;
+    height: 1.2px;
     background: var(--divider);
-    width: 17vw;
-    margin: 6px 2px 0 12px;
+    /* width: 17vw; */
+    width: 100%;
+    margin: 5px 0 5px 0;
 }
 
 .contacts_header {
@@ -17,7 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0 7px 10px;
+    padding: 5px 5px 0 5px;
     font-weight: 600;
     color: var(--color-secondary);
 }
@@ -25,15 +34,15 @@
 .contacts_header_right {
     display: flex;
     align-items: center;
-    gap: 6px;
-    position: absolute;
-    right: -9px;
-    top: 7px;
+    /* gap: 6px; */
+    /* position: absolute; */
+    /* right: -9px; */
+    /* top: 7px; */
 }
 
 .contact_circle {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -54,7 +63,7 @@
 }
 
 .contacts_list {
-    padding: 5px;
+    padding: 5px 0;
 }
 
 .contact {
@@ -62,7 +71,7 @@
     align-items: center;
     gap: 12px;
     font-size: 14px;
-    padding: 4px 5px;
+    padding: 5px 5px;
     border-radius: 5px;
     cursor: pointer;
     color: var(--color-primary);

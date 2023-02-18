@@ -85,13 +85,13 @@
         width: 20vw;
     }
 
-    .contacts_header_right {
+    /* .contacts_header_right {
         right: 10%;
-    }
+    } */
 
-    .contact_circle {
-        width: 20px;
-    }
+    /* .contact_circle {
+        width: 32px;
+    } */
 
     .stories,
     .createPost,
@@ -113,13 +113,13 @@
     }
 
     .right_home {
-        left: 78%;
-        width: 20vw;
+        /* left: 78%; */
+        width: 21vw;
     }
 
-    .splitter1 {
+    /* .splitter1 {
         width: 20vw;
-    }
+    } */
 
     .contact_circle {
         width: 30px;
