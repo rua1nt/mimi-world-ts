@@ -1,8 +1,56 @@
 rules_version = '2';
+// firebase deploy --only firestore:rules
+
 service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /databases/{database}/documents {
+        match /pubs/{pubId} {
+            allow read, write: if true;
+        }
+
+        match /users/{userId} {
+            allow get: if request.auth != null && request.auth.uid == userId;
+            allow list: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+            allow create: if request.auth != null
+                        && request.resource.data.isAdmin == false;
+            allow update: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+            allow delete: if false;
+        }
+
+        match /posts/{postId} {
+            allow read: if true;
+            allow create: if request.auth != null;
+            allow update: if request.auth.uid == resource.data.userId;
+            allow delete: if request.auth.uid == resource.data.userId
+                        || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.pFull == true;
+        }
+
+        match /templates/{templateId} {
+            //requesting user matches name of the templateId
+            allow read: if request.auth != null && request.auth.uid == templateId;
+            //read data if the document has the 'visibility' field set to 'public'
+            allow create: if resource.data.visibility == 'public';
+            //compare incoming data to existing data
+            allow update: if request.resource.data.population > 0
+                        && request.resource.data.name == resource.data.name;
+            //Allow the user to delete cities if their user document 'admin' field set to 'true'
+            allow delete: if request.auth != null
+                        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
+            
+        }
+
+        match /tests/{testId} {
+            // Allow only authenticated content owners access
+            allow get: if request.auth != null
+                        && request.auth.uid == request.resource.data.author_uid;
+            // Role or Attribute
+            allow list: if request.auth != null
+                        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Writer"
+
+            allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
+            //unchanged key
+            allow update: if (request.resource.data.keys() == resource.data.keys()) 
+                        && request.resource.data["name"] == resource.data["name"];
+        }
+
     }
-  }
 }
