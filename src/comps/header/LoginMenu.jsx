@@ -1,10 +1,11 @@
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 
 import {
     signInWithPopup,
+    signInWithRedirect,
     GoogleAuthProvider,
     FacebookAuthProvider,
 } from "firebase/auth";
@@ -115,9 +116,7 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
         let elements = email.split("@");
         let prefix;
         if (elements[0].length > 3) {
-            prefix =
-                elements[0].substring(0, 3) +
-                "*".repeat(elements[0].length - 3);
+            prefix = elements[0].substring(0, 3) + "*".repeat(elements[0].length - 3);
         } else {
             prefix = elements[0][0] + "*".repeat(elements[0].length - 1);
         }
@@ -130,44 +129,18 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
             <div className="login_menu">
                 <div className="login_menu_header">Welcome</div>
 
-                <GoogleLoginButton
-                    icon={Gmail}
-                    style={styles.login_menu_btn}
-                    onClick={emailSignIn}
-                >
+                <GoogleLoginButton icon={Gmail} style={styles.login_menu_btn} onClick={emailSignIn}>
                     <span>Log in with Email</span>
                 </GoogleLoginButton>
 
-                <GoogleLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={googleSignIn}
-                />
+                <GoogleLoginButton style={styles.login_menu_btn} onClick={googleSignIn} />
+                <FacebookLoginButton style={styles.login_menu_btn} onClick={facebookSignIn} />
 
-                <FacebookLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={facebookSignIn}
-                />
-
-                <InstagramLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={defaultSignIn}
-                />
-                <TwitterLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={defaultSignIn}
-                />
-                <TelegramLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={defaultSignIn}
-                />
-                <DiscordLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={defaultSignIn}
-                />
-                <GithubLoginButton
-                    style={styles.login_menu_btn}
-                    onClick={defaultSignIn}
-                />
+                <InstagramLoginButton style={styles.login_menu_btn} onClick={defaultSignIn} />
+                <TwitterLoginButton style={styles.login_menu_btn} onClick={defaultSignIn} />
+                <TelegramLoginButton style={styles.login_menu_btn} onClick={defaultSignIn} />
+                <DiscordLoginButton style={styles.login_menu_btn} onClick={defaultSignIn} />
+                <GithubLoginButton style={styles.login_menu_btn} onClick={defaultSignIn} />
             </div>
         );
     }
@@ -181,9 +154,7 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                     ) : (
                         <Gmail className="logout_menu_icon" />
                     )}
-                    <div className="logout_menu_email">
-                        {partiallyHideEmail(user.email)}
-                    </div>
+                    <div className="logout_menu_email">{partiallyHideEmail(user.email)}</div>
                 </button>
 
                 <ul className="logout_menu_content">
@@ -206,10 +177,7 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                 </ul>
             </div>
 
-            <button
-                className="logout_btn hvr-bounce-to-right"
-                onClick={defaultSignOut}
-            >
+            <button className="logout_btn hvr-bounce-to-right" onClick={defaultSignOut}>
                 Log Out
             </button>
         </div>

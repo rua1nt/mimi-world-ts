@@ -577,6 +577,7 @@
 }
 
 .postError_error {
+    text-align: center;
     width: 75%;
     font-weight: 600;
 }

@@ -24,33 +24,5 @@ service cloud.firestore {
                         || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.pFull == true;
         }
 
-        match /templates/{templateId} {
-            //requesting user matches name of the templateId
-            allow read: if request.auth != null && request.auth.uid == templateId;
-            //read data if the document has the 'visibility' field set to 'public'
-            allow create: if resource.data.visibility == 'public';
-            //compare incoming data to existing data
-            allow update: if request.resource.data.population > 0
-                        && request.resource.data.name == resource.data.name;
-            //Allow the user to delete cities if their user document 'admin' field set to 'true'
-            allow delete: if request.auth != null
-                        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
-            
-        }
-
-        match /tests/{testId} {
-            // Allow only authenticated content owners access
-            allow get: if request.auth != null
-                        && request.auth.uid == request.resource.data.author_uid;
-            // Role or Attribute
-            allow list: if request.auth != null
-                        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Writer"
-
-            allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
-            //unchanged key
-            allow update: if (request.resource.data.keys() == resource.data.keys()) 
-                        && request.resource.data["name"] == resource.data["name"];
-        }
-
     }
 }

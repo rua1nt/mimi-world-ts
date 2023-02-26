@@ -28,7 +28,6 @@ export default function RightHome({ user }) {
 
                 <div className="contacts_list">
                     <Contact user={user} />
-                    <Contact user={user} />
                 </div>
             </div>
         </div>

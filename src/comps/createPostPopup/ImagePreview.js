@@ -15,20 +15,19 @@ export default function ImagePreview({
     const handleImages = (e) => {
         let files = Array.from(e.target.files);
         files.forEach((img) => {
-            console.log(img);
             if (
-                img.type !== "image/jpeg" &&
                 img.type !== "image/png" &&
+                img.type !== "image/jpeg" &&
                 img.type !== "image/webp" &&
                 img.type !== "image/gif"
             ) {
                 setError(
-                    `${img.name} format is unsupported ! only Jpeg, Png, Webp, Gif are allowed.`
+                    `${img.name} format is unsupported! Only Jpeg, Png, Webp, Gif are allowed!`
                 );
                 files = files.filter((item) => item.name !== img.name);
                 return;
-            } else if (img.size > 1024 * 1024) {
-                setError(`${img.name} size is too large max 5mb allowed.`);
+            } else if (img.size > 1024 * 1024 * 3) {
+                setError(`${img.name} size is too large max 3mb allowed!`);
                 files = files.filter((item) => item.name !== img.name);
                 return;
             } else {
@@ -57,7 +56,7 @@ export default function ImagePreview({
             >
                 <input
                     type="file"
-                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    accept="image/*"
                     multiple
                     hidden
                     ref={imageInputRef}
