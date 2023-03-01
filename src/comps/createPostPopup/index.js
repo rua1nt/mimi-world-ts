@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import DatePicker from "react-datepicker";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import ImagePreview from "./ImagePreview";
@@ -9,11 +10,13 @@ import AddToYourPost from "./AddToYourPost";
 
 import dataURItoBlob from "../../helpers/dataURItoBlob";
 import useClickOutside from "../../helpers/clickOutside";
-import { createPost } from "../../functions/createPost";
+// import { createPost } from "../../functions/createPost";
 // import { uploadImages } from "../../functions/uploadImages";
 
 import { fsAddPost } from "../../firebase/fsPost";
 import { uploadImages } from "../../cloudinary/uploadImages";
+
+import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
 
 export default function CreatePostPopup({ user, setVisible }) {
@@ -25,6 +28,7 @@ export default function CreatePostPopup({ user, setVisible }) {
     const [error, setError] = useState("");
     const [images, setImages] = useState([]);
     const [background, setBackground] = useState("");
+    const [mimiDate, setMimiDate] = useState(new Date());
 
     useClickOutside(popup, () => {
         setVisible(false);
@@ -39,7 +43,7 @@ export default function CreatePostPopup({ user, setVisible }) {
         if (background) {
             setLoading(true);
             // const response = await createPost(null, background, text, null, user.id, user.token);
-            const response = await fsAddPost(null, background, text, null, user);
+            const response = await fsAddPost(null, background, text, null, user, 1, 2, mimiDate);
             setLoading(false);
             if (response === "ok") {
                 setBackground("");
@@ -111,6 +115,14 @@ export default function CreatePostPopup({ user, setVisible }) {
                         <i className="exit_icon"></i>
                     </div>
                     <span>Create Post</span>
+                    <DatePicker
+                        selected={mimiDate}
+                        onChange={(date) => setMimiDate(date)}
+                        peekNextMonth
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                    />
                 </div>
 
                 <div className="box_profile">

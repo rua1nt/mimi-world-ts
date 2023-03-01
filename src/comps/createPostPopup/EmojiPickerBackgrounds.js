@@ -53,6 +53,11 @@ export default function EmojiPickerBackgrounds({
         bgRef.current.classList.remove("bgHandler");
     };
 
+    const calcPaddingTop = (len) => {
+        let line = Math.floor(len / 33);
+        return 24 - line * 3.1;
+    };
+
     return (
         <div className={type2 ? "images_input" : ""}>
             <div className={!type2 ? "flex_center" : ""} ref={bgRef}>
@@ -60,31 +65,22 @@ export default function EmojiPickerBackgrounds({
                     ref={textRef}
                     maxLength="250"
                     value={text}
-                    placeholder={
-                        user
-                            ? `Đi Đu Đưa Ko, ${user.displayName}?`
-                            : "Đi Đu Đưa Ko, Mimi?"
-                    }
+                    placeholder={user ? `Đi Đu Đưa Ko, ${user.displayName}?` : "Đi Đu Đưa Ko, Mimi?"}
                     className={`post_input ${type2 ? "input2" : ""}`}
                     onChange={(e) => setText(e.target.value)}
+                    // style={{
+                    //     paddingTop: `${ background ? Math.abs(textRef.current?.value?.length * 0.1 - 24) : "0" }%`,
+                    // }}
                     style={{
                         paddingTop: `${
-                            background
-                                ? Math.abs(
-                                      textRef.current.value.length * 0.1 - 32
-                                  )
-                                : "0"
+                            background ? calcPaddingTop(textRef.current?.value?.length) : "0"
                         }%`,
                     }}
                 ></textarea>
             </div>
             <div className={!type2 ? "post_emojis_wrap" : ""}>
                 {picker && (
-                    <div
-                        className={`comment_emoji_picker ${
-                            type2 ? "movepicker2" : "rlmove"
-                        }`}
-                    >
+                    <div className={`comment_emoji_picker ${type2 ? "movepicker2" : "rlmove"}`}>
                         <EmojiPicker onEmojiClick={handleEmoji} />
                     </div>
                 )}
@@ -97,17 +93,9 @@ export default function EmojiPickerBackgrounds({
                 )}
                 {!type2 && showBgs && (
                     <div className="post_backgrounds">
-                        <div
-                            className="no_bg"
-                            onClick={() => removeBackground()}
-                        ></div>
+                        <div className="no_bg" onClick={() => removeBackground()}></div>
                         {postBackgrounds.map((bg, i) => (
-                            <img
-                                src={bg}
-                                key={i}
-                                alt=""
-                                onClick={() => backgroundHanlder(i)}
-                            />
+                            <img src={bg} key={i} alt="" onClick={() => backgroundHanlder(i)} />
                         ))}
                     </div>
                 )}

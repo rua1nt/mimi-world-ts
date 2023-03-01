@@ -11,6 +11,14 @@
     border-radius: 5px;
 }
 
+/* datepicker */
+.box_header .react-datepicker-wrapper {
+    width: 200px;
+}
+
+/* datepicker */
+
+
 .box_header {
     position: relative;
     display: flex;
@@ -114,9 +122,9 @@
 .post_emojis_wrap {
     position: relative;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 18px 10px 15px;
+    padding: 10px 16px 10px 16px;
 }
 
 .post_emojis_wrap img {
@@ -540,19 +548,22 @@
     width: 35px;
     height: 35px;
     border-radius: 10px;
+    border: 3px solid var(--dark-color-secondary);
     cursor: pointer;
 }
 
 .bgHandler {
-    height: 360px;
+    height: 280px;
     width: 100%;
     background-size: cover;
 }
 
 .bgHandler textarea {
-    text-align: center;
-    height: 360px;
+    /* text-align: center; */
+    height: 280px;
     margin-top: 10px;
+    font-size: 24px;
+    mix-blend-mode: difference;
 }
 
 /*----post error----*/

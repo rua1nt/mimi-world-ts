@@ -34,10 +34,7 @@ export default function ImagePreview({
                 const reader = new FileReader();
                 reader.readAsDataURL(img);
                 reader.onload = (readerEvent) => {
-                    setImages((images) => [
-                        ...images,
-                        readerEvent.target.result,
-                    ]);
+                    setImages((images) => [...images, readerEvent.target.result]);
                 };
             }
         });
@@ -45,15 +42,9 @@ export default function ImagePreview({
 
     return (
         <div className="overflow_a scrollbar">
-            <EmojiPickerBackgrounds
-                text={text}
-                user={user}
-                setText={setText}
-                type2
-            />
-            <div
-                className={images?.length ? "add_pics_wrap" : "add_pics_empty"}
-            >
+            <EmojiPickerBackgrounds type2 text={text} user={user} setText={setText} />
+
+            <div className={images?.length ? "add_pics_wrap" : "add_pics_empty"}>
                 <input
                     type="file"
                     accept="image/*"
@@ -70,19 +61,13 @@ export default function ImagePreview({
                                 <i className="edit_icon"></i>
                                 Edit
                             </button>
-                            <button
-                                className="hover1"
-                                onClick={() => imageInputRef.current.click()}
-                            >
+                            <button className="hover1" onClick={() => imageInputRef.current.click()}>
                                 <i className="addPhoto_icon"></i>
                                 Add Photos/Videos
                             </button>
                         </div>
 
-                        <div
-                            className="small_white_circle"
-                            onClick={() => setImages([])}
-                        >
+                        <div className="small_white_circle" onClick={() => setImages([])}>
                             <i className="exit_icon"></i>
                         </div>
 
@@ -112,10 +97,7 @@ export default function ImagePreview({
                 ) : (
                     <>
                         <div className="add_pics_inside1">
-                            <div
-                                className="small_white_circle"
-                                onClick={() => setShowPrev(false)}
-                            >
+                            <div className="small_white_circle" onClick={() => setShowPrev(false)}>
                                 <i className="exit_icon"></i>
                             </div>
                             <div
@@ -134,9 +116,7 @@ export default function ImagePreview({
                             <div className="add_circle">
                                 <i className="phone_icon"></i>
                             </div>
-                            <div className="mobile_text">
-                                Add photos from your mobile device.
-                            </div>
+                            <div className="mobile_text">Add photos from your mobile device.</div>
                             <span className="addphone_btn">Add</span>
                         </div>
                     </>
