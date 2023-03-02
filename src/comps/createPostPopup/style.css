@@ -12,8 +12,78 @@
 }
 
 /* datepicker */
-.box_header .react-datepicker-wrapper {
-    width: 200px;
+.mimi_datepicker {
+    width: 180px;
+}
+
+.mimi_datepicker input {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    background: dodgerblue;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    width: 100%;
+    padding: 5px;
+}
+
+.react-datepicker {
+    font-size: 13px;
+}
+
+.react-datepicker__header {
+    background: dodgerblue;
+}
+
+.react-datepicker__current-month {
+    color: white;
+    padding: 0 0 8px;
+}
+
+.react-datepicker__day-name {
+    color: white;
+}
+
+.react-datepicker__header__dropdown {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.react-datepicker__year-dropdown-container--select,
+.react-datepicker__month-dropdown-container--select {
+    margin: 0;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    outline: 0;
+    padding: 3px 5px;
+}
+
+.react-datepicker__month-select>option {
+    padding: 2px;
+}
+
+.react-datepicker__day:hover {
+    color: var(--blue-color);
+}
+
+.react-datepicker__day--selected {
+    background-color: dodgerblue;
+}
+
+.react-datepicker__day--selected:hover {
+    color: white;
+    background-color: var(--blue-color);
+}
+
+.react-datepicker__day--keyboard-selected:hover {
+    color: white;
+    background-color: black;
 }
 
 /* datepicker */
@@ -23,7 +93,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     font-size: 20px;
     font-weight: 700;
     padding: 15px 16px;
@@ -40,11 +110,17 @@
 .box_profile {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.box_profile__user_info {
+    display: flex;
+    align-items: center;
     gap: 12px;
     padding: 10px 16px 10px 16px;
 }
 
-.box_profile .box_profile_img {
+.box_profile__user_info .box_profile_img {
     width: 40px;
     height: 40px;
     border-radius: 50%;

@@ -115,31 +115,42 @@ export default function CreatePostPopup({ user, setVisible }) {
                         <i className="exit_icon"></i>
                     </div>
                     <span>Create Post</span>
-                    <DatePicker
-                        selected={mimiDate}
-                        onChange={(date) => setMimiDate(date)}
-                        peekNextMonth
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                    />
+                    <div className="mimi_datepicker">
+                        <DatePicker
+                            showIcon
+                            selected={mimiDate}
+                            onChange={(date) => setMimiDate(date)}
+                            showMonthDropdown
+                            showYearDropdown
+                            showPopperArrow={false}
+                            minDate={new Date(2020, 3, 22)}
+                            todayButton="Today"
+                            dropdownMode="select"
+                            dateFormat="dd MMM yyyy"
+                        />
+                    </div>
                 </div>
 
                 <div className="box_profile">
-                    <img
-                        src={user?.photoURL || "../../../images/default_pic.png"}
-                        alt=""
-                        className="box_profile_img"
-                    />
-                    <div className="box_col">
-                        <div className="box_profile_name">
-                            {user?.displayName || "Mimi - Đi Đu Đưa Đi!"}
+                    <div className="box_profile__user_info">
+                        <img
+                            src={user?.photoURL || "../../../images/default_pic.png"}
+                            alt=""
+                            className="box_profile_img"
+                        />
+                        <div className="box_col">
+                            <div className="box_profile_name">
+                                {user?.displayName || "Mimi - Đi Đu Đưa Đi!"}
+                            </div>
+                            <div className="box_privacy">
+                                <img src="../../../icons/public.png" alt="" />
+                                <span>Public</span>
+                                <i className="arrowDown_icon"></i>
+                            </div>
                         </div>
-                        <div className="box_privacy">
-                            <img src="../../../icons/public.png" alt="" />
-                            <span>Public</span>
-                            <i className="arrowDown_icon"></i>
-                        </div>
+                    </div>
+                    <div className="box_profile__mimi_info">
+                        <span>{`Year: ${mimiDate.getFullYear()}-Day: ${mimiDate.getDay()}`}</span>
                     </div>
                 </div>
 
