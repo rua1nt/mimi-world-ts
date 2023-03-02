@@ -65,7 +65,9 @@ export default function EmojiPickerBackgrounds({
                     ref={textRef}
                     maxLength="250"
                     value={text}
-                    placeholder={user ? `Đi Đu Đưa Ko, ${user.displayName}?` : "Đi Đu Đưa Ko, Mimi?"}
+                    placeholder={
+                        user ? `Đưa Mi đi chơi, ${user.displayName}?` : "Đi đu đưa thôi, Mimi?"
+                    }
                     className={`post_input ${type2 ? "input2" : ""}`}
                     onChange={(e) => setText(e.target.value)}
                     // style={{

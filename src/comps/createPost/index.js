@@ -6,17 +6,9 @@ export default function CreatePost({ user, setVisible }) {
     return (
         <div className="createPost">
             <div className="createPost_header">
-                <img
-                    src={user?.photoURL || "../../../images/default_pic.png"}
-                    alt=""
-                />
-                <div
-                    className="open_post hover2"
-                    onClick={() => setVisible(true)}
-                >
-                    {user
-                        ? `Đi Đu Đưa Ko, ${user.displayName}?`
-                        : "Đi Đu Đưa Ko, Mimi?"}
+                <img src={user?.photoURL || "../../../images/default_pic.png"} alt="" />
+                <div className="open_post hover2" onClick={() => setVisible(true)}>
+                    {user ? `Đưa Mi đi chơi, ${user.displayName}?` : "Đi đu đưa thôi, Mimi?"}
                 </div>
             </div>
             <div className="create_splitter"></div>

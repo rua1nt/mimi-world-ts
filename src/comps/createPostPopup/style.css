@@ -68,11 +68,25 @@
     padding: 2px;
 }
 
+/* .react-datepicker__month {
+    font-weight: 600;
+} */
+
+.react-datepicker__day-in-month {
+    color: blue;
+}
+
+.react-datepicker__day-not-month {
+    font-weight: 400;
+}
+
 .react-datepicker__day:hover {
     color: var(--blue-color);
+    font-weight: 600;
 }
 
 .react-datepicker__day--selected {
+    color: white;
     background-color: dodgerblue;
 }
 
@@ -154,6 +168,20 @@
     font-size: 13px;
     font-weight: 500;
 }
+
+.box_profile__mimi_info {
+    flex: 1;
+    text-align: center;
+}
+
+.box_profile__mimi-age {
+    font-size: 18px;
+    border-radius: 5px;
+    background: var(--bg-third);
+    padding: 5px 10px;
+}
+
+/* box_profile */
 
 .flex_center {
     min-height: 90px;

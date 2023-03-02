@@ -106,6 +106,30 @@ export default function CreatePostPopup({ user, setVisible }) {
         }
     };
 
+    const calcMimiAge = () => {
+        let toFullYear = mimiDate.getMonth() - 3;
+        let month = toFullYear < 0 ? 9 + mimiDate.getMonth() : toFullYear;
+        let age = toFullYear < 0 ? mimiDate.getFullYear() - 2021 : mimiDate.getFullYear() - 2020;
+        switch (age) {
+            case 0:
+                return `🍼 Mimi 0️⃣ tuổi ${month} tháng 🍼`;
+            case 1:
+                return `🐭 Mimi 1️⃣ tuổi ${month} tháng 🐭`;
+            case 2:
+                return `🐹 Mimi 2️⃣ tuổi ${month} tháng 🐹`;
+            case 3:
+                return `🎵 Mimi 3️⃣ tuổi ${month} tháng 🎶`;
+            case 4:
+                return `🎼 Mimi 4️⃣ tuổi ${month} tháng 🎹`;
+            case 5:
+                return `🦄 Mimi 5️⃣ tuổi ${month} tháng 🦄`;
+            case 6:
+                return `🚀 Mimi 6️⃣ tuổi ${month} tháng 🚀`;
+            default:
+                return `🌈 Mimi ${age} tuổi ${month} tháng 🌈`;
+        }
+    };
+
     return (
         <div className="blur">
             <div className="postBox" ref={popup}>
@@ -126,7 +150,12 @@ export default function CreatePostPopup({ user, setVisible }) {
                             minDate={new Date(2020, 3, 22)}
                             todayButton="Today"
                             dropdownMode="select"
-                            dateFormat="dd MMM yyyy"
+                            dateFormat="dd-MMM-yyyy"
+                            dayClassName={(date) =>
+                                date.getMonth() != mimiDate.getMonth()
+                                    ? "react-datepicker__day-not-month"
+                                    : "react-datepicker__day-in-month"
+                            }
                         />
                     </div>
                 </div>
@@ -140,7 +169,7 @@ export default function CreatePostPopup({ user, setVisible }) {
                         />
                         <div className="box_col">
                             <div className="box_profile_name">
-                                {user?.displayName || "Mimi - Đi Đu Đưa Đi!"}
+                                {user?.displayName || "Mimi - Đi đu đưa thôi!"}
                             </div>
                             <div className="box_privacy">
                                 <img src="../../../icons/public.png" alt="" />
@@ -150,7 +179,7 @@ export default function CreatePostPopup({ user, setVisible }) {
                         </div>
                     </div>
                     <div className="box_profile__mimi_info">
-                        <span>{`Year: ${mimiDate.getFullYear()}-Day: ${mimiDate.getDay()}`}</span>
+                        <span className="box_profile__mimi-age">{calcMimiAge()}</span>
                     </div>
                 </div>
 
