@@ -3,9 +3,11 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { updateDoc, Timestamp, serverTimestamp } from "firebase/firestore";
 
+const postCollection = "pubs";
+
 export const fsAddPub = async (type, background, text, images, user) => {
     try {
-        await setDoc(doc(firestore, "pubs", user.uid), {
+        await setDoc(doc(firestore, postCollection, user.uid), {
             email: "tuan1@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 22, 2020")),
             created_at: serverTimestamp(),
@@ -14,7 +16,7 @@ export const fsAddPub = async (type, background, text, images, user) => {
             text,
             background,
         });
-        await setDoc(doc(firestore, "pubs", "user 2"), {
+        await setDoc(doc(firestore, postCollection, "user 2"), {
             userId: "user uid 2",
             email: "tuan2@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 23, 2020")),
@@ -37,7 +39,7 @@ export const fsAddPub = async (type, background, text, images, user) => {
             background,
         });
 
-        const docRef = await addDoc(collection(firestore, "pubs"), {
+        const docRef = await addDoc(collection(firestore, postCollection), {
             name: "tuan auto uid",
             email: "tuan2@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 25, 2020")),
@@ -48,7 +50,7 @@ export const fsAddPub = async (type, background, text, images, user) => {
             background,
         });
 
-        return "ok";
+        return "OK";
     } catch (ex) {
         return ex.message;
     }

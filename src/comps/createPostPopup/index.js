@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -8,7 +8,7 @@ import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import PostError from "./PostError";
 import AddToYourPost from "./AddToYourPost";
 
-import dataURItoBlob from "../../helpers/dataURItoBlob";
+// import dataURItoBlob from "../../helpers/dataURItoBlob";
 import useClickOutside from "../../helpers/clickOutside";
 // import { createPost } from "../../functions/createPost";
 // import { uploadImages } from "../../functions/uploadImages";
@@ -21,14 +21,14 @@ import "./style.css";
 
 export default function CreatePostPopup({ user, setVisible }) {
     const popup = useRef(null);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [text, setText] = useState("");
     const [showPrev, setShowPrev] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [images, setImages] = useState([]);
     const [background, setBackground] = useState("");
-    const [mimiDate, setMimiDate] = useState(new Date());
+    const [mimiDate, setMimiDate] = useState({ date: new Date(), age: 0, month: 0, toString: "" });
 
     useClickOutside(popup, () => {
         setVisible(false);
@@ -43,9 +43,9 @@ export default function CreatePostPopup({ user, setVisible }) {
         if (background) {
             setLoading(true);
             // const response = await createPost(null, background, text, null, user.id, user.token);
-            const response = await fsAddPost(null, background, text, null, user, 1, 2, mimiDate);
+            const response = await fsAddPost(null, background, text, null, user, mimiDate);
             setLoading(false);
-            if (response === "ok") {
+            if (response === "OK") {
                 setBackground("");
                 setText("");
                 setVisible(false);
@@ -72,10 +72,13 @@ export default function CreatePostPopup({ user, setVisible }) {
             //     user.id,
             //     user.token
             // );
-            const imageUrls = await uploadImages(images);
-            const response = await fsAddPost(null, null, text, imageUrls, user);
+            const imageUrls = await uploadImages(images, mimiDate);
+            let response = imageUrls.NOT_OK;
+            if (imageUrls.length > 0) {
+                response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
+            }
             setLoading(false);
-            if (response === "ok") {
+            if (response === "OK") {
                 setText("");
                 setImages("");
                 setVisible(false);
@@ -106,28 +109,38 @@ export default function CreatePostPopup({ user, setVisible }) {
         }
     };
 
-    const calcMimiAge = () => {
-        let toFullYear = mimiDate.getMonth() - 3;
-        let month = toFullYear < 0 ? 9 + mimiDate.getMonth() : toFullYear;
-        let age = toFullYear < 0 ? mimiDate.getFullYear() - 2021 : mimiDate.getFullYear() - 2020;
+    const calcMimiAge = (date) => {
+        let toFullYear = date.getMonth() - 3;
+        let month = toFullYear < 0 ? 9 + date.getMonth() : toFullYear;
+        let age = toFullYear < 0 ? date.getFullYear() - 2021 : date.getFullYear() - 2020;
+        let toString = "";
         switch (age) {
             case 0:
-                return `🍼 Mimi 0️⃣ tuổi ${month} tháng 🍼`;
+                toString = `0️⃣ tuổi ${month} tháng 🍼`;
+                break;
             case 1:
-                return `🐭 Mimi 1️⃣ tuổi ${month} tháng 🐭`;
+                toString = `1️⃣ tuổi ${month} tháng 🐁`;
+                break;
             case 2:
-                return `🐹 Mimi 2️⃣ tuổi ${month} tháng 🐹`;
+                toString = `2️⃣ tuổi ${month} tháng 🐭`;
+                break;
             case 3:
-                return `🎵 Mimi 3️⃣ tuổi ${month} tháng 🎶`;
+                toString = `3️⃣ tuổi ${month} tháng 🐹`;
+                break;
             case 4:
-                return `🎼 Mimi 4️⃣ tuổi ${month} tháng 🎹`;
+                toString = `4️⃣ tuổi ${month} tháng 🎵`;
+                break;
             case 5:
-                return `🦄 Mimi 5️⃣ tuổi ${month} tháng 🦄`;
+                toString = `5️⃣ tuổi ${month} tháng 🎶`;
+                break;
             case 6:
-                return `🚀 Mimi 6️⃣ tuổi ${month} tháng 🚀`;
+                toString = `6️⃣ tuổi ${month} tháng 🦄`;
+                break;
             default:
-                return `🌈 Mimi ${age} tuổi ${month} tháng 🌈`;
+                toString = `${age} tuổi ${month} tháng 🌈`;
+                break;
         }
+        setMimiDate({ date, age, month, toString });
     };
 
     return (
@@ -142,8 +155,8 @@ export default function CreatePostPopup({ user, setVisible }) {
                     <div className="mimi_datepicker">
                         <DatePicker
                             showIcon
-                            selected={mimiDate}
-                            onChange={(date) => setMimiDate(date)}
+                            selected={mimiDate.date}
+                            onChange={(date) => calcMimiAge(date)}
                             showMonthDropdown
                             showYearDropdown
                             showPopperArrow={false}
@@ -152,7 +165,7 @@ export default function CreatePostPopup({ user, setVisible }) {
                             dropdownMode="select"
                             dateFormat="dd-MMM-yyyy"
                             dayClassName={(date) =>
-                                date.getMonth() != mimiDate.getMonth()
+                                date.getMonth() !== mimiDate.date.getMonth()
                                     ? "react-datepicker__day-not-month"
                                     : "react-datepicker__day-in-month"
                             }
@@ -179,7 +192,9 @@ export default function CreatePostPopup({ user, setVisible }) {
                         </div>
                     </div>
                     <div className="box_profile__mimi_info">
-                        <span className="box_profile__mimi-age">{calcMimiAge()}</span>
+                        <span className={mimiDate.toString ? "box_profile__mimi-age" : ""}>
+                            {mimiDate.toString}
+                        </span>
                     </div>
                 </div>
 

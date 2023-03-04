@@ -13,7 +13,7 @@
 
 /* datepicker */
 .mimi_datepicker {
-    width: 180px;
+    width: 178px;
 }
 
 .mimi_datepicker input {
@@ -22,10 +22,10 @@
     color: white;
     background: dodgerblue;
     border: 0;
-    border-radius: 3px;
+    border-radius: 5px;
     outline: 0;
     width: 100%;
-    padding: 5px;
+    padding: 6px 6px;
 }
 
 .react-datepicker {
@@ -64,14 +64,6 @@
     padding: 3px 5px;
 }
 
-.react-datepicker__month-select>option {
-    padding: 2px;
-}
-
-/* .react-datepicker__month {
-    font-weight: 600;
-} */
-
 .react-datepicker__day-in-month {
     color: blue;
 }
@@ -100,6 +92,10 @@
     background-color: black;
 }
 
+.react-datepicker__day--today {
+    color: var(--red-color);
+}
+
 /* datepicker */
 
 
@@ -125,6 +121,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 2px;
 }
 
 .box_profile__user_info {
@@ -667,7 +664,7 @@
     height: 280px;
     margin-top: 10px;
     font-size: 24px;
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
 }
 
 /*----post error----*/

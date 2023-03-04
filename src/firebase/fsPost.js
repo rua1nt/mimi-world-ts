@@ -4,28 +4,20 @@ import { Timestamp, serverTimestamp } from "firebase/firestore";
 
 const postCollection = "posts";
 
-export const fsAddPost = async (
-    type,
-    background,
-    text,
-    images,
-    user,
-    mimiAge,
-    mimiMonth,
-    mimiDate
-) => {
+export const fsAddPost = async (type, background, text, images, user, mimiDate) => {
     try {
         await addDoc(collection(firestore, postCollection), {
-            userId: user.uid,
+            user_id: user.uid,
             type,
             background,
             text,
             images,
-            mimiAge,
-            mimiMonth,
-            mimiTimestamp: Timestamp.fromDate(new Date(mimiDate)),
-            createdAt: serverTimestamp(),
+            mi_age: mimiDate.age,
+            mi_month: mimiDate.month,
+            mi_date: Timestamp.fromDate(mimiDate.date),
+            created_at: serverTimestamp(),
         });
+        return "OK";
     } catch (ex) {
         return ex.message;
     }
