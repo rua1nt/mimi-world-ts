@@ -23,6 +23,21 @@ export const fsAddPost = async (type, background, text, images, user, mimiDate) 
     }
 };
 
+export const fsGetPosts = async () => {
+    try {
+        return [];
+    } catch (ex) {
+        return ex.message;
+    }
+};
+
+export const fsGetPost = async (postId, user) => {
+    try {
+    } catch (ex) {
+        return ex.message;
+    }
+};
+
 export const fsUpdatePost = async (postId, user) => {
     try {
     } catch (ex) {
