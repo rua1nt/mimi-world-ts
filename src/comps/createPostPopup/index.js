@@ -36,7 +36,11 @@ export default function CreatePostPopup({ user, setVisible }) {
 
     const postSubmit = async () => {
         if (!user) {
-            setError("💩Log in đi má🧻");
+            setError("💩 Chưa log in má oi 🧻");
+            return;
+        }
+        if (!mimiDate.toString) {
+            setError(`💩 Quên chọn ngày lành kìa má ${user.displayName} 🧻`);
             return;
         }
 

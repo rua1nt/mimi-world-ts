@@ -2,11 +2,11 @@ import { firestore } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { Timestamp, serverTimestamp } from "firebase/firestore";
 
-const postCollection = "posts";
+const fsCollection = "posts";
 
 export const fsAddPost = async (type, background, text, images, user, mimiDate) => {
     try {
-        await addDoc(collection(firestore, postCollection), {
+        await addDoc(collection(firestore, fsCollection), {
             user_id: user.uid,
             type,
             background,

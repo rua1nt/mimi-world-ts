@@ -3,25 +3,25 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { updateDoc, Timestamp, serverTimestamp } from "firebase/firestore";
 
-const postCollection = "pubs";
+const fsCollection = "pubs";
 
 export const fsAddPub = async (type, background, text, images, user) => {
     try {
-        await setDoc(doc(firestore, postCollection, user.uid), {
+        await setDoc(doc(firestore, fsCollection, user.uid), {
             email: "tuan1@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 22, 2020")),
             created_at: serverTimestamp(),
-            isAdmin: false,
+            pAdmin: false,
             pFull: true,
             text,
             background,
         });
-        await setDoc(doc(firestore, postCollection, "user 2"), {
+        await setDoc(doc(firestore, fsCollection, "user 2"), {
             userId: "user uid 2",
             email: "tuan2@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 23, 2020")),
             created_at: serverTimestamp(),
-            isAdmin: false,
+            pAdmin: false,
             pFull: true,
             text,
             background,
@@ -33,18 +33,16 @@ export const fsAddPub = async (type, background, text, images, user) => {
             email: "tuan2@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 22, 2020")),
             created_at: serverTimestamp(),
-            isAdmin: true,
-            pFull: true,
             text,
             background,
         });
 
-        const docRef = await addDoc(collection(firestore, postCollection), {
+        const docRef = await addDoc(collection(firestore, fsCollection), {
             name: "tuan auto uid",
             email: "tuan2@gmail.com",
             timestamp: Timestamp.fromDate(new Date("April 25, 2020")),
             created_at: serverTimestamp(),
-            isAdmin: false,
+            pAdmin: false,
             pFull: true,
             text,
             background,

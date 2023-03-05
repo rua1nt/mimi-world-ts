@@ -677,7 +677,7 @@
     background: var(--bg-primary);
     opacity: 0.9;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     z-index: 999;
@@ -690,7 +690,7 @@
 
 .postError_error {
     text-align: center;
-    width: 75%;
+    width: 85%;
     font-weight: 600;
 }
 
