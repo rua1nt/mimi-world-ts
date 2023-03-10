@@ -1,17 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import DisplayAccessibility from "./DisplayAccessibility";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import HelpSupport from "./HelpSupport";
 import SettingsPrivacy from "./SettingsPrivacy";
+import DisplayAccessibility from "./DisplayAccessibility";
 import CurrentUser from "./CurrentUser";
 
 export default function UserMenu({ user }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [visible, setVisible] = useState(0);
+
+    const logout = () => {
+        Cookies.set("user", "");
+        dispatch({
+            type: "LOGOUT",
+        });
+        navigate("/login");
+    };
+
     return (
         <div className="mmenu">
             {visible === 0 && (
                 <div>
-                    <CurrentUser user={user} />
                     {/* <Link to="/profile" className="mmenu_header hover2">
                         <img src={user?.photoURL} alt="" />
                         <div className="mmenu_col">
@@ -20,6 +32,7 @@ export default function UserMenu({ user }) {
                         </div>
                     </Link>
                     <div className="mmenu_splitter"></div> */}
+                    <CurrentUser user={user} />
 
                     <div className="mmenu_main hover1">
                         <div className="small_circle">
@@ -76,7 +89,7 @@ export default function UserMenu({ user }) {
                             <i className="right_icon"></i>
                         </div>
                     </div>
-                    <div className="mmenu_item hover3">
+                    <div className="mmenu_item hover3" onClick={() => logout()}>
                         <div className="small_circle">
                             <i className="logout_filled_icon"></i>
                         </div>

@@ -1,0 +1,253 @@
+.home {
+    min-height: 100vh;
+    background: var(--bg-secondary);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.home_middle {
+    margin-top: 75px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* query1175px */
+@media (max-width: 1239px) {
+
+    .stories,
+    .createPost,
+    .send_verification {
+        width: 83%;
+    }
+
+    .home_middle {
+        margin-left: 5%;
+    }
+
+    .right_home {
+        width: 18vw;
+    }
+}
+
+/* query1030px */
+@media (max-width: 1130px) {
+
+    .left_home .left_link span,
+    .left_home .left_link .col,
+    .shortcut,
+    .shortcut_item span,
+    .splitter,
+    .fb_copyright {
+        display: none;
+    }
+
+    .left_home {
+        width: 70px;
+    }
+
+    .left_link {
+        /* background: var(--bg-third); */
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+    }
+
+    .left_link:hover img,
+    .left_link:hover .small_circle {
+        transform: scale(1.15);
+    }
+
+    .shortcut_item {
+        width: 50px;
+        height: 50px;
+    }
+
+    .shortcut_item img,
+    .shortcut_item_svg {
+        transform: scale(0.9);
+    }
+
+    .shortcut_item:hover img,
+    .shortcut_item:hover .shortcut_item_svg {
+        transform: scale(1);
+    }
+
+    .home_middle {
+        position: relative;
+        /* margin-left: 55px; */
+        margin-left: 10%;
+    }
+
+    .right_home {
+        width: 20vw;
+    }
+
+    /* .contacts_header_right {
+        right: 10%;
+    } */
+
+    /* .contact_circle {
+        width: 32px;
+    } */
+
+    .stories,
+    .createPost,
+    .send_verification {
+        width: 111%;
+    }
+}
+
+@media (max-width: 960px) {
+
+    .stories,
+    .createPost,
+    .send_verification {
+        width: 92%;
+    }
+
+    .home_middle {
+        margin-left: 10%;
+    }
+
+    .right_home {
+        /* left: 78%; */
+        width: 21vw;
+    }
+
+    /* .splitter1 {
+        width: 20vw;
+    } */
+
+    .contact_circle {
+        width: 30px;
+    }
+
+    .contacts_header_right {
+        right: 0;
+    }
+}
+
+@media (max-width: 885px) {
+    .right_home {
+        display: none;
+    }
+
+    .stories,
+    .createPost,
+    .send_verification {
+        width: 111%;
+    }
+
+    .home_middle {
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 805px) {
+    .stories {
+        grid-template-columns: repeat(6, 13vw);
+    }
+
+    .story_profile_name,
+    .story_create_text {
+        display: none;
+    }
+
+    .create_story_card {
+        filter: brightness(96%);
+    }
+
+    .stories .white_circle {
+        right: 5px;
+    }
+
+    .story_profile_pic {
+        width: 6vw;
+        height: 6vw;
+    }
+
+    .left_home::-webkit-scrollbar {
+        display: none;
+    }
+
+    .popup {
+        width: 70vw !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .left_home {
+        display: none;
+    }
+
+    .home_middle {
+        position: absolute;
+        margin-left: 0;
+    }
+
+    .stories,
+    .createPost,
+    .send_verification {
+        width: 100%;
+    }
+
+    .stories .white_circle {
+        display: none;
+    }
+
+    .stories {
+        grid-template-columns: repeat(6, 14vw);
+    }
+
+    .story,
+    .create_story_card {
+        height: 30vw;
+    }
+
+    .createPost_icon {
+        font-size: 12px;
+    }
+
+    .open_post {
+        font-size: 16px;
+    }
+
+    .createPost_icon svg {
+        width: 20px;
+    }
+}
+
+/*-----Activate popup----*/
+.popup {
+    position: relative;
+    background: var(--bg-primary);
+    box-shadow: 0 1px 2px var(--shadow-1);
+    width: 40vw;
+    height: 180px;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.popup_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-bottom: 1px solid var(--bg-third);
+    padding: 15px;
+}
+
+.popup_message {
+    padding: 15px;
+    font-weight: 500;
+}
+
+/*-----Activate popup----*/

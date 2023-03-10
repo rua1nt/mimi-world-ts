@@ -6,9 +6,9 @@ export default function CurrentUser({ user }) {
         return (
             <div>
                 <Link to="/profile" className="mmenu_header hover2">
-                    <img src={user?.photoURL} alt="" />
+                    <img src={user.photoURL} alt="" />
                     <div className="mmenu_col">
-                        <span>{user?.displayName}</span>
+                        <span>{user.displayName}</span>
                         <span>See your profile</span>
                     </div>
                 </Link>

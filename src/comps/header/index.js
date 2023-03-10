@@ -6,7 +6,7 @@ import {
     Friends,
     Gaming,
     HomeActive,
-    Logo,
+    FbLogo,
     Market,
     Menu,
     Messenger,
@@ -25,7 +25,7 @@ import "./style.css";
 
 export default function Header() {
     const color_secondary = "#65676b";
-    const { user } = useSelector((user) => ({ ...user }));
+    const { user } = useSelector((state) => ({ ...state }));
 
     const [showLoginMenu, setShowLoginMenu] = useState(false);
     const [showSearchMenu, setShowSearchMenu] = useState(false);
@@ -53,7 +53,7 @@ export default function Header() {
             <div className="header_left">
                 {/* <Link to="/" className="header_logo">
                     <div className="circle">
-                        <Logo />
+                        <FbLogo />
                     </div>
                 </Link> */}
                 <div className="circle" ref={loginMenu}>
@@ -66,14 +66,19 @@ export default function Header() {
                         {user ? (
                             <img
                                 className="header_profile_img"
-                                src={user?.photoURL}
+                                src={user.photoURL}
                                 alt=""
                             />
                         ) : (
                             <UserFocus className={"ping"} color={"#1b74e4"} />
                         )}
                     </div>
-                    {showLoginMenu && <LoginMenu user={user} />}
+                    {showLoginMenu && (
+                        <LoginMenu
+                            user={user}
+                            setShowLoginMenu={setShowLoginMenu}
+                        />
+                    )}
                 </div>
 
                 <div

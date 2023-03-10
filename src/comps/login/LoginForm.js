@@ -40,6 +40,7 @@ export default function LoginForm({ setVisible }) {
     const loginSubmit = async () => {
         try {
             setLoading(true);
+            // TODO: https://firebase.google.com/docs/auth/web/password-auth?hl=en&authuser=0#sign_in_a_user_with_an_email_address_and_password
             const { data } = await axios.post(
                 `${process.env.REACT_APP_BACKEND_URL}/login`,
                 { email, password }
@@ -47,9 +48,10 @@ export default function LoginForm({ setVisible }) {
             dispatch({ type: "LOGIN", payload: data });
             Cookies.set("user", JSON.stringify(data));
             navigate("/");
-        } catch (error) {
+        } catch (ex) {
             setLoading(false);
-            setError(error.response.data.message);
+            // setError(ex.response.data.message);
+            setError(ex.message);
         }
     };
 
@@ -69,10 +71,10 @@ export default function LoginForm({ setVisible }) {
     return (
         <div className="login_wrap">
             <div className="login_1">
-                <span>MiBook Special Edition 🚀</span>
+                <h2 className="login_1_title">MiBook Special Edition 🚀</h2>
                 <img src="../../icons/facebook.svg" alt="" />
-                <span>
-                    Mi-book helps you connect and share with the people in your
+                <span className="login_1_desc">
+                    MiBook helps you connect and share with the people in your
                     life.
                 </span>
             </div>
@@ -107,7 +109,7 @@ export default function LoginForm({ setVisible }) {
                             </Form>
                         )}
                     </Formik>
-                    <Link to="/forgot" className="forgot_password">
+                    <Link to="/reset" className="forgot_password">
                         Forgotten password?
                     </Link>
                     <DotLoader color="#1876f2" loading={loading} size={30} />

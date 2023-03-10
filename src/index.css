@@ -9,7 +9,7 @@
     --bg-primary: #fff;
     --bg-secondary: #f0f2f5;
     --bg-third: #e4e6eb;
-    --bg-forth: #f0f2f5;
+    /* --bg-forth: #f0f2f5; */
 
     --dark-bg-primary: #18191a;
     --dark-bg-secondary: #242526;
@@ -63,6 +63,8 @@ code {
 }
 
 
+
+
 /* buttons */
 .blue_btn {
     display: flex;
@@ -84,6 +86,26 @@ code {
     padding: 8.5px 12px;
 }
 
+.gray_btn {
+    border: none;
+    outline: none;
+    background: var(--bg-secondary);
+    padding: 8.5px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* buttons */
+
+
 .blur {
     position: fixed;
     top: 0;
@@ -94,7 +116,14 @@ code {
     background: rgba(255, 255, 255, 0.768);
 }
 
-/* buttons */
+
+/* filter */
+.filter1:hover {
+    /* filter: invert(5%); */
+    /* filter: sepia(10%); */
+    opacity: 1;
+    /* transform: scale(1.1); */
+}
 
 
 /* hover */
@@ -117,9 +146,16 @@ code {
 /* hover */
 
 
+.card {
+    height: 500px;
+    width: 500px;
+    background: red;
+}
+
+
 /* scroll bar */
 .scrollbar::-webkit-scrollbar {
-    width: 9px;
+    width: 8px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {

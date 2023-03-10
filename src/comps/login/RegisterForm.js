@@ -76,6 +76,7 @@ export default function RegisterForm({ setVisible }) {
 
   const registerSubmit = async () => {
     try {
+      // TODO: https://firebase.google.com/docs/auth/web/password-auth?hl=en&authuser=0#create_a_password-based_account
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/register`,
         {
@@ -97,10 +98,11 @@ export default function RegisterForm({ setVisible }) {
         Cookies.set("user", JSON.stringify(rest));
         navigate("/");
       }, 2000);
-    } catch (error) {
+    } catch (ex) {
       setLoading(false);
       setSuccess("");
-      setError(error.response.data.message);
+      // setError(ex.response.data.message);
+      setError(ex.message);
     }
   };
   return (

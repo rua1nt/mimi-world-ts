@@ -11,10 +11,20 @@
 .login_1 {
     width: 300px;
     margin: 0 auto;
+    text-align: center;
+    padding-top: 16px;
 }
 
 .login_1 span {
     font-size: 20px;
+}
+
+.login_1 img {
+    width: 250px;
+}
+
+.login_1_desc {
+    display: none;
 }
 
 .login_2 {
@@ -46,7 +56,7 @@
 
 .forgot_password {
     color: var(--blue-color);
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -69,7 +79,9 @@
 }
 
 .sign_extra {
+    display: inline-block;
     font-size: 15px;
+    margin-top: 10px;
 }
 
 
@@ -80,7 +92,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: var(--bg-primary);
-    box-shadow: 0 1px 2px var(--shadow-1);
+    box-shadow: 0 0 8px var(--shadow-1);
     border-radius: 10px;
     padding: 15px;
     padding-bottom: 1rem;
@@ -313,15 +325,24 @@
         flex-direction: column;
         width: 50%;
         margin-bottom: 15vh;
+        text-align: left;
     }
 
     .login_1 img {
         width: 300px;
-        margin-left: -1.7rem;
+        margin-left: -32px;
     }
 
     .login_1 span {
         font-size: 28px;
+    }
+
+    .login_1_title {
+        font-size: 25px;
+    }
+
+    .login_1_desc {
+        display: block;
     }
 
     .login_2_wrap {
