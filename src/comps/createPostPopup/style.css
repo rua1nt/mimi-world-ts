@@ -11,11 +11,99 @@
     border-radius: 5px;
 }
 
+/* datepicker */
+.mimi_datepicker {
+    width: 178px;
+}
+
+.mimi_datepicker input {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    background: dodgerblue;
+    border: 0;
+    border-radius: 5px;
+    outline: 0;
+    width: 100%;
+    padding: 6px 6px;
+}
+
+.react-datepicker {
+    font-size: 13px;
+}
+
+.react-datepicker__header {
+    background: dodgerblue;
+}
+
+.react-datepicker__current-month {
+    color: white;
+    padding: 0 0 8px;
+}
+
+.react-datepicker__day-name {
+    color: white;
+}
+
+.react-datepicker__header__dropdown {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.react-datepicker__year-dropdown-container--select,
+.react-datepicker__month-dropdown-container--select {
+    margin: 0;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    outline: 0;
+    padding: 3px 5px;
+}
+
+.react-datepicker__day-in-month {
+    color: blue;
+}
+
+.react-datepicker__day-not-month {
+    font-weight: 400;
+}
+
+.react-datepicker__day:hover {
+    color: var(--blue-color);
+    font-weight: 600;
+}
+
+.react-datepicker__day--selected {
+    color: white;
+    background-color: dodgerblue;
+}
+
+.react-datepicker__day--selected:hover {
+    color: white;
+    background-color: var(--blue-color);
+}
+
+.react-datepicker__day--keyboard-selected:hover {
+    color: white;
+    background-color: black;
+}
+
+.react-datepicker__day--today {
+    color: var(--red-color);
+}
+
+/* datepicker */
+
+
 .box_header {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     font-size: 20px;
     font-weight: 700;
     padding: 15px 16px;
@@ -32,11 +120,18 @@
 .box_profile {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    column-gap: 2px;
+}
+
+.box_profile__user_info {
+    display: flex;
+    align-items: center;
     gap: 12px;
     padding: 10px 16px 10px 16px;
 }
 
-.box_profile .box_profile_img {
+.box_profile__user_info .box_profile_img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -70,6 +165,20 @@
     font-size: 13px;
     font-weight: 500;
 }
+
+.box_profile__mimi_info {
+    flex: 1;
+    text-align: center;
+}
+
+.box_profile__mimi-age {
+    font-size: 18px;
+    border-radius: 5px;
+    background: var(--bg-third);
+    padding: 5px 10px;
+}
+
+/* box_profile */
 
 .flex_center {
     min-height: 90px;
@@ -114,9 +223,9 @@
 .post_emojis_wrap {
     position: relative;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 18px 10px 15px;
+    padding: 10px 16px 10px 16px;
 }
 
 .post_emojis_wrap img {
@@ -540,19 +649,22 @@
     width: 35px;
     height: 35px;
     border-radius: 10px;
+    border: 3px solid var(--dark-color-secondary);
     cursor: pointer;
 }
 
 .bgHandler {
-    height: 360px;
+    height: 280px;
     width: 100%;
     background-size: cover;
 }
 
 .bgHandler textarea {
-    text-align: center;
-    height: 360px;
+    /* text-align: center; */
+    height: 280px;
     margin-top: 10px;
+    font-size: 24px;
+    /* mix-blend-mode: difference; */
 }
 
 /*----post error----*/
@@ -565,7 +677,7 @@
     background: var(--bg-primary);
     opacity: 0.9;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     z-index: 999;
@@ -578,7 +690,7 @@
 
 .postError_error {
     text-align: center;
-    width: 75%;
+    width: 85%;
     font-weight: 600;
 }
 

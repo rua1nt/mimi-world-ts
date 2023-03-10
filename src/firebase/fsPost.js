@@ -1,32 +1,37 @@
 import { firestore } from "./firebase-config";
-import { doc, setDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
-import { updateDoc, Timestamp, serverTimestamp } from "firebase/firestore";
+import { Timestamp, serverTimestamp } from "firebase/firestore";
 
-export const fsAddPost = async (type, background, text, images, user) => {
+const fsCollection = "posts";
+
+export const fsAddPost = async (type, background, text, images, user, mimiDate) => {
     try {
-        await setDoc(doc(firestore, "pubs", user.uid), {
-            email: "tuan1@gmail.com",
-            timestamp: Timestamp.fromDate(new Date("April 22, 2020")),
-            created_at: serverTimestamp(),
-            isAdmin: false,
-            pFull: true,
-            text,
+        await addDoc(collection(firestore, fsCollection), {
+            user_id: user.uid,
+            type,
             background,
-        });
-
-        const docRef = await addDoc(collection(firestore, "pubs"), {
-            name: "tuan auto uid",
-            email: "tuan2@gmail.com",
-            timestamp: Timestamp.fromDate(new Date("April 25, 2020")),
-            created_at: serverTimestamp(),
-            isAdmin: false,
-            pFull: true,
             text,
-            background,
+            images,
+            mi_age: mimiDate.age,
+            mi_month: mimiDate.month,
+            mi_date: Timestamp.fromDate(mimiDate.date),
+            created_at: serverTimestamp(),
         });
+        return "OK";
+    } catch (ex) {
+        return ex.message;
+    }
+};
 
-        return "ok";
+export const fsUpdatePost = async (postId, user) => {
+    try {
+    } catch (ex) {
+        return ex.message;
+    }
+};
+
+export const fsDeletePost = async (postId, user) => {
+    try {
     } catch (ex) {
         return ex.message;
     }

@@ -9,6 +9,7 @@ import {
     GoogleAuthProvider,
     FacebookAuthProvider,
 } from "firebase/auth";
+import { fsAddUser } from "../../firebase/fsUser";
 import { firebaseAuth } from "../../firebase/firebase-config";
 import { USER_LOGIN, USER_LOGOUT } from "../../reducers/actionTypes";
 
@@ -64,11 +65,11 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                 const data = {
                     email: result.user.email,
                     displayName: result.user.displayName,
-                    phoneNumber: result.user.phoneNumber,
                     photoURL: result.user.photoURL,
                     uid: result.user.uid,
                     providerId: result.providerId,
                 };
+                fsAddUser(data);
                 dispatch({ type: USER_LOGIN, payload: data });
                 Cookies.set("user", JSON.stringify(data));
                 toast.success(`Welcome, ${data.displayName}!`);
@@ -88,11 +89,11 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                 const data = {
                     email: result.user.email,
                     displayName: result.user.displayName,
-                    phoneNumber: result.user.phoneNumber,
                     photoURL,
                     uid: result.user.uid,
                     providerId: result.providerId,
                 };
+                fsAddUser(data);
                 dispatch({ type: USER_LOGIN, payload: data });
                 Cookies.set("user", JSON.stringify(data));
                 toast.success(`Welcome, ${data.displayName}!`);
