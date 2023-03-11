@@ -240,11 +240,13 @@
 .comment_emoji_picker {
     position: absolute;
     right: 0;
-    bottom: 2.5rem;
+    bottom: 2rem;
 }
 
 .rlmove {
-    right: -7rem;
+    /* right: -7rem; */
+    left: 21%;
+    bottom: -6rem;
 }
 
 .addtoyourpost {
@@ -326,8 +328,9 @@
 }
 
 .movepicker2 {
-    right: 1rem;
-    top: 9.7rem;
+    /* right: 1rem; */
+    left: 21%;
+    top: 7rem;
     z-index: 9999;
 }
 

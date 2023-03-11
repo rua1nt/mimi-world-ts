@@ -45,6 +45,8 @@ export const fsAddPost = async (type, background, text, images, user, mimiDate) 
     try {
         await addDoc(collection(firestore, fsCollection), {
             user_id: user.uid,
+            user_displayName: user.displayName,
+            user_photoURL: user.photoURL,
             type,
             background,
             text,

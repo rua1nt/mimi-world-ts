@@ -15,8 +15,8 @@ export const fsAddUser = async (user) => {
                 email: user.email,
                 photo_url: user.photoURL,
                 provider_id: user.providerId,
-            }
-            // { merge: true }
+            },
+            { merge: true }
         );
         // }
     } catch (ex) {
