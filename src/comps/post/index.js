@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import ReactsPopup from "./ReactsPopup";
+import CreateComment from "./CreateComment";
 import { Dots, Public } from "../../svg";
 import "./style.css";
 
-export default function Post({ post }) {
+export default function Post({ post, user }) {
     const [visible, setVisible] = useState(false);
 
     return (
@@ -103,6 +104,11 @@ export default function Post({ post }) {
                     <i className="share_icon"></i>
                     <span>Share</span>
                 </div>
+            </div>
+
+            <div className="comments_wrap">
+                <div className="comments_order"></div>
+                <CreateComment user={user} />
             </div>
         </div>
     );
