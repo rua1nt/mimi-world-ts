@@ -20,6 +20,7 @@ export default function Home({ setVisible, posts }) {
     }, []);
 
     return (
+        // <div className="home">
         <div className="home" style={{ height: `${height + 80}px` }}>
             <Header />
             <LeftHome user={user} />
