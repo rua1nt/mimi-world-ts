@@ -56,7 +56,7 @@ export default function CreatePostPopup({ user, setVisible }) {
             } else {
                 setError(response);
             }
-        } else if (images && images.length) {
+        } else if (images?.length) {
             setLoading(true);
             // const postImages = images.map((img) => {
             //     return dataURItoBlob(img);
@@ -196,9 +196,9 @@ export default function CreatePostPopup({ user, setVisible }) {
                         </div>
                     </div>
                     <div className="box_profile__mimi_info">
-                        <span className={mimiDate.toString ? "box_profile__mimi-age" : ""}>
-                            {mimiDate.toString}
-                        </span>
+                        {mimiDate.toString && (
+                            <span className="box_profile__mimi-age">{mimiDate.toString}</span>
+                        )}
                     </div>
                 </div>
 

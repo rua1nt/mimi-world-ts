@@ -1,24 +1,78 @@
-import { useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import { firestore } from "./firebase/firebase-config";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+
+import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
-import Home from "./pages/home";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
-import Activate from "./pages/home/Activate";
 import Reset from "./pages/reset";
+import Activate from "./pages/home/Activate";
 import CreatePostPopup from "./comps/createPostPopup";
+// import { fsGetPosts } from "./firebase/fsPost";
 
 import "./App.css";
-import "./firebase/firebaseui-styling.global.css";
+// import "./firebase/firebaseui-styling.global.css";
 import "react-toastify/dist/ReactToastify.css";
 
+function reducer(state: any, action: any) {
+    switch (action.type) {
+        case "POSTS_REQUEST":
+            return { ...state, loading: true, error: "" };
+        case "POSTS_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                posts: action.payload,
+                error: "",
+            };
+        case "POSTS_ERROR":
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+}
+
 function App() {
+    const [posts, setPosts] = useState<any[]>([]);
     const [visible, setVisible] = useState<boolean>(false);
-    const { user, error } = useSelector((state: any) => ({ ...state }));
+    const { user } = useSelector((state: any) => ({ ...state }));
+
+    useEffect(() => {
+        const q = query(collection(firestore, "posts"), orderBy("mi_date", "desc"));
+        const unsubscribe = onSnapshot(
+            q,
+            (snapshot) => setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), post_id: doc.id }))),
+            (error) => console.log(error)
+        );
+        return unsubscribe;
+    }, []);
+
+    // const [{ loading, error, posts }, dispatch] = useReducer(reducer, {
+    //     loading: false,
+    //     posts: [],
+    //     error: "",
+    // });
+
+    // useEffect(() => {
+    //     getAllPosts();
+    // }, []);
+
+    // const getAllPosts = async () => {
+    //     try {
+    //         dispatch({ type: "POSTS_REQUEST" });
+    //         // const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getAllposts`);
+    //         const data = fsGetPosts();
+    //         dispatch({ type: "POSTS_SUCCESS", payload: data });
+    //     } catch (ex: any) {
+    //         dispatch({ type: "POSTS_ERROR", payload: ex.message });
+    //     }
+    // };
 
     return (
         <div>
@@ -27,7 +81,7 @@ function App() {
             {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
 
             <Routes>
-                <Route path="/" element={<Home setVisible={setVisible} />} />
+                <Route path="/" element={<Home setVisible={setVisible} posts={posts} />} />
                 <Route path="/activate/:token" element={<Activate />} />
 
                 <Route element={<LoggedInRoutes />}>

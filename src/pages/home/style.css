@@ -17,6 +17,7 @@
 
     .stories,
     .createPost,
+  .post,
     .send_verification {
         width: 83%;
     }
@@ -95,6 +96,7 @@
 
     .stories,
     .createPost,
+  .post,
     .send_verification {
         width: 111%;
     }
@@ -104,6 +106,7 @@
 
     .stories,
     .createPost,
+  .post,
     .send_verification {
         width: 92%;
     }
@@ -137,6 +140,7 @@
 
     .stories,
     .createPost,
+  .post,
     .send_verification {
         width: 111%;
     }
@@ -190,6 +194,7 @@
 
     .stories,
     .createPost,
+  .post,
     .send_verification {
         width: 100%;
     }

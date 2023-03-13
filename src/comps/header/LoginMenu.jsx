@@ -113,7 +113,7 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
         setShowLoginMenu((prev) => !prev);
     };
 
-    const partiallyHideEmail = (email) => {
+    const partiallyEmailDisplay = (email) => {
         let elements = email.split("@");
         let prefix;
         if (elements[0].length > 3) {
@@ -155,7 +155,7 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                     ) : (
                         <Gmail className="logout_menu_icon" />
                     )}
-                    <div className="logout_menu_email">{partiallyHideEmail(user.email)}</div>
+                    <div className="logout_menu_email">{partiallyEmailDisplay(user.email)}</div>
                 </button>
 
                 <ul className="logout_menu_content">
