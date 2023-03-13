@@ -16,27 +16,27 @@ export default function ImagePreview({
         let files = Array.from(e.target.files);
         files.forEach((img) => {
             if (
-                img.type !== "image/png" &&
                 img.type !== "image/jpeg" &&
+                img.type !== "image/png" &&
                 img.type !== "image/webp" &&
                 img.type !== "image/gif"
             ) {
-                setError(
-                    `${img.name} format is unsupported! Only Jpeg, Png, Webp, Gif are allowed!`
-                );
+                setError(`${img.name} format is not supported! Only Jpeg, Png, Webp, Gif!`);
                 files = files.filter((item) => item.name !== img.name);
                 return;
-            } else if (img.size > 1024 * 1024 * 3) {
-                setError(`${img.name} size is too large max 3mb allowed!`);
-                files = files.filter((item) => item.name !== img.name);
-                return;
-            } else {
-                const reader = new FileReader();
-                reader.readAsDataURL(img);
-                reader.onload = (readerEvent) => {
-                    setImages((images) => [...images, readerEvent.target.result]);
-                };
             }
+
+            if (img.size > 1024 * 1024 * 3) {
+                setError(`${img.name} is too large max 3MB allowed!`);
+                files = files.filter((item) => item.name !== img.name);
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.readAsDataURL(img);
+            reader.onload = (readerEvent) => {
+                setImages((images) => [...images, readerEvent.target.result]);
+            };
         });
     };
 
