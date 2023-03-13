@@ -1,8 +1,11 @@
 import axios from "axios";
-import { useEffect, useReducer } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Cover from "./Cover";
+import Header from "../../comps/header";
 import { profileReducer } from "../../functions/reducers";
+import "./style.css";
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -39,6 +42,15 @@ export default function Profile() {
             dispatch({ type: "PROFILE_ERROR", payload: ex.message });
         }
     };
-    console.log("profile", profile);
-    return <div>Profile</div>;
+
+    return (
+        <div className="profile">
+            <Header page="profile" />
+            <div className="profile_top">
+                <div className="profile_container">
+                    <Cover cover={profile.cover} />
+                </div>
+            </div>
+        </div>
+    );
 }
