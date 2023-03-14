@@ -88,7 +88,7 @@ export default function Header({ page }) {
             )}
 
             <div className="header_middle">
-                <Link to="/" className={`middle_icon ${page === "home" ? "active" : ""}`}>
+                <Link to="/" className={`middle_icon ${page === "home" ? "active" : "hover1"}`}>
                     {page === "home" ? <HomeActive /> : <Home color={color_secondary} />}
                 </Link>
                 <Link to="/" className="middle_icon hover1">

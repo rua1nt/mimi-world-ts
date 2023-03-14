@@ -3,6 +3,9 @@ import { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Cover from "./Cover";
+import ProfileMenu from "./ProfileMenu";
+import ProfielPictureInfos from "./ProfielPictureInfos";
+import PplYouMayKnow from "./PplYouMayKnow";
 import Header from "../../comps/header";
 import { profileReducer } from "../../functions/reducers";
 import "./style.css";
@@ -16,7 +19,9 @@ export default function Profile() {
 
     const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
         loading: false,
-        profile: {},
+        profile: {
+            cover: "https://wallpaperstock.net/funny-cartoon-wallpapers_55168_852x480.jpg",
+        },
         error: "",
     });
 
@@ -49,8 +54,18 @@ export default function Profile() {
             <div className="profile_top">
                 <div className="profile_container">
                     <Cover cover={profile.cover} />
+                    <ProfielPictureInfos profile={profile} />
+                    <ProfileMenu />
                 </div>
             </div>
+            
+      <div className="profile_bottom">
+        <div className="profile_container">
+          <div className="bottom_container">
+            <PplYouMayKnow />
+          </div>
+        </div>
+      </div>
         </div>
     );
 }
