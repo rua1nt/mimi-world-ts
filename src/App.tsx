@@ -71,8 +71,8 @@ function App() {
                 <Route path="/activate/:token" element={<Activate />} />
 
                 <Route element={<LoggedInRoutes />}>
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/profile/:uid" element={<Profile />} />
+                    <Route path="/profile" element={<Profile setVisible={setVisible}  />} />
+                    <Route path="/profile/:uid" element={<Profile setVisible={setVisible}  />} />
                 </Route>
 
                 <Route element={<NotLoggedInRoutes />}>

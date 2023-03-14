@@ -2,25 +2,31 @@ import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import Cover from "./Cover";
 import ProfileMenu from "./ProfileMenu";
 import ProfielPictureInfos from "./ProfielPictureInfos";
+import GridPosts from "./GridPosts";
 import PplYouMayKnow from "./PplYouMayKnow";
+
 import Header from "../../comps/header";
+import Post from "../../comps/post";
+import CreatePost from "../../comps/createPost";
 import { profileReducer } from "../../functions/reducers";
 import "./style.css";
 
-export default function Profile() {
+export default function Profile({ setVisible }) {
     const navigate = useNavigate();
     const { user } = useSelector((state) => ({ ...state }));
     const { uid } = useParams();
 
-    var userName = uid === undefined ? user.uid : uid;
+    let userName = uid === undefined ? user.uid : uid;
+    let visitor = userName === user.uid ? false : true;
 
     const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
         loading: false,
         profile: {
-            cover: "https://wallpaperstock.net/funny-cartoon-wallpapers_55168_852x480.jpg",
+            cover: "https://live.staticflickr.com/7060/7017605661_c54d719cec_c.jpg",
         },
         error: "",
     });
@@ -53,19 +59,37 @@ export default function Profile() {
             <Header page="profile" />
             <div className="profile_top">
                 <div className="profile_container">
-                    <Cover cover={profile.cover} />
-                    <ProfielPictureInfos profile={profile} />
+                    <Cover cover={profile.cover} visitor={visitor} />
+                    <ProfielPictureInfos profile={profile} visitor={visitor} />
                     <ProfileMenu />
                 </div>
             </div>
-            
-      <div className="profile_bottom">
-        <div className="profile_container">
-          <div className="bottom_container">
-            <PplYouMayKnow />
-          </div>
-        </div>
-      </div>
+
+            <div className="profile_bottom">
+                <div className="profile_container">
+                    <div className="bottom_container">
+                        <PplYouMayKnow />
+                        <div className="profile_grid">
+                            <div className="profile_left"></div>
+                            <div className="profile_right">
+                                {!visitor && (
+                                    <CreatePost user={user} profile setVisible={setVisible} />
+                                )}
+                                <GridPosts />
+                                <div className="posts">
+                                    {profile.posts?.length ? (
+                                        profile.posts.map((post) => (
+                                            <Post post={post} user={user} key={post._id} />
+                                        ))
+                                    ) : (
+                                        <div className="no_posts">No posts available</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
