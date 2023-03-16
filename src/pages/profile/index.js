@@ -21,6 +21,7 @@ export default function Profile({ setVisible }) {
     const navigate = useNavigate();
     const { user } = useSelector((state) => ({ ...state }));
     const { uid } = useParams();
+    const [photos, setPhotos] = useState({});
 
     let username = uid === undefined ? user.uid : uid;
     let visitor = username === user.uid ? false : true;
@@ -29,15 +30,22 @@ export default function Profile({ setVisible }) {
         loading: false,
         profile: {
             cover: "https://live.staticflickr.com/7060/7017605661_c54d719cec_c.jpg",
+            picture: user.photoURL,
+            first_name: "first_name",
+            last_name: "last_name",
             posts: [
                 {
                     _id: 1,
-                    user_displayName: "Fake Mimi",
-                    user_photoURL: "../../../images/default_pic.png",
+                    user_photoURL: user.photoURL,
+                    user_displayName: user.displayName,
                     background: "../../../images/postbackgrounds/2.jpg",
                     text: "fake post",
                     // created_at: new Date(),
                 },
+            ],
+            friends: [
+                { photoURL: "../../../images/default_pic.png" },
+                { photoURL: "../../../images/default_pic.png" },
             ],
         },
         error: "",
@@ -47,6 +55,9 @@ export default function Profile({ setVisible }) {
         getProfile();
     }, [username]);
 
+    const max = 30;
+    const sort = "desc";
+    const path = `${username}/*`;
     const getProfile = async () => {
         try {
             dispatch({ type: "PROFILE_REQUEST" });
@@ -56,13 +67,38 @@ export default function Profile({ setVisible }) {
                     headers: { Authorization: `Bearer ${user.token}` },
                 }
             );
+
             if (data.ok === false) {
                 navigate("/profile");
             } else {
+                const images = await axios.post(
+                    `${process.env.REACT_APP_BACKEND_URL}/listImages`,
+                    { path, sort, max },
+                    {
+                        headers: { Authorization: `Bearer ${user.token}` },
+                    }
+                );
+                setPhotos(images.data);
                 dispatch({ type: "PROFILE_SUCCESS", payload: data });
             }
         } catch (ex) {
             dispatch({ type: "PROFILE_ERROR", payload: ex.message });
+            // set initial state when FAILED - rua1hc
+            setPhotos({
+                total_count: 1,
+                resources: [
+                    {
+                        folder: "undefined/profile_pictures",
+                        public_id: 1,
+                        secure_url: user.photoURL,
+                    },
+                    {
+                        folder: `${user.uid}/profile_pictures`,
+                        public_id: 2,
+                        secure_url: user.photoURL,
+                    },
+                ],
+            });
         }
     };
 
@@ -72,7 +108,11 @@ export default function Profile({ setVisible }) {
             <div className="profile_top">
                 <div className="profile_container">
                     <Cover cover={profile.cover} visitor={visitor} />
-                    <ProfielPictureInfos profile={profile} visitor={visitor} />
+                    <ProfielPictureInfos
+                        profile={profile}
+                        visitor={visitor}
+                        photos={photos.resources}
+                    />
                     <ProfileMenu />
                 </div>
             </div>
@@ -83,23 +123,24 @@ export default function Profile({ setVisible }) {
                         <PplYouMayKnow />
                         <div className="profile_grid">
                             <div className="profile_left">
-                                <Photos username={username} token={user.token} />
+                                <Photos username={username} token={user.token} photos={photos} />
                                 <Friends friends={profile.friends} />
                                 <div className="relative_fb_copyright">
-                                    <Link to="/">Privacy </Link>
-                                    <span>. </span>
-                                    <Link to="/">Terms </Link>
-                                    <span>. </span>
-                                    <Link to="/">Advertising </Link>
-                                    <span>. </span>
+                                    <Link to="/">Privacy</Link>
+                                    <span> . </span>
+                                    <Link to="/">Terms</Link>
+                                    <span> . </span>
+                                    <Link to="/">Advertising</Link>
+                                    <span> . </span>
                                     <Link to="/">
-                                        Ad Choices <i className="ad_choices_icon"></i>{" "}
+                                        <span>Ad Choices </span>
+                                        <i className="ad_choices_icon"></i>
                                     </Link>
-                                    <span>. </span>
-                                    <Link to="/"></Link>Cookies <span>. </span>
-                                    <Link to="/">More </Link>
-                                    <span>. </span> <br />
-                                    Meta � 2022
+                                    <span> . </span>
+                                    <Link to="/">Cookies</Link>
+                                    <span> . </span>
+                                    <Link to="/">More</Link>
+                                    <span> . Mimi © 2023</span>
                                 </div>
                             </div>
 

@@ -1,17 +1,23 @@
 import axios from "axios";
 import { useCallback, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
 import Cropper from "react-easy-crop";
+import PulseLoader from "react-spinners/PulseLoader";
 import { createPost } from "../../functions/createPost";
 import { uploadImages } from "../../functions/uploadImages";
 import { updateprofilePicture } from "../../functions/userProfilePicture";
 import getCroppedImg from "../../helpers/getCroppedImg";
+import { Public } from "../../svg";
 
-export default function UpdateProfilePicture({ setImage, image, setError }) {
+export default function UpdateProfilePicture({ setImage, image, setError, setShow, pRef }) {
+    const dispatch = useDispatch();
     const { user } = useSelector((state) => ({ ...state }));
+
+    const [loading, setLoading] = useState(false);
     const [description, setDescription] = useState("");
-    const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
     const slider = useRef(null);
 
@@ -37,10 +43,7 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
                     setZoom(1);
                     setCrop({ x: 0, y: 0 });
                     setImage(img);
-                    console.log("just show");
                 } else {
-                    console.log("not show");
-                    console.log(img);
                     return img;
                 }
             } catch (error) {
@@ -52,6 +55,7 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
 
     const updateProfielPicture = async () => {
         try {
+            setLoading(true);
             let img = await getCroppedImage();
             let blob = await fetch(img).then((b) => b.blob());
             const path = `${user.username}/profile_pictures`;
@@ -60,7 +64,6 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
             formData.append("path", path);
             const res = await uploadImages(formData, path, user.token);
             const updated_picture = await updateprofilePicture(res[0].url, user.token);
-            console.log(updated_picture);
             if (updated_picture === "ok") {
                 const new_post = await createPost(
                     "profilePicture",
@@ -71,13 +74,22 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
                     user.token
                 );
                 if (new_post === "ok") {
+                    setLoading(false);
+                    setImage("");
+                    pRef.current.style.backgroundImage = `url(${res[0].url})`;
+                    Cookies.set("user", JSON.stringify({ ...user, picture: res[0].url }));
+                    dispatch({ type: "UPDATEPICTURE", payload: res[0].url });
+                    setShow(false);
                 } else {
+                    setLoading(false);
                     setError(new_post);
                 }
             } else {
+                setLoading(false);
                 setError(updated_picture);
             }
         } catch (ex) {
+            setLoading(false);
             setError(ex.message);
         }
     };
@@ -139,14 +151,22 @@ export default function UpdateProfilePicture({ setImage, image, setError }) {
                 </div>
             </div>
             <div className="flex_p_t">
-                <i className="public_icon"></i>
-                Your profile picture is public
-            </div>
-            <div className="update_submit_wrap">
-                <div className="blue_link">Cancel</div>
-                <button className="blue_btn" onClick={() => updateProfielPicture()}>
-                    Save
-                </button>
+                <div className="update_submit_wrap">
+                    <Public color="#828387" />
+                    <span>Your profile picture is public</span>
+                </div>
+                <div className="update_submit_wrap">
+                    <div className="blue_link" onClick={() => setImage("")}>
+                        Cancel
+                    </div>
+                    <button
+                        className="blue_btn"
+                        disabled={loading}
+                        onClick={() => updateProfielPicture()}
+                    >
+                        {loading ? <PulseLoader color="#fff" size={5} /> : "Save"}
+                    </button>
+                </div>
             </div>
         </div>
     );

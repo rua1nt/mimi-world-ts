@@ -10,6 +10,8 @@ export function userReducer(
             return action.payload;
         case USER_LOGOUT:
             return null;
+    case "UPDATEPICTURE":
+      return { ...state, picture: action.payload };
         case USER_VERIFY:
             return { ...state, verified: action.payload };
         default:

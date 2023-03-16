@@ -107,7 +107,7 @@
     font-size: 20px;
     font-weight: 700;
     padding: 15px 16px;
-    border-bottom: 1px solid var(--bg-third);
+    /* border-bottom: 1px solid var(--bg-third); */
 }
 
 .postBox .small_circle {
