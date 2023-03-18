@@ -44,8 +44,8 @@ export default function Profile({ setVisible }) {
                 },
             ],
             friends: [
-                { photoURL: "../../../images/default_pic.png" },
-                { photoURL: "../../../images/default_pic.png" },
+                { _id: 1, photoURL: "../../../images/default_pic.png" },
+                { _id: 2, photoURL: "../../../images/default_pic.png" },
             ],
         },
         error: "",

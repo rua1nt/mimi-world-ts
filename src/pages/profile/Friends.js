@@ -17,7 +17,7 @@ export default function Friends({ friends }) {
             <div className="profile_card_grid">
                 {friends &&
                     friends.slice(0, 9).map((friend) => (
-                        <div className="profile_photo_card">
+                        <div key={friend._id} className="profile_photo_card">
                             <img src={friend.photoURL} alt="" />
                         </div>
                     ))}
