@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
 
 import Cover from "./Cover";
@@ -13,15 +14,17 @@ import Friends from "./Friends";
 
 import Header from "../../comps/header";
 import Post from "../../comps/post";
+import Intro from "../../comps/intro";
 import CreatePost from "../../comps/createPost";
 import { profileReducer } from "../../functions/reducers";
 import "./style.css";
 
 export default function Profile({ setVisible }) {
-    const navigate = useNavigate();
     const { user } = useSelector((state) => ({ ...state }));
     const { uid } = useParams();
+    const navigate = useNavigate();
     const [photos, setPhotos] = useState({});
+    const [othername, setOthername] = useState();
 
     let username = uid === undefined ? user.uid : uid;
     let visitor = username === user.uid ? false : true;
@@ -31,8 +34,12 @@ export default function Profile({ setVisible }) {
         profile: {
             cover: "https://live.staticflickr.com/7060/7017605661_c54d719cec_c.jpg",
             picture: user.photoURL,
+            displayName: user.displayName,
             first_name: "first_name",
             last_name: "last_name",
+            details: {
+                otherName: "#",
+            },
             posts: [
                 {
                     _id: 1,
@@ -54,6 +61,10 @@ export default function Profile({ setVisible }) {
     useEffect(() => {
         getProfile();
     }, [username]);
+
+    useEffect(() => {
+        setOthername(profile?.details?.otherName);
+    }, [profile]);
 
     const max = 30;
     const sort = "desc";
@@ -102,16 +113,40 @@ export default function Profile({ setVisible }) {
         }
     };
 
+    const profileTop = useRef(null);
+    const leftSide = useRef(null);
+    const [height, setHeight] = useState();
+    const [leftHeight, setLeftHeight] = useState();
+    const [scrollHeight, setScrollHeight] = useState();
+
+    useEffect(() => {
+        setHeight(profileTop.current.clientHeight + 300);
+        setLeftHeight(leftSide.current.clientHeight);
+        window.addEventListener("scroll", getScroll, { passive: true });
+        return () => {
+            window.addEventListener("scroll", getScroll, { passive: true });
+        };
+    }, [loading, scrollHeight]);
+
+    const check = useMediaQuery({
+        query: "(min-width:901px)",
+    });
+
+    const getScroll = () => {
+        setScrollHeight(window.pageYOffset);
+    };
+
     return (
         <div className="profile">
             <Header page="profile" />
-            <div className="profile_top">
+            <div className="profile_top" ref={profileTop}>
                 <div className="profile_container">
                     <Cover cover={profile.cover} visitor={visitor} />
                     <ProfielPictureInfos
                         profile={profile}
                         visitor={visitor}
                         photos={photos.resources}
+                        othername={othername}
                     />
                     <ProfileMenu />
                 </div>
@@ -121,8 +156,23 @@ export default function Profile({ setVisible }) {
                 <div className="profile_container">
                     <div className="bottom_container">
                         <PplYouMayKnow />
-                        <div className="profile_grid">
-                            <div className="profile_left">
+
+                        <div
+                            className={`profile_grid ${
+                                check && scrollHeight >= height && leftHeight > 1000
+                                    ? "scrollFixed showLess"
+                                    : check &&
+                                      scrollHeight >= height &&
+                                      leftHeight < 1000 &&
+                                      "scrollFixed showMore"
+                            }`}
+                        >
+                            <div className="profile_left" ref={leftSide}>
+                                <Intro
+                                    detailss={profile.details}
+                                    visitor={visitor}
+                                    setOthername={setOthername}
+                                />
                                 <Photos username={username} token={user.token} photos={photos} />
                                 <Friends friends={profile.friends} />
                                 <div className="relative_fb_copyright">

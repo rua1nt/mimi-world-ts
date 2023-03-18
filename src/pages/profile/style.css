@@ -278,6 +278,7 @@
 }
 
 .profile_grid {
+  position: relative;
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 10px;
@@ -500,4 +501,35 @@
         grid-template-columns: 1fr;
         width: 95%;
     }
+
+  .profile_grid .createPost {
+    width: 100% !important;
+  }
+  .bottom_container {
+    padding: 5px;
+  }
+}
+@media (max-width: 650px) {
+  .profile_menu_wrap {
+    display: none;
+  }
+}
+@media (max-width: 510px) {
+  .udpate_cover_wrapper {
+    bottom: 3rem;
+  }
+}
+.scrollFixed .profile_left {
+  position: fixed;
+  width: 360px;
+}
+.scrollFixed .profile_right {
+  margin-left: 370px;
+  width: 504px;
+}
+.showLess .profile_left {
+  bottom: 10px;
+}
+.showMore .profile_left {
+  top: 54px;
 }
