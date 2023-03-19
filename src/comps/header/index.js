@@ -5,6 +5,7 @@ import {
     ArrowDown,
     Friends,
     Gaming,
+    Home,
     HomeActive,
     FbLogo,
     Market,
@@ -23,7 +24,7 @@ import UserMenu from "./userMenu";
 import useClickOutside from "../../helpers/clickOutside";
 import "./style.css";
 
-export default function Header() {
+export default function Header({ page }) {
     const color_secondary = "#65676b";
     const { user } = useSelector((state) => ({ ...state }));
 
@@ -64,21 +65,12 @@ export default function Header() {
                         }}
                     >
                         {user ? (
-                            <img
-                                className="header_profile_img"
-                                src={user.photoURL}
-                                alt=""
-                            />
+                            <img className="header_profile_img" src={user.photoURL} alt="" />
                         ) : (
                             <UserFocus className={"ping"} color={"#1b74e4"} />
                         )}
                     </div>
-                    {showLoginMenu && (
-                        <LoginMenu
-                            user={user}
-                            setShowLoginMenu={setShowLoginMenu}
-                        />
-                    )}
+                    {showLoginMenu && <LoginMenu user={user} setShowLoginMenu={setShowLoginMenu} />}
                 </div>
 
                 <div
@@ -88,23 +80,16 @@ export default function Header() {
                     }}
                 >
                     <Search color={color_secondary} />
-                    <input
-                        type="text"
-                        placeholder="Search mimi..."
-                        className="hide_input"
-                    />
+                    <input type="text" placeholder="Search mimi..." className="hide_input" />
                 </div>
             </div>
             {showSearchMenu && (
-                <SearchMenu
-                    color={color_secondary}
-                    setShowSearchMenu={setShowSearchMenu}
-                />
+                <SearchMenu color={color_secondary} setShowSearchMenu={setShowSearchMenu} />
             )}
 
             <div className="header_middle">
-                <Link to="/" className="middle_icon active">
-                    <HomeActive />
+                <Link to="/" className={`middle_icon ${page === "home" ? "active" : "hover1"}`}>
+                    {page === "home" ? <HomeActive /> : <Home color={color_secondary} />}
                 </Link>
                 <Link to="/" className="middle_icon hover1">
                     <Friends color={color_secondary} />
@@ -123,7 +108,10 @@ export default function Header() {
             </div>
 
             <div className="header_right">
-                {/* <Link to="/profile" className="profile_link hover9">
+                {/* <Link
+                    to="/profile"
+                    className={`profile_link hover1 ${page === "profile" ? "active_link" : ""}`}
+                >
                     <img src={user?.photoURL} alt="" />
                     <span>{user?.displayName}</span>
                 </Link> */}

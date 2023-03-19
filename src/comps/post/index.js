@@ -7,12 +7,12 @@ import CreateComment from "./CreateComment";
 import { Dots, Public } from "../../svg";
 import "./style.css";
 
-export default function Post({ post, user }) {
+export default function Post({ post, user, profile }) {
     const [visible, setVisible] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
 
     return (
-        <div className="post">
+        <div className="post" style={{ width: `${profile && "100%"}` }}>
             <div className="post_header">
                 <Link to={`/profile/${post.user_id}`} className="post_header_left">
                     <img src={post.user_photoURL} alt="" />
@@ -20,8 +20,8 @@ export default function Post({ post, user }) {
                         <div className="post_profile_name">
                             {post.user_displayName}
                             <div className="updated_p">
-                                {post.type !== "profilePicture" && `updated profile picture`}
-                                {post.type === "cover" && `updated cover picture`}
+                                {post.type === "profilePicture" && `updated profile picture`}
+                                {post.type === "coverPicture" && `updated cover picture`}
                             </div>
                         </div>
                         <div className="post_profile_privacy_date">
@@ -44,7 +44,7 @@ export default function Post({ post, user }) {
                 <div className="post_bg" style={{ backgroundImage: `url(${post.background})` }}>
                     <div className="post_bg_text">{post.text}</div>
                 </div>
-            ) : (
+            ) : post.type === null ? (
                 <>
                     <div className="post_text">{post.text}</div>
                     {post.images?.length && (
@@ -70,6 +70,17 @@ export default function Post({ post, user }) {
                         </div>
                     )}
                 </>
+            ) : post.type === "profilePicture" ? (
+                <div className="post_profile_wrap">
+                    <div className="post_updated_bg">
+                        <img src={post.user.cover} alt="" />
+                    </div>
+                    <img src={post.images[0].url} alt="" className="post_updated_picture" />
+                </div>
+            ) : (
+                <div className="post_cover_wrap">
+                    <img src={post.images[0].url} alt="" />
+                </div>
             )}
 
             <div className="post_infos">

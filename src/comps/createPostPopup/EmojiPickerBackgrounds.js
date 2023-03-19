@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
+import { useMediaQuery } from "react-responsive";
 
 export default function EmojiPickerBackgrounds({
     text,
@@ -53,6 +54,10 @@ export default function EmojiPickerBackgrounds({
         bgRef.current.classList.remove("bgHandler");
     };
 
+    const sm = useMediaQuery({
+        query: "(max-width:550px)",
+    });
+
     const calcPaddingTop = (len) => {
         let line = Math.floor(len / 33);
         return 24 - line * 3.1;
@@ -68,7 +73,7 @@ export default function EmojiPickerBackgrounds({
                     placeholder={
                         user ? `Đưa Mi đi chơi, ${user.displayName}?` : "Đi đu đưa thôi, Mimi?"
                     }
-                    className={`post_input ${type2 ? "input2" : ""}`}
+                    className={`post_input ${type2 ? "input2" : ""} ${sm && !background && "l0"}`}
                     onChange={(e) => setText(e.target.value)}
                     // style={{
                     //     paddingTop: `${ background ? Math.abs(textRef.current?.value?.length * 0.1 - 24) : "0" }%`,
