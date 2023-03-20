@@ -51,8 +51,14 @@ export default function Profile({ setVisible }) {
                 },
             ],
             friends: [
-                { _id: 1, photoURL: "../../../images/default_pic.png" },
-                { _id: 2, photoURL: "../../../images/default_pic.png" },
+                {
+                    user_displayName: "Ai đó 1",
+                    photo_url: "../../../images/default_pic.png",
+                },
+                {
+                    user_displayName: "Ai đó 2",
+                    photo_url: "../../../images/default_pic.png",
+                },
             ],
         },
         error: "",
@@ -96,7 +102,7 @@ export default function Profile({ setVisible }) {
             dispatch({ type: "PROFILE_ERROR", payload: ex.message });
             // set initial state when FAILED - rua1hc
             setPhotos({
-                total_count: 1,
+                total_count: 2,
                 resources: [
                     {
                         folder: "undefined/profile_pictures",
@@ -120,7 +126,7 @@ export default function Profile({ setVisible }) {
     const [scrollHeight, setScrollHeight] = useState();
 
     useEffect(() => {
-        setHeight(profileTop.current.clientHeight + 300);
+        setHeight(profileTop.current.clientHeight + 316);
         setLeftHeight(leftSide.current.clientHeight);
         window.addEventListener("scroll", getScroll, { passive: true });
         return () => {
@@ -159,11 +165,11 @@ export default function Profile({ setVisible }) {
 
                         <div
                             className={`profile_grid ${
-                                check && scrollHeight >= height && leftHeight > 1000
+                                check && scrollHeight >= height && leftHeight > 734
                                     ? "scrollFixed showLess"
                                     : check &&
                                       scrollHeight >= height &&
-                                      leftHeight < 1000 &&
+                                      leftHeight < 734 &&
                                       "scrollFixed showMore"
                             }`}
                         >
