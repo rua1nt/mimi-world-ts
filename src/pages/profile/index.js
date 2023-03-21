@@ -47,6 +47,7 @@ export default function Profile({ setVisible }) {
                     user_displayName: user.displayName,
                     background: "../../../images/postbackgrounds/2.jpg",
                     text: "fake post",
+                    images: [],
                     // created_at: new Date(),
                 },
             ],
