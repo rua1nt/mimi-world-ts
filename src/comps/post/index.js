@@ -231,7 +231,7 @@ export default function Post({ post, user, profile }) {
 
             <div className="comments_wrap">
                 <div className="comments_order"></div>
-                <CreateComment user={user} />
+        <CreateComment user={user} postId={post._id} />
             </div>
 
             {showMenu && (
