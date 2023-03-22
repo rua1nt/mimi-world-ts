@@ -10,14 +10,14 @@ import Post from "../../comps/post";
 
 import "./style.css";
 
-export default function Home({ setVisible, posts }) {
+export default function Home({ setVisible, posts, loading }) {
     const { user } = useSelector((state) => ({ ...state }));
     const [height, setHeight] = useState();
     const middle = useRef(null);
 
     useEffect(() => {
         setHeight(middle.current.clientHeight);
-    }, []);
+    }, [loading]);
 
     return (
         // <div className="home">

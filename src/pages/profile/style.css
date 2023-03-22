@@ -329,7 +329,7 @@
 
 .othername {
     color: var(--color-secondary);
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .no_posts {
@@ -488,6 +488,7 @@
 .selectCoverBox {
     width: 570px !important;
     max-width: 80vw;
+    height: 550px;
 }
 
 .selectCoverBox_links {

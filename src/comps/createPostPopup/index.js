@@ -46,10 +46,16 @@ export default function CreatePostPopup({ user, setVisible }) {
 
         if (background) {
             setLoading(true);
-            // const response = await createPost(null, background, text, null, user.id, user.token);
+            // const response = await createPost(
+            //     null, background, text, null, user.id, user.token
+            // );
             const response = await fsAddPost(null, background, text, null, user, mimiDate);
             setLoading(false);
-            if (response === "OK") {
+            if (response.status === "OK") {
+                // dispatch({
+                //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
+                //     payload: [response.data, ...posts],
+                // });
                 setBackground("");
                 setText("");
                 setVisible(false);
@@ -69,12 +75,7 @@ export default function CreatePostPopup({ user, setVisible }) {
             // });
             // const imageUrls = await uploadImages(formData, path, user.token);
             // const response = await createPost(
-            //     null,
-            //     null,
-            //     text,
-            //     imageUrls,
-            //     user.id,
-            //     user.token
+            //     null, null, text, imageUrls, user.id, user.token
             // );
             const imageUrls = await uploadImages(images, mimiDate);
             let response = imageUrls.NOT_OK;
@@ -82,7 +83,11 @@ export default function CreatePostPopup({ user, setVisible }) {
                 response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
             }
             setLoading(false);
-            if (response === "OK") {
+            if (response.status === "OK") {
+                // dispatch({
+                //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
+                //     payload: [res.data, ...posts],
+                // });
                 setText("");
                 setImages("");
                 setVisible(false);
@@ -92,15 +97,14 @@ export default function CreatePostPopup({ user, setVisible }) {
         } else if (text) {
             // setLoading(true);
             // const response = await createPost(
-            //     null,
-            //     null,
-            //     text,
-            //     null,
-            //     user.id,
-            //     user.token
+            //     null, null, text, null, user.id, user.token
             // );
             // setLoading(false);
-            // if (response === "ok") {
+            // if (response.status === "ok") {
+            //     dispatch({
+            //         type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
+            //         payload: [response.data, ...posts],
+            //     });
             //     setBackground("");
             //     setText("");
             //     setVisible(false);

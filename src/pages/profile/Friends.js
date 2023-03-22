@@ -19,9 +19,9 @@ export default function Friends({ friends }) {
                 {friends &&
                     friends.slice(0, 9).map((friend, i) => (
                         <Link
-                            key={i}
                             to={`/profile/${friend.username}`}
                             className="profile_photo_card"
+                            key={i}
                         >
                             <img src={friend.photo_url} alt="" />
                             <span>{friend.user_displayName}</span>
