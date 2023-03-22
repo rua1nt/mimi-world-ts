@@ -29,9 +29,11 @@ export default function PostMenu({
             setCheckSaved(true);
         }
     };
+
     const downloadImages = async () => {
         images.map((img) => {
-            saveAs(img.url, "image.jpg");
+            let fileName = img.substring(img.lastIndexOf("/") + 1);
+            saveAs(img, fileName);
         });
     };
 
