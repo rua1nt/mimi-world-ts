@@ -4,7 +4,7 @@ import useClickOutside from "../../helpers/clickOutside";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import { uploadImages } from "../../functions/uploadImages";
 import { useSelector } from "react-redux";
-import { updateCover } from "../../functions/userProfilePicture";
+import { updateCover } from "../../functions/userProfile";
 import { createPost } from "../../functions/createPost";
 import PulseLoader from "react-spinners/PulseLoader";
 import OldCovers from "./OldCovers";

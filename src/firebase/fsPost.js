@@ -56,7 +56,7 @@ export const fsAddPost = async (type, background, text, images, user, mimiDate) 
             mi_date: Timestamp.fromDate(mimiDate.date),
             created_at: serverTimestamp(),
         });
-        return "OK";
+        return { status: "OK" };
     } catch (ex) {
         return ex.message;
     }

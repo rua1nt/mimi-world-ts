@@ -22,16 +22,23 @@ import "react-toastify/dist/ReactToastify.css";
 // import "./firebase/firebaseui-styling.global.css";
 
 function App() {
-    const [posts, setPosts] = useState<any[]>([]);
-    const [visible, setVisible] = useState<boolean>(false);
     const { user } = useSelector((state: any) => ({ ...state }));
+    const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [visible, setVisible] = useState<boolean>(false);
 
     useEffect(() => {
         const q = query(collection(firestore, "posts"), orderBy("mi_date", "desc"));
         const unsubscribe = onSnapshot(
             q,
-            (snapshot) => setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), post_id: doc.id }))),
-            (error) => console.log(error)
+            (snapshot) => {
+                setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), post_id: doc.id })));
+                setLoading(false);
+            },
+            (error) => {
+                console.log(error);
+                setLoading(false);
+            }
         );
         return unsubscribe;
     }, []);
@@ -67,12 +74,22 @@ function App() {
             {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
 
             <Routes>
-                <Route path="/" element={<Home setVisible={setVisible} posts={posts} />} />
+                <Route
+                    path="/"
+                    element={
+                        <Home
+                            setVisible={setVisible}
+                            posts={posts}
+                            loading={loading}
+                            // getAllPosts={getAllPosts}
+                        />
+                    }
+                />
                 <Route path="/activate/:token" element={<Activate />} />
 
                 <Route element={<LoggedInRoutes />}>
-                    <Route path="/profile" element={<Profile setVisible={setVisible}  />} />
-                    <Route path="/profile/:uid" element={<Profile setVisible={setVisible}  />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile/:uid" element={<Profile />} />
                 </Route>
 
                 <Route element={<NotLoggedInRoutes />}>

@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { reactPost } from "../../functions/createPost";
+
 const reactsArray = [
     {
         name: "like",
@@ -25,7 +29,7 @@ const reactsArray = [
     },
 ];
 
-export default function ReactsPopup({ visible, setVisible }) {
+export default function ReactsPopup({ visible, setVisible, reactHandler }) {
     return (
         <>
             {visible && (
@@ -43,7 +47,7 @@ export default function ReactsPopup({ visible, setVisible }) {
                     }}
                 >
                     {reactsArray.map((react, i) => (
-                        <div className="react" key={i}>
+                        <div className="react" key={i} onClick={() => reactHandler(react.name)}>
                             <img src={react.image} alt="" />
                         </div>
                     ))}
