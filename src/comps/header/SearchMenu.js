@@ -33,7 +33,7 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
         // const res = await getSearchHistory(token);
         const res = [
             {
-                user_id: "user.uid1",
+                uid: "user.uid1",
                 user_photoURL: "../../../images/default_pic.png",
                 user_displayName: "fake_history",
                 createdAt: new Date(),
@@ -49,7 +49,7 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
             // const res = await search(searchTerm, token);
             const res = [
                 {
-                    user_id: "user.uid1",
+                    uid: "user.uid1",
                     user_photoURL: "../../../images/default_pic.png",
                     user_displayName: "fake_searching",
                     createdAt: new Date(),
@@ -114,11 +114,11 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
                             return new Date(b.createdAt) - new Date(a.createdAt);
                         })
                         .map((user) => (
-                            <div className="search_user_item hover1" key={user.user_id}>
+                            <div className="search_user_item hover1" key={user.uid}>
                                 <Link
                                     className="flex"
-                                    to={`/profile/${user.user_id}`}
-                                    onClick={() => addToSearchHistoryHandler(user.user_id)}
+                                    to={`/profile/${user.uid}`}
+                                    onClick={() => addToSearchHistoryHandler(user.uid)}
                                 >
                                     <img src={user.user_photoURL} alt="" />
                                     <span>{user.user_displayName}</span>
@@ -126,7 +126,7 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
                                 <i
                                     className="exit_icon"
                                     onClick={() => {
-                                        handleRemove(user.user_id);
+                                        handleRemove(user.uid);
                                     }}
                                 ></i>
                             </div>
@@ -138,8 +138,8 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
                         <Link
                             to={`/profile/${user.user_displayName}`}
                             className="search_user_item hover1"
-                            onClick={() => addToSearchHistoryHandler(user.user_id)}
-                            key={user.user_id}
+                            onClick={() => addToSearchHistoryHandler(user.uid)}
+                            key={user.uid}
                         >
                             <img src={user.user_photoURL} alt="" />
                             <span>{user.user_displayName}</span>

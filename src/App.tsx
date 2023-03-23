@@ -11,6 +11,7 @@ import { postsReducer } from "./functions/reducers";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
+import Friends from "./pages/friends";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import Reset from "./pages/reset";
@@ -90,6 +91,8 @@ function App() {
                 <Route element={<LoggedInRoutes />}>
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/profile/:uid" element={<Profile />} />
+                    <Route path="/friends" element={<Friends />} />
+                    <Route path="/friends/:type" element={<Friends />} />
                 </Route>
 
                 <Route element={<NotLoggedInRoutes />}>
