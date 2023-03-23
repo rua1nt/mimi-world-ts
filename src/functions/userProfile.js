@@ -77,7 +77,6 @@ export const follow = async (id, token) => {
                 },
             }
         );
-        console.log(data);
         return "ok";
     } catch (ex) {
         console.log(ex.message);

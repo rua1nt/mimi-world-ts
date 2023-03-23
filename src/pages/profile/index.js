@@ -40,7 +40,16 @@ export default function Profile({}) {
             first_name: "first_name",
             last_name: "last_name",
             details: {
+                bio: "Describe who you are",
                 otherName: "#",
+                job: "ăn ngủ ị ..",
+                workplace: "báo đời",
+                highSchool: "Học Đại",
+                college: "thất học",
+                currentCity: "芽庄",
+                hometown: "Vietnam",
+                relationship: "In a closed relationship",
+                instagram: "thaoly.huynhngoc",
             },
             posts: [
                 {
@@ -197,11 +206,11 @@ export default function Profile({}) {
 
                         <div
                             className={`profile_grid ${
-                                check && scrollHeight >= height && leftHeight > 734
+                                check && scrollHeight >= height && leftHeight >= 1081
                                     ? "scrollFixed showLess"
                                     : check &&
                                       scrollHeight >= height &&
-                                      leftHeight < 734 &&
+                                      leftHeight < 1081 &&
                                       "scrollFixed showMore"
                             }`}
                         >
