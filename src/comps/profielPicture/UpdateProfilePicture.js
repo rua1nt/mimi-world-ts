@@ -6,7 +6,7 @@ import Cropper from "react-easy-crop";
 import PulseLoader from "react-spinners/PulseLoader";
 import { createPost } from "../../functions/createPost";
 import { uploadImages } from "../../functions/uploadImages";
-import { updateprofilePicture } from "../../functions/userProfilePicture";
+import { updateProfilePicture } from "../../functions/userProfile";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import { Public } from "../../svg";
 
@@ -63,7 +63,7 @@ export default function UpdateProfilePicture({ setImage, image, setError, setSho
             formData.append("file", blob);
             formData.append("path", path);
             const res = await uploadImages(formData, path, user.token);
-            const updated_picture = await updateprofilePicture(res[0].url, user.token);
+            const updated_picture = await updateProfilePicture(res[0].url, user.token);
             if (updated_picture === "ok") {
                 const new_post = await createPost(
                     "profilePicture",

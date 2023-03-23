@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
 import Cover from "./Cover";
 import ProfileMenu from "./ProfileMenu";
@@ -16,15 +16,17 @@ import Header from "../../comps/header";
 import Post from "../../comps/post";
 import Intro from "../../comps/intro";
 import CreatePost from "../../comps/createPost";
+import CreatePostPopup from "../../comps/createPostPopup";
 import { profileReducer } from "../../functions/reducers";
 import "./style.css";
 
-export default function Profile({ setVisible }) {
+export default function Profile({}) {
     const { user } = useSelector((state) => ({ ...state }));
     const { uid } = useParams();
     const navigate = useNavigate();
     const [photos, setPhotos] = useState({});
-    const [othername, setOthername] = useState();
+    const [visible, setVisible] = useState(false);
+    const [othername, setOthername] = useState("");
 
     let username = uid === undefined ? user.uid : uid;
     let visitor = username === user.uid ? false : true;
@@ -47,12 +49,29 @@ export default function Profile({ setVisible }) {
                     user_displayName: user.displayName,
                     background: "../../../images/postbackgrounds/2.jpg",
                     text: "fake post",
+                    images: [],
+                    comments: [
+                        {
+                            user_photoURL: user.photoURL,
+                            user_displayName: user.displayName,
+                            image: user.photoURL,
+                            comment:
+                                "fake a really long comment: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            commentAt: new Date(),
+                        },
+                    ],
                     // created_at: new Date(),
                 },
             ],
             friends: [
-                { _id: 1, photoURL: "../../../images/default_pic.png" },
-                { _id: 2, photoURL: "../../../images/default_pic.png" },
+                {
+                    user_displayName: "Ai đó 1",
+                    photo_url: "../../../images/default_pic.png",
+                },
+                {
+                    user_displayName: "Ai đó 2",
+                    photo_url: "../../../images/default_pic.png",
+                },
             ],
         },
         error: "",
@@ -96,7 +115,7 @@ export default function Profile({ setVisible }) {
             dispatch({ type: "PROFILE_ERROR", payload: ex.message });
             // set initial state when FAILED - rua1hc
             setPhotos({
-                total_count: 1,
+                total_count: 4,
                 resources: [
                     {
                         folder: "undefined/profile_pictures",
@@ -106,6 +125,16 @@ export default function Profile({ setVisible }) {
                     {
                         folder: `${user.uid}/profile_pictures`,
                         public_id: 2,
+                        secure_url: user.photoURL,
+                    },
+                    {
+                        folder: `${user.uid}/cover_pictures`,
+                        public_id: 3,
+                        secure_url: "https://live.staticflickr.com/7060/7017605661_c54d719cec_c.jpg",
+                    },
+                    {
+                        folder: `${user.uid}/post_images`,
+                        public_id: 4,
                         secure_url: user.photoURL,
                     },
                 ],
@@ -120,7 +149,7 @@ export default function Profile({ setVisible }) {
     const [scrollHeight, setScrollHeight] = useState();
 
     useEffect(() => {
-        setHeight(profileTop.current.clientHeight + 300);
+        setHeight(profileTop.current.clientHeight + 316);
         setLeftHeight(leftSide.current.clientHeight);
         window.addEventListener("scroll", getScroll, { passive: true });
         return () => {
@@ -138,10 +167,19 @@ export default function Profile({ setVisible }) {
 
     return (
         <div className="profile">
+            {visible && (
+                <CreatePostPopup
+                    user={user}
+                    setVisible={setVisible}
+                    //   posts={profile?.posts}
+                    //   dispatch={dispatch}
+                    // profile
+                />
+            )}
             <Header page="profile" />
             <div className="profile_top" ref={profileTop}>
                 <div className="profile_container">
-                    <Cover cover={profile.cover} visitor={visitor} />
+                    <Cover cover={profile.cover} visitor={visitor} photos={photos.resources} />
                     <ProfielPictureInfos
                         profile={profile}
                         visitor={visitor}
@@ -159,11 +197,11 @@ export default function Profile({ setVisible }) {
 
                         <div
                             className={`profile_grid ${
-                                check && scrollHeight >= height && leftHeight > 1000
+                                check && scrollHeight >= height && leftHeight > 734
                                     ? "scrollFixed showLess"
                                     : check &&
                                       scrollHeight >= height &&
-                                      leftHeight < 1000 &&
+                                      leftHeight < 734 &&
                                       "scrollFixed showMore"
                             }`}
                         >

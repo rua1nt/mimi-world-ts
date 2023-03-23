@@ -4,7 +4,7 @@ import useClickOutside from "../../helpers/clickOutside";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import { uploadImages } from "../../functions/uploadImages";
 import { useSelector } from "react-redux";
-import { updateCover } from "../../functions/userProfilePicture";
+import { updateCover } from "../../functions/userProfile";
 import { createPost } from "../../functions/createPost";
 import PulseLoader from "react-spinners/PulseLoader";
 import OldCovers from "./OldCovers";
@@ -99,17 +99,15 @@ export default function Cover({ cover, visitor, photos }) {
                     cRef.current.src = res[0].url;
                 } else {
                     setLoading(false);
-
                     setError(new_post);
                 }
             } else {
                 setLoading(false);
-
                 setError(updated_picture);
             }
-        } catch (error) {
+        } catch (ex) {
             setLoading(false);
-            setError(error.response.data.message);
+            setError(ex.message);
         }
     };
     return (

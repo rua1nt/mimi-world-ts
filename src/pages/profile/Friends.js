@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function Friends({ friends }) {
     return (
         <div className="profile_card">
@@ -10,16 +11,21 @@ export default function Friends({ friends }) {
                     {friends.length === 0
                         ? ""
                         : friends.length === 1
-                        ? "1 Photo"
-                        : `${friends.length} photos`}
+                        ? "1 Friend"
+                        : `${friends.length} friends`}
                 </div>
             )}
             <div className="profile_card_grid">
                 {friends &&
-                    friends.slice(0, 9).map((friend) => (
-                        <div key={friend._id} className="profile_photo_card">
-                            <img src={friend.photoURL} alt="" />
-                        </div>
+                    friends.slice(0, 9).map((friend, i) => (
+                        <Link
+                            to={`/profile/${friend.username}`}
+                            className="profile_photo_card"
+                            key={i}
+                        >
+                            <img src={friend.photo_url} alt="" />
+                            <span>{friend.user_displayName}</span>
+                        </Link>
                     ))}
             </div>
         </div>
