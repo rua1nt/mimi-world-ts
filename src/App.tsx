@@ -11,6 +11,7 @@ import { postsReducer } from "./functions/reducers";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
+import Friends from "./pages/friends";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import Reset from "./pages/reset";
@@ -22,7 +23,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import "./firebase/firebaseui-styling.global.css";
 
 function App() {
-    const { user } = useSelector((state: any) => ({ ...state }));
+    const { user, darkTheme } = useSelector((state: any) => ({ ...state }));
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [visible, setVisible] = useState<boolean>(false);
@@ -68,7 +69,7 @@ function App() {
     // };
 
     return (
-        <div>
+        <div className={darkTheme ? "dark" : ""}>
             <ToastContainer theme="colored" />
 
             {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
@@ -90,6 +91,8 @@ function App() {
                 <Route element={<LoggedInRoutes />}>
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/profile/:uid" element={<Profile />} />
+                    <Route path="/friends" element={<Friends />} />
+                    <Route path="/friends/:type" element={<Friends />} />
                 </Route>
 
                 <Route element={<NotLoggedInRoutes />}>

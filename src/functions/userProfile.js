@@ -77,7 +77,6 @@ export const follow = async (id, token) => {
                 },
             }
         );
-        console.log(data);
         return "ok";
     } catch (ex) {
         console.log(ex.message);
@@ -144,6 +143,83 @@ export const deleteRequest = async (id, token) => {
             }
         );
         return "ok";
+    } catch (ex) {
+        return ex.message;
+    }
+};
+
+export const search = async (searchTerm, token) => {
+    try {
+        const { data } = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/search/${searchTerm}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return data;
+    } catch (ex) {
+        return ex.message;
+    }
+};
+export const addToSearchHistory = async (searchUser, token) => {
+    try {
+        const { data } = await axios.put(
+            `${process.env.REACT_APP_BACKEND_URL}/addToSearchHistory`,
+            { searchUser },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return data;
+    } catch (ex) {
+        return ex.message;
+    }
+};
+export const getSearchHistory = async (token) => {
+    try {
+        const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getSearchHistory`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return data;
+    } catch (ex) {
+        return ex.message;
+    }
+};
+export const removeFromSearch = async (searchUser, token) => {
+    try {
+        const { data } = await axios.put(
+            `${process.env.REACT_APP_BACKEND_URL}/removeFromSearch`,
+            { searchUser },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return data;
+    } catch (ex) {
+        return ex.message;
+    }
+};
+
+export const getFriendsPageInfos = async (token) => {
+    try {
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/getFriendsPageInfos`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }

@@ -75,7 +75,7 @@
 .details_wrapper {
     padding: 1rem;
     overflow-y: auto;
-  height: 570px;
+    height: 500px;
 }
 
 .details_col {

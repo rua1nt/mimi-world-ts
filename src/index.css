@@ -14,6 +14,7 @@
     --dark-bg-primary: #18191a;
     --dark-bg-secondary: #242526;
     --dark-bg-third: #3a3b3c;
+    --dark-bg-forth: #3a3b3c;
 
     --color-primary: #050505;
     --color-secondary: #65676b;
@@ -87,20 +88,20 @@ code {
 }
 
 .light_blue_btn {
-  border: none;
-  outline: none;
-  background: var(--light-blue-color);
-  padding: 8.5px 12px;
-  border-radius: 7px;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 14px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
+    border: none;
+    outline: none;
+    background: var(--light-blue-color);
+    padding: 8.5px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
 }
 
 .gray_btn {
@@ -112,7 +113,7 @@ code {
     font-family: inherit;
     font-weight: 600;
     font-size: 14px;
-    color: #111;
+    color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,8 +209,7 @@ code {
 
 /*----filters---*/
 .filter_blue {
-  filter: invert(39%) sepia(57%) saturate(200%) saturate(200%) saturate(200%)
-    saturate(200%) saturate(200%) saturate(147.75%) hue-rotate(202deg)
-    brightness(97%) contrast(96%);
+    filter: invert(39%) sepia(57%) saturate(200%) saturate(200%) saturate(200%) saturate(200%) saturate(200%) saturate(147.75%) hue-rotate(202deg) brightness(97%) contrast(96%);
 }
+
 /*----filters---*/

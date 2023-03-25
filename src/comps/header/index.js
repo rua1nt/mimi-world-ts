@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
     ArrowDown,
     Friends,
+    FriendsActive,
     Gaming,
     Home,
     HomeActive,
@@ -19,6 +20,7 @@ import {
 
 import LoginMenu from "./LoginMenu";
 import SearchMenu from "./SearchMenu";
+import DarkModeToggler from "./DarkModeToggler";
 import AllMenu from "./AllMenu";
 import UserMenu from "./userMenu";
 import useClickOutside from "../../helpers/clickOutside";
@@ -26,7 +28,7 @@ import "./style.css";
 
 export default function Header({ page }) {
     const color_secondary = "#65676b";
-    const { user } = useSelector((state) => ({ ...state }));
+    const { user, darkTheme } = useSelector((state) => ({ ...state }));
 
     const [showLoginMenu, setShowLoginMenu] = useState(false);
     const [showSearchMenu, setShowSearchMenu] = useState(false);
@@ -84,7 +86,11 @@ export default function Header({ page }) {
                 </div>
             </div>
             {showSearchMenu && (
-                <SearchMenu color={color_secondary} setShowSearchMenu={setShowSearchMenu} />
+                <SearchMenu
+                    color={color_secondary}
+                    setShowSearchMenu={setShowSearchMenu}
+                    // token={user.token}
+                />
             )}
 
             <div className="header_middle">
@@ -95,8 +101,11 @@ export default function Header({ page }) {
                 >
                     {page === "home" ? <HomeActive /> : <Home color={color_secondary} />}
                 </Link>
-                <Link to="/" className="middle_icon hover1">
-                    <Friends color={color_secondary} />
+                <Link
+                    to="/friends"
+                    className={`middle_icon ${page === "friends" ? "active" : "hover1"}`}
+                >
+                    {page === "friends" ? <FriendsActive /> : <Friends color={color_secondary} />}
                     <div className="middle_notification">9+</div>
                 </Link>
                 <Link to="/" className="middle_icon hover1">
@@ -112,6 +121,7 @@ export default function Header({ page }) {
             </div>
 
             <div className="header_right">
+                <DarkModeToggler darkTheme={darkTheme} />
                 {/* <Link
                     to="/profile"
                     className={`profile_link hover1 ${page === "profile" ? "active_link" : ""}`}
