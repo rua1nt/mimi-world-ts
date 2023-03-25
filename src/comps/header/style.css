@@ -156,6 +156,86 @@ header {
     transform: translateY(-50%);
 }
 
+
+.darkmode__toggler {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.darkmode__label {
+    width: 60px;
+    height: 30px;
+    position: relative;
+    display: block;
+    background: var(--blue-color);
+    border-radius: 16px;
+    /* box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.3), inset 0px -5px 15px rgba(255, 255, 255, 0.1); */
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.darkmode__label:after {
+    content: "";
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    /* background: linear-gradient(180deg, #ffcc89, #d8860b); */
+    background: var(--bg-primary);
+    border-radius: 50%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.darkmode__input {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.darkmode__label svg {
+    position: absolute;
+    width: 20px;
+    top: 5px;
+    z-index: 100;
+}
+
+.darkmode__label .darkmode__sunlight {
+    left: 5px;
+    fill: var(--blue-color);
+    transition: 0.3s;
+}
+
+.darkmode__label .darkmode__moonlight {
+    left: 35px;
+    fill: white;
+    transition: 0.3s;
+}
+
+.darkmode__input:checked+.darkmode__label {
+    background: var(--divider);
+}
+
+.darkmode__input:checked+.darkmode__label:after {
+    left: 58px;
+    transform: translateX(-100%);
+    background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+.darkmode__input:checked+.darkmode__label .darkmode__sunlight {
+    fill: black;
+}
+
+.darkmode__input:checked+.darkmode__label .darkmode__moonlight {
+    /* fill: #fff; */
+    fill: yellow;
+}
+
+
 .profile_link {
     display: flex;
     align-items: center;
@@ -249,6 +329,7 @@ header {
 
 .search_area .search input {
     padding-left: 4px;
+    color: var(--color-primary);
 }
 
 .search_area .search svg {

@@ -20,6 +20,7 @@ import {
 
 import LoginMenu from "./LoginMenu";
 import SearchMenu from "./SearchMenu";
+import DarkModeToggler from "./DarkModeToggler";
 import AllMenu from "./AllMenu";
 import UserMenu from "./userMenu";
 import useClickOutside from "../../helpers/clickOutside";
@@ -27,7 +28,7 @@ import "./style.css";
 
 export default function Header({ page }) {
     const color_secondary = "#65676b";
-    const { user } = useSelector((state) => ({ ...state }));
+    const { user, darkTheme } = useSelector((state) => ({ ...state }));
 
     const [showLoginMenu, setShowLoginMenu] = useState(false);
     const [showSearchMenu, setShowSearchMenu] = useState(false);
@@ -120,6 +121,7 @@ export default function Header({ page }) {
             </div>
 
             <div className="header_right">
+                <DarkModeToggler darkTheme={darkTheme} />
                 {/* <Link
                     to="/profile"
                     className={`profile_link hover1 ${page === "profile" ? "active_link" : ""}`}

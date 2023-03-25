@@ -20,7 +20,7 @@ import CreatePostPopup from "../../comps/createPostPopup";
 import { profileReducer } from "../../functions/reducers";
 import "./style.css";
 
-export default function Profile({}) {
+export default function Profile() {
     const { user } = useSelector((state) => ({ ...state }));
     const { uid } = useParams();
     const navigate = useNavigate();

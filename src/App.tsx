@@ -23,7 +23,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import "./firebase/firebaseui-styling.global.css";
 
 function App() {
-    const { user } = useSelector((state: any) => ({ ...state }));
+    const { user, darkTheme } = useSelector((state: any) => ({ ...state }));
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [visible, setVisible] = useState<boolean>(false);
@@ -69,7 +69,7 @@ function App() {
     // };
 
     return (
-        <div>
+        <div className={darkTheme ? "dark" : ""}>
             <ToastContainer theme="colored" />
 
             {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
