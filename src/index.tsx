@@ -8,6 +8,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import "./index.css";
 import "./styles/icons/icons.css";
+import "./styles/dark.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 

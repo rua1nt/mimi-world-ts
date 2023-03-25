@@ -21,6 +21,8 @@ import Plus from "./plus";
 import Public from "./public";
 import Return from "./return";
 import Search from "./search";
+import TheMoon from "./theMoon";
+import TheSun from "./theSun";
 import UserFocus from "./userFocus";
 import Watch from "./watch";
 
@@ -49,5 +51,7 @@ export {
     Public,
     NewRoom,
     Home,
+    TheMoon,
+    TheSun,
     FriendsActive,
 };
