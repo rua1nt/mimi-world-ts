@@ -144,7 +144,7 @@ export default function Profile() {
                     {
                         folder: `${user.uid}/post_images`,
                         public_id: 4,
-                        secure_url: user.photoURL,
+                        secure_url: "https://live.staticflickr.com/7060/7017605661_c54d719cec_c.jpg",
                     },
                 ],
             });
@@ -220,7 +220,7 @@ export default function Profile() {
                                     visitor={visitor}
                                     setOthername={setOthername}
                                 />
-                                <Photos username={username} token={user.token} photos={photos} />
+                                <Photos photos={photos} />
                                 <Friends friends={profile.friends} />
                                 <div className="relative_fb_copyright">
                                     <Link to="/">Privacy</Link>

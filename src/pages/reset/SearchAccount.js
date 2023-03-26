@@ -1,7 +1,7 @@
+// import axios from "axios";
 import { Link } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import LoginInput from "../../comps/inputs/loginInput";
 
 export default function SearchAccount({
@@ -38,7 +38,6 @@ export default function SearchAccount({
             setLoading(false);
         } catch (ex) {
             setLoading(false);
-            // setError(ex.response.data.message);
             setError(ex.message);
         }
     };
@@ -47,8 +46,7 @@ export default function SearchAccount({
         <div className="reset_form">
             <div className="reset_form_header">Find Your Account</div>
             <div className="reset_form_text">
-                Please enter your email address or mobile number to search for
-                your account.
+                Please enter your email address or mobile number to search for your account.
             </div>
             <Formik
                 enableReinitialize

@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { saveAs } from "file-saver";
 import MenuItem from "./MenuItem";
 import useOnClickOutside from "../../helpers/clickOutside";
-import { deletePost, savePost } from "../../functions/createPost";
+// import { deletePost, savePost } from "../../functions/createPost";
 
 export default function PostMenu({
     userId,
@@ -16,8 +16,9 @@ export default function PostMenu({
     setCheckSaved,
     postRef,
 }) {
-    const [test, setTest] = useState(postUserId === userId ? true : false);
     const menu = useRef(null);
+    // const [test, setTest] = useState(postUserId === userId ? true : false);
+    const test = postUserId === userId ? true : false;
 
     useOnClickOutside(menu, () => setShowMenu(false));
 
@@ -31,7 +32,7 @@ export default function PostMenu({
     };
 
     const downloadImages = async () => {
-        images.map((img) => {
+        images.forEach((img) => {
             let fileName = img.substring(img.lastIndexOf("/") + 1);
             saveAs(img, fileName);
         });

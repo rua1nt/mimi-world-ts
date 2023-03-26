@@ -13,14 +13,11 @@ export default function SendVerification({ user }) {
                 `${process.env.REACT_APP_BACKEND_URL}/sendVerification`,
                 {},
                 {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
-                    },
+                    headers: { Authorization: `Bearer ${user.token}` },
                 }
             );
             setSuccess(data.message);
         } catch (ex) {
-            // setError(ex.response.data.message);
             setError(ex.message);
         }
     };
@@ -28,15 +25,10 @@ export default function SendVerification({ user }) {
     return (
         <div className="send_verification">
             <span>
-                Your account is not verified. Please verify your account before
-                it gets deleted after a month!
+                Your account is not verified. Please verify your account before it gets deleted after
+                a month!
             </span>
-            <a
-                href="/#"
-                onClick={() => {
-                    sendVerificationLink();
-                }}
-            >
+            <a href="/#" onClick={() => sendVerificationLink()}>
                 👉 Resend verification link 💬
             </a>
             {success && <div className="success_text">{success}</div>}

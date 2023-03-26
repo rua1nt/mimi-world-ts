@@ -37,9 +37,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
                 `${process.env.REACT_APP_BACKEND_URL}/updateDetails`,
                 { infos },
                 {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
-                    },
+                    headers: { Authorization: `Bearer ${user.token}` },
                 }
             );
             setShowBio(false);

@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import UpdateProfilePicture from "./UpdateProfilePicture";
-import { photosReducer } from "../../functions/reducers";
-import useOnClickOutside from "../../helpers/clickOutside";
+// import { photosReducer } from "../../functions/reducers";
+// import useOnClickOutside from "../../helpers/clickOutside";
 import "./style.css";
 
 export default function ProfilePicture({ username, setShow, pRef, photos }) {
