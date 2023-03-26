@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 // import { fsGetPosts } from "./firebase/fsPost";
 import { firestore } from "./firebase/firebase-config";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import { postsReducer } from "./functions/reducers";
+// import { postsReducer } from "./functions/reducers";
 
 import Home from "./pages/home";
 import Login from "./pages/login";

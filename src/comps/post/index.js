@@ -6,7 +6,7 @@ import ReactsPopup from "./ReactsPopup";
 import Comment from "./Comment";
 import CreateComment from "./CreateComment";
 import { Dots, Public } from "../../svg";
-import { comment, getReacts, reactPost } from "../../functions/createPost";
+// import { comment, getReacts, reactPost } from "../../functions/createPost";
 import "./style.css";
 
 export default function Post({ post, user, profile }) {
@@ -58,7 +58,7 @@ export default function Post({ post, user, profile }) {
         // reactPost(post._id, type, user.token);
 
         let nextReacts = [...reacts];
-        if (check == type) {
+        if (check === type) {
             setCheck(null);
             let index = reacts.findIndex((x) => x.react === check);
             if (index !== -1) {
@@ -190,23 +190,19 @@ export default function Post({ post, user, profile }) {
                 <div
                     className="post_action hover1"
                     onMouseOver={() => {
-                        setTimeout(() => {
-                            setVisible(true);
-                        }, 500);
+                        setTimeout(() => setVisible(true), 500);
                     }}
                     onMouseLeave={() => {
-                        setTimeout(() => {
-                            setVisible(false);
-                        }, 500);
+                        setTimeout(() => setVisible(false), 500);
                     }}
                     onClick={() => reactHandler(check ? check : "like")}
                 >
                     {check ? (
                         <img
                             src={`../../../reacts/${check}.svg`}
-                            alt=""
                             className="small_react"
                             style={{ width: "18px" }}
+                            alt=""
                         />
                     ) : (
                         <i className="like_icon"></i>

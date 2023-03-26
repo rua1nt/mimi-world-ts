@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
@@ -73,7 +73,7 @@ export default function UpdateProfilePicture({ setImage, image, setError, setSho
                     user.id,
                     user.token
                 );
-        if (new_post.status === "ok") {
+                if (new_post.status === "ok") {
                     setLoading(false);
                     setImage("");
                     pRef.current.style.backgroundImage = `url(${res[0].url})`;
