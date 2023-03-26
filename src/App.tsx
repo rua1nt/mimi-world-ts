@@ -33,7 +33,7 @@ function App() {
         const unsubscribe = onSnapshot(
             q,
             (snapshot) => {
-                setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), post_id: doc.id })));
+                setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), _id: doc.id })));
                 setLoading(false);
             },
             (error) => {

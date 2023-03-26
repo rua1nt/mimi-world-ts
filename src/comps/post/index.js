@@ -14,7 +14,7 @@ export default function Post({ post, user, profile }) {
     const [showMenu, setShowMenu] = useState(false);
     const [check, setCheck] = useState();
     const [total, setTotal] = useState(0);
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(2);
     const [reacts, setReacts] = useState([]);
     const [comments, setComments] = useState([]);
     const [checkSaved, setCheckSaved] = useState();
@@ -100,7 +100,7 @@ export default function Post({ post, user, profile }) {
                         </div>
                         <div className="post_profile_privacy_date">
                             <Moment fromNow interval={30}>
-                                {post.created_at?.toDate()}
+                                {post.created_at.toDate()}
                             </Moment>
                             <Public color="#828387" />
                         </div>
@@ -252,10 +252,12 @@ export default function Post({ post, user, profile }) {
                 {comments &&
                     comments
                         .sort((a, b) => {
-                            return new Date(b.commentAt) - new Date(a.commentAt);
+                            return new Date(b.created_at) - new Date(a.created_at);
                         })
                         .slice(0, count)
-                        .map((comment, i) => <Comment comment={comment} key={i} />)}
+                        .map((comment, i) => (
+                            <Comment postId={post._id} comment={comment} key={i} />
+                        ))}
                 {count < comments.length && (
                     <div className="view_comments" onClick={() => showMore()}>
                         View more comments
