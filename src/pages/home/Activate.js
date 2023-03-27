@@ -34,27 +34,16 @@ export default function Activate() {
                 `${process.env.REACT_APP_BACKEND_URL}/activate`,
                 { token },
                 {
-                    headers: {
-                        Authorization: `Bearer ${user?.token}`,
-                    },
+                    headers: { Authorization: `Bearer ${user?.token}` },
                 }
             );
             setSuccess(data.message);
             Cookies.set("user", JSON.stringify({ ...user, verified: true }));
-            dispatch({
-                type: "VERIFY",
-                payload: true,
-            });
-
-            setTimeout(() => {
-                navigate("/");
-            }, 3000);
+            dispatch({ type: "VERIFY", payload: true });
+            setTimeout(() => navigate("/"), 3000);
         } catch (ex) {
-            // setError(ex.response.data.message);
             setError(ex.message);
-            setTimeout(() => {
-                navigate("/");
-            }, 5000);
+            setTimeout(() => navigate("/"), 5000);
         }
     };
 

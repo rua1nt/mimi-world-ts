@@ -46,9 +46,7 @@ export default function CreatePostPopup({ user, setVisible }) {
 
         if (background) {
             setLoading(true);
-            // const response = await createPost(
-            //     null, background, text, null, user.id, user.token
-            // );
+            // const response = await createPost(null, background, text, null, user.id, user.token);
             const response = await fsAddPost(null, background, text, null, user, mimiDate);
             setLoading(false);
             if (response.status === "OK") {
@@ -64,19 +62,14 @@ export default function CreatePostPopup({ user, setVisible }) {
             }
         } else if (images?.length) {
             setLoading(true);
-            // const postImages = images.map((img) => {
-            //     return dataURItoBlob(img);
-            // });
+            // const postImages = images.map((img) => dataURItoBlob(img));
             // const path = `${user.username}/postImages`;
             // let formData = new FormData();
             // formData.append("path", path);
-            // postImages.forEach((image) => {
-            //     formData.append("file", image);
-            // });
+            // postImages.forEach((image) => formData.append("file", image));
             // const imageUrls = await uploadImages(formData, path, user.token);
-            // const response = await createPost(
-            //     null, null, text, imageUrls, user.id, user.token
-            // );
+            // const response = await createPost(null, null, text, imageUrls, user.id, user.token);
+
             const imageUrls = await uploadImages(images, mimiDate);
             let response = imageUrls.NOT_OK;
             if (imageUrls.length > 0) {
@@ -96,17 +89,15 @@ export default function CreatePostPopup({ user, setVisible }) {
             }
         } else if (text) {
             // setLoading(true);
-            // const response = await createPost(
-            //     null, null, text, null, user.id, user.token
-            // );
+            // const response = await createPost(null, null, text, null, user.id, user.token);
             // setLoading(false);
             // if (response.status === "ok") {
             //     dispatch({
             //         type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
             //         payload: [response.data, ...posts],
             //     });
-            //     setBackground("");
             //     setText("");
+            //     setBackground("");
             //     setVisible(false);
             // } else {
             //     setError(response);
