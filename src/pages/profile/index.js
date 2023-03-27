@@ -3,6 +3,7 @@ import { useEffect, useReducer, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
+import { Timestamp } from "firebase/firestore";
 
 import Cover from "./Cover";
 import ProfileMenu from "./ProfileMenu";
@@ -64,12 +65,11 @@ export default function Profile() {
                             user_photoURL: user.photoURL,
                             user_displayName: user.displayName,
                             image: user.photoURL,
-                            comment:
-                                "fake a really long comment: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                            commentAt: new Date(),
+                            text: "fake a really long comment: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            created_at: Timestamp.fromDate(new Date(2023, 3, 22)),
                         },
                     ],
-                    // created_at: new Date(),
+                    created_at: Timestamp.fromDate(new Date(2023, 3, 22)),
                 },
             ],
             friends: [
@@ -144,7 +144,7 @@ export default function Profile() {
                     {
                         folder: `${user.uid}/post_images`,
                         public_id: 4,
-                        secure_url: user.photoURL,
+                        secure_url: "https://live.staticflickr.com/7060/7017605661_c54d719cec_c.jpg",
                     },
                 ],
             });
@@ -220,7 +220,7 @@ export default function Profile() {
                                     visitor={visitor}
                                     setOthername={setOthername}
                                 />
-                                <Photos username={username} token={user.token} photos={photos} />
+                                <Photos photos={photos} />
                                 <Friends friends={profile.friends} />
                                 <div className="relative_fb_copyright">
                                     <Link to="/">Privacy</Link>

@@ -47,7 +47,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 19px;
-  color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .updated_p {
@@ -79,8 +79,9 @@
 .post_text {
     padding: 0 15px 10px 15px;
 }
+
 .post_bg_text {
-  color: #000;
+    color: #000;
 }
 
 /*-----------------------------GRID IMAGES----------------*/
@@ -612,6 +613,20 @@
     font-weight: 600;
     color: var(--color-secondary);
     margin-left: 10px;
+}
+
+.comment_actions>span:nth-child(-n+3):hover {
+    text-decoration: underline;
+}
+
+.comment_menu {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 6px;
 }
 
 .view_comments {

@@ -4,6 +4,7 @@ import Picker from "emoji-picker-react";
 import { comment } from "../../functions/createPost";
 import { uploadImages } from "../../functions/uploadImages";
 import dataURItoBlob from "../../helpers/dataURItoBlob";
+import { fsAddComment } from "../../firebase/fsPost";
 
 export default function CreateComment({ user, postId, setComments, setCount }) {
     const [picker, setPicker] = useState(false);
@@ -52,10 +53,12 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
             setCommentImage(event.target.result);
         };
     };
-    const handleComment = async (e) => {
+
+    const handleCreateComment = async (e) => {
         if (e.key === "Enter") {
-            if (commentImage != "") {
-                setLoading(true);
+            let response;
+            setLoading(true);
+            if (commentImage !== "") {
                 const img = dataURItoBlob(commentImage);
                 const path = `${user.username}/post_images/${postId}`;
                 let formData = new FormData();
@@ -63,19 +66,20 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
                 formData.append("file", img);
                 const imgComment = await uploadImages(formData, path, user.token);
                 const comments = await comment(postId, text, imgComment[0].url, user.token);
-                setComments(comments);
+                // setComments(comments);
+            } else {
+                // const comments = await comment(postId, text, "", user.token);
+                // setComments(comments);
+                response = await fsAddComment(postId, text, "", user);
+            }
+            setLoading(false);
+
+            if (response.status === "OK") {
                 setCount((prev) => ++prev);
-                setLoading(false);
                 setText("");
                 setCommentImage("");
             } else {
-                setLoading(true);
-                const comments = await comment(postId, text, "", user.token);
-                setComments(comments);
-                setCount((prev) => ++prev);
-                setLoading(false);
-                setText("");
-                setCommentImage("");
+                setError(response);
             }
         }
     };
@@ -111,7 +115,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
                         value={text}
                         placeholder="Write a comment..."
                         onChange={(e) => setText(e.target.value)}
-                        onKeyUp={handleComment}
+                        onKeyUp={handleCreateComment}
                     />
                     <div className="comment_circle" style={{ marginTop: "5px" }}>
                         <ClipLoader size={20} color="#1876f2" loading={loading} />

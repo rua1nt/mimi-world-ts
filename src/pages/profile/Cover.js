@@ -70,7 +70,7 @@ export default function Cover({ cover, visitor, photos }) {
     const [width, setWidth] = useState();
     useEffect(() => {
         setWidth(coverRef.current.clientWidth);
-    }, [window.innerWidth]);
+    }, []);
 
     const updateCoverPicture = async () => {
         try {
@@ -83,7 +83,7 @@ export default function Cover({ cover, visitor, photos }) {
             formData.append("path", path);
             const res = await uploadImages(formData, path, user.token);
             const updated_picture = await updateCover(res[0].url, user.token);
-            if (updated_picture === "ok") {
+            if (updated_picture.status === "ok") {
                 const new_post = await createPost(
                     "coverPicture",
                     null,
@@ -92,7 +92,7 @@ export default function Cover({ cover, visitor, photos }) {
                     user.id,
                     user.token
                 );
-        if (new_post.status === "ok") {
+                if (new_post.status === "ok") {
                     setLoading(false);
                     setCoverPicture("");
                     cRef.current.src = res[0].url;

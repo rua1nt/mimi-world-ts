@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
@@ -53,7 +53,7 @@ export default function UpdateProfilePicture({ setImage, image, setError, setSho
         [croppedAreaPixels]
     );
 
-    const updateProfielPicture = async () => {
+    const handleUpdateProfilePicture = async () => {
         try {
             setLoading(true);
             let img = await getCroppedImage();
@@ -64,7 +64,7 @@ export default function UpdateProfilePicture({ setImage, image, setError, setSho
             formData.append("path", path);
             const res = await uploadImages(formData, path, user.token);
             const updated_picture = await updateProfilePicture(res[0].url, user.token);
-            if (updated_picture === "ok") {
+            if (updated_picture.status === "ok") {
                 const new_post = await createPost(
                     "profilePicture",
                     null,
@@ -73,7 +73,7 @@ export default function UpdateProfilePicture({ setImage, image, setError, setSho
                     user.id,
                     user.token
                 );
-        if (new_post.status === "ok") {
+                if (new_post.status === "ok") {
                     setLoading(false);
                     setImage("");
                     pRef.current.style.backgroundImage = `url(${res[0].url})`;
@@ -162,7 +162,7 @@ export default function UpdateProfilePicture({ setImage, image, setError, setSho
                     <button
                         className="blue_btn"
                         disabled={loading}
-                        onClick={() => updateProfielPicture()}
+                        onClick={() => handleUpdateProfilePicture()}
                     >
                         {loading ? <PulseLoader color="#fff" size={5} /> : "Save"}
                     </button>

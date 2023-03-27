@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 // import { fsGetPosts } from "./firebase/fsPost";
 import { firestore } from "./firebase/firebase-config";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import { postsReducer } from "./functions/reducers";
+// import { postsReducer } from "./functions/reducers";
 
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -33,7 +33,7 @@ function App() {
         const unsubscribe = onSnapshot(
             q,
             (snapshot) => {
-                setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), post_id: doc.id })));
+                setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), _id: doc.id })));
                 setLoading(false);
             },
             (error) => {
@@ -57,9 +57,7 @@ function App() {
     //     try {
     //         dispatch({ type: "POSTS_REQUEST" });
     //         // const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getAllposts`, {
-    //         //     headers: {
-    //         //         Authorization: `Bearer ${user.token}`,
-    //         //     },
+    //         //     headers: { Authorization: `Bearer ${user.token}` },
     //         // });
     //         const data = fsGetPosts();
     //         dispatch({ type: "POSTS_SUCCESS", payload: data });
