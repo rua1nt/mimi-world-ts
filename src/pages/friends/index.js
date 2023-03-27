@@ -161,10 +161,10 @@ export default function Friends() {
                             </div>
                             <div className="flex_wrap">
                                 {data.requests &&
-                                    data.requests.map((user) => (
+                                    data.requests.map((user, i) => (
                                         <Card
                                             userr={user}
-                                            key={user.uid}
+                                            key={i}
                                             type="request"
                                             getData={getData}
                                         />
@@ -184,13 +184,8 @@ export default function Friends() {
                             </div>
                             <div className="flex_wrap">
                                 {data.sentRequests &&
-                                    data.sentRequests.map((user) => (
-                                        <Card
-                                            userr={user}
-                                            key={user.uid}
-                                            type="sent"
-                                            getData={getData}
-                                        />
+                                    data.sentRequests.map((user, i) => (
+                                        <Card userr={user} key={i} type="sent" getData={getData} />
                                     ))}
                             </div>
                         </div>
@@ -207,10 +202,10 @@ export default function Friends() {
                             </div>
                             <div className="flex_wrap">
                                 {data.friends &&
-                                    data.friends.map((user) => (
+                                    data.friends.map((user, i) => (
                                         <Card
                                             userr={user}
-                                            key={user.uid}
+                                            key={i}
                                             type="friends"
                                             getData={getData}
                                         />

@@ -66,7 +66,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
                 formData.append("file", img);
                 const imgComment = await uploadImages(formData, path, user.token);
                 const comments = await comment(postId, text, imgComment[0].url, user.token);
-                // setComments(comments);
+                setComments(comments);
             } else {
                 // const comments = await comment(postId, text, "", user.token);
                 // setComments(comments);
