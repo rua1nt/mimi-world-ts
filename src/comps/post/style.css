@@ -462,6 +462,10 @@
     width: 79%;
 }
 
+.comment_circle {
+    margin-top: 5px;
+}
+
 .comment_img_preview {
     position: relative;
     margin-top: 5px;
@@ -646,6 +650,7 @@
 .comment_actions .postError_error {
     font-size: 14px;
     margin: 5px 0;
+    width: auto;
 }
 
 .comment_actions .blue_btn {

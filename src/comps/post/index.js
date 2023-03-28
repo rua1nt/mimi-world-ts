@@ -100,7 +100,7 @@ export default function Post({ post, user, profile }) {
                         </div>
                         <div className="post_profile_privacy_date">
                             <Moment fromNow interval={30}>
-                                {post.created_at.toDate()}
+                                {post.created_at?.toDate()}
                             </Moment>
                             <Public color="#828387" />
                         </div>

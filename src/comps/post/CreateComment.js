@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import Picker from "emoji-picker-react";
-import { comment } from "../../functions/createPost";
-import { uploadImages } from "../../functions/uploadImages";
-import dataURItoBlob from "../../helpers/dataURItoBlob";
+// import dataURItoBlob from "../../helpers/dataURItoBlob";
+// import { comment } from "../../functions/createPost";
+// import { uploadImages } from "../../functions/uploadImages";
 import { fsAddComment } from "../../firebase/fsPost";
+import { uploadCommentImages } from "../../cloudinary/uploadImages";
 
 export default function CreateComment({ user, postId, setComments, setCount }) {
     const [picker, setPicker] = useState(false);
     const [text, setText] = useState("");
     const [error, setError] = useState("");
-    const [commentImage, setCommentImage] = useState("");
+    const [commentImage, setCommentImage] = useState([]);
     const [cursorPosition, setCursorPosition] = useState();
     const [loading, setLoading] = useState(false);
     const textRef = useRef(null);
@@ -50,23 +51,35 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = (event) => {
-            setCommentImage(event.target.result);
+            setCommentImage([event.target.result]);
         };
     };
 
     const handleCreateComment = async (e) => {
         if (e.key === "Enter") {
-            let response;
+            let response = "";
             setLoading(true);
-            if (commentImage !== "") {
-                const img = dataURItoBlob(commentImage);
-                const path = `${user.username}/post_images/${postId}`;
-                let formData = new FormData();
-                formData.append("path", path);
-                formData.append("file", img);
-                const imgComment = await uploadImages(formData, path, user.token);
-                const comments = await comment(postId, text, imgComment[0].url, user.token);
-                setComments(comments);
+            if (commentImage.length > 0) {
+                // const img = dataURItoBlob(commentImage);
+                // const path = `${user.username}/post_images/${postId}`;
+                // let formData = new FormData();
+                // formData.append("path", path);
+                // formData.append("file", img);
+                // const imgComment = await uploadImages(formData, path, user.token);
+                // const comments = await comment(postId, text, imgComment[0].url, user.token);
+                // setComments(comments);
+
+                const imageUrls = await uploadCommentImages(
+                    commentImage,
+                    `comment, ${user.displayName}`
+                );
+                if (imageUrls.NOT_OK) {
+                    response = imageUrls.NOT_OK;
+                } else if (imageUrls.length === 1) {
+                    response = await fsAddComment(postId, text, imageUrls[0], user);
+                } else {
+                    console.log("imageUrls.length !== 1");
+                }
             } else {
                 // const comments = await comment(postId, text, "", user.token);
                 // setComments(comments);
@@ -117,7 +130,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
                         onChange={(e) => setText(e.target.value)}
                         onKeyUp={handleCreateComment}
                     />
-                    <div className="comment_circle" style={{ marginTop: "5px" }}>
+                    <div className="comment_circle">
                         <ClipLoader size={20} color="#1876f2" loading={loading} />
                     </div>
                     <div
@@ -143,9 +156,9 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
                 </div>
             </div>
 
-            {commentImage && (
+            {commentImage[0] && (
                 <div className="comment_img_preview">
-                    <img src={commentImage} alt="" />
+                    <img src={commentImage[0]} alt="" />
                     <div className="small_white_circle" onClick={() => setCommentImage("")}>
                         <i className="exit_icon"></i>
                     </div>

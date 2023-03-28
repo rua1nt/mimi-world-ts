@@ -1,28 +1,37 @@
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 import Moment from "react-moment";
 import { Dots } from "../../svg";
 import { fsDeleteComment } from "../../firebase/fsPost";
-import { deleteImage } from "../../cloudinary/deleteImages";
+import { deleteCommentImage } from "../../cloudinary/deleteImages";
 
 export default function Comment({ postId, comment }) {
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleDeleteComment = async () => {
-        // if (comment.image) {
-        if (!comment.image) {
-            const response = await deleteImage("cld-sample-3");
+        setLoading(true);
+        if (comment.image) {
+            let publicId = comment.image.substring(
+                comment.image.lastIndexOf("/") + 1,
+                comment.image.lastIndexOf(".")
+            );
+            let response = await deleteCommentImage(publicId);
             if (response.status === "OK") {
+                response = await fsDeleteComment(postId, comment);
+                if (response.status !== "OK") {
+                    setError(`Cannot delete comment (${response})`);
+                }
             } else {
                 setError(response);
             }
-        }
-
-        const response = await fsDeleteComment(postId, comment);
-        if (response.status === "OK") {
-            setError("");
         } else {
-            setError(`Cannot delete comment (${response})`);
+            const response = await fsDeleteComment(postId, comment);
+            if (response.status !== "OK") {
+                setError(`Cannot delete comment (${response})`);
+            }
         }
+        setLoading(false);
     };
 
     return (
@@ -40,9 +49,12 @@ export default function Comment({ postId, comment }) {
                     <span onClick={handleDeleteComment}>Delete</span>
                     <span>
                         <Moment fromNow interval={30}>
-                            {comment.created_at.toDate()}
+                            {comment.created_at?.toDate()}
                         </Moment>
                     </span>
+                    <div className="comment_circle">
+                        <ClipLoader size={20} color="#1876f2" loading={loading} />
+                    </div>
                     {error && (
                         <div className="postError comment_error">
                             <div className="postError_error">{error}</div>

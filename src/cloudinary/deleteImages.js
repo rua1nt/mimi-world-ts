@@ -25,23 +25,25 @@ export const deleteImages = async (files, mimiDate) => {
     }
 };
 
-export const deleteImage = async (publicId) => {
+export const deleteCommentImage = async (publicId) => {
+    let public_id = `${process.env.REACT_APP_CLOUDINARY_FOLDER_COMMENTS}/${publicId}`;
     const timestamp = new Date().getTime();
     const signature = await sha1(
-        `public_id=${publicId}&timestamp=${timestamp}${process.env.REACT_APP_CLOUDINARY_API_SECRET}`
+        `public_id=${public_id}&timestamp=${timestamp}${process.env.REACT_APP_CLOUDINARY_API_SECRET}`
     );
 
     try {
         const response = await axios.post(
             `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/destroy`,
             {
-                public_id: publicId,
+                public_id,
                 timestamp,
                 signature,
                 api_key: process.env.REACT_APP_CLOUDINARY_API_KEY,
             }
         );
-        if (response.status === 200) return { status: "OK" };
+        if (response.data.result === "ok") return { status: "OK" };
+        return response.data.result;
     } catch (ex) {
         return ex.message;
     }
