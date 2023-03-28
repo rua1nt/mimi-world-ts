@@ -1,7 +1,8 @@
 import axios from "axios";
-import crypto from "crypto";
+import { sha1 } from "crypto-hash";
 
-export const deleteImage = async (files, mimiDate) => {
+// TODO
+export const deleteImages = async (files, mimiDate) => {
     const uploaders = files.map(async (file) => {
         const formData = new FormData();
         formData.append("file", file);
@@ -24,35 +25,24 @@ export const deleteImage = async (files, mimiDate) => {
     }
 };
 
-const handleDeleteImage = async (publicId) => {
-    const cloudName = "your_cloud_name";
+export const deleteImage = async (publicId) => {
     const timestamp = new Date().getTime();
-    const apiKey = "your_api_key";
-    const apiSecret = "your_api_secret";
-    const signature = generateSHA1(generateSignature(publicId, apiSecret));
-    const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/destroy`;
+    const signature = await sha1(
+        `public_id=${publicId}&timestamp=${timestamp}${process.env.REACT_APP_CLOUDINARY_API_SECRET}`
+    );
 
     try {
-        const response = await axios.post(url, {
-            public_id: publicId,
-            signature: signature,
-            api_key: apiKey,
-            timestamp: timestamp,
-        });
-
-        console.error(response);
-    } catch (error) {
-        console.error(error);
+        const response = await axios.post(
+            `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/destroy`,
+            {
+                public_id: publicId,
+                timestamp,
+                signature,
+                api_key: process.env.REACT_APP_CLOUDINARY_API_KEY,
+            }
+        );
+        if (response.status === 200) return { status: "OK" };
+    } catch (ex) {
+        return ex.message;
     }
-};
-
-const generateSHA1 = (data) => {
-    const hash = crypto.createHash("sha1");
-    hash.update(data);
-    return hash.digest("hex");
-};
-
-const generateSignature = (publicId, apiSecret) => {
-    const timestamp = new Date().getTime();
-    return `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
 };

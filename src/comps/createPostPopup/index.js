@@ -71,21 +71,23 @@ export default function CreatePostPopup({ user, setVisible }) {
             // const response = await createPost(null, null, text, imageUrls, user.id, user.token);
 
             const imageUrls = await uploadImages(images, mimiDate);
-            let response = imageUrls.NOT_OK;
-            if (imageUrls.length > 0) {
-                response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
-            }
-            setLoading(false);
-            if (response.status === "OK") {
-                // dispatch({
-                //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
-                //     payload: [res.data, ...posts],
-                // });
-                setText("");
-                setImages("");
-                setVisible(false);
-            } else {
-                setError(response);
+            if (imageUrls.NOT_OK) {
+                setLoading(false);
+                setError(imageUrls.NOT_OK);
+            } else if (imageUrls.length > 0) {
+                let response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
+                setLoading(false);
+                if (response.status === "OK") {
+                    // dispatch({
+                    //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
+                    //     payload: [res.data, ...posts],
+                    // });
+                    setText("");
+                    setImages("");
+                    setVisible(false);
+                } else {
+                    setError(response);
+                }
             }
         } else if (text) {
             // setLoading(true);

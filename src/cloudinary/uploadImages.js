@@ -5,7 +5,7 @@ export const uploadImages = async (files, mimiDate) => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("tags", `${mimiDate.age} age, ${mimiDate.month} month`);
-        formData.append("folder", process.env.REACT_APP_CLOUDINARY_FOLDER);
+        formData.append("folder", process.env.REACT_APP_CLOUDINARY_FOLDER_POSTS);
         formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
 
         const result = await axios.post(

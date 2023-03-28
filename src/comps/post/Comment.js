@@ -2,11 +2,21 @@ import { useState } from "react";
 import Moment from "react-moment";
 import { Dots } from "../../svg";
 import { fsDeleteComment } from "../../firebase/fsPost";
+import { deleteImage } from "../../cloudinary/deleteImages";
 
 export default function Comment({ postId, comment }) {
     const [error, setError] = useState("");
 
     const handleDeleteComment = async () => {
+        // if (comment.image) {
+        if (!comment.image) {
+            const response = await deleteImage("cld-sample-3");
+            if (response.status === "OK") {
+            } else {
+                setError(response);
+            }
+        }
+
         const response = await fsDeleteComment(postId, comment);
         if (response.status === "OK") {
             setError("");
