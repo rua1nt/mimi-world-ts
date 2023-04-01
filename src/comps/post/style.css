@@ -78,6 +78,7 @@
 
 .post_text {
     padding: 0 15px 10px 15px;
+    white-space: pre-wrap;
 }
 
 .post_bg_text {
@@ -616,6 +617,7 @@
 
 .comment_text {
     font-size: 15px;
+    white-space: pre-wrap;
 }
 
 .comment_actions {

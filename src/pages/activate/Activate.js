@@ -9,7 +9,7 @@ import LeftHome from "../../comps/home/left";
 // import Stories from "../../comps/home/stories";
 // import CreatePost from "../../comps/createPost";
 import ActivateForm from "./ActivateForm";
-import "./style.css";
+// import "./style.css";
 
 export default function Activate() {
     const { user } = useSelector((state) => ({ ...state }));

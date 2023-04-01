@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import Stories from "../../comps/home/stories";
 import LeftHome from "../../comps/home/left";
 import RightHome from "../../comps/home/right";
-import Stories from "../../comps/home/stories";
 import SendVerification from "../../comps/home/sendVerification";
+// import Post from "../../comps/post";
 import Header from "../../comps/header";
 import CreatePost from "../../comps/createPost";
-import Post from "../../comps/post";
+import DefaultModePost from "./DefaultModePosts";
+import VertTimelinePosts from "./VertTimelinePosts";
 
 import "./style.css";
 
@@ -31,11 +33,8 @@ export default function Home({ setVisible, posts, loading }) {
                 <Stories user={user} />
                 <CreatePost user={user} setVisible={setVisible} />
 
-                <div className="posts">
-                    {posts.map((post,i) => (
-                        <Post key={i} post={post} user={user} />
-                    ))}
-                </div>
+                <VertTimelinePosts posts={posts} />
+                <DefaultModePost posts={posts} user={user} />
             </div>
 
             <RightHome user={user} />

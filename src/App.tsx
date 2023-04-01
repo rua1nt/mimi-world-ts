@@ -9,14 +9,14 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 // import { postsReducer } from "./functions/reducers";
 
 import Home from "./pages/home";
+import Reset from "./pages/reset";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Friends from "./pages/friends";
+import Activate from "./pages/activate/Activate";
+import CreatePostPopup from "./comps/createPostPopup";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
-import Reset from "./pages/reset";
-import Activate from "./pages/home/Activate";
-import CreatePostPopup from "./comps/createPostPopup";
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
