@@ -8,13 +8,13 @@ import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import PostError from "./PostError";
 import AddToYourPost from "./AddToYourPost";
 
-// import dataURItoBlob from "../../helpers/dataURItoBlob";
 import useClickOutside from "../../helpers/clickOutside";
+// import dataURItoBlob from "../../helpers/dataURItoBlob";
 // import { createPost } from "../../functions/createPost";
 // import { uploadImages } from "../../functions/uploadImages";
 
 import { fsAddPost } from "../../firebase/fsPost";
-import { uploadImages } from "../../cloudinary/uploadImages";
+import { uploadPostImages } from "../../cloudinary/uploadImages";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
@@ -54,8 +54,8 @@ export default function CreatePostPopup({ user, setVisible }) {
                 //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
                 //     payload: [response.data, ...posts],
                 // });
-                setBackground("");
                 setText("");
+                setBackground("");
                 setVisible(false);
             } else {
                 setError(response);
@@ -70,22 +70,29 @@ export default function CreatePostPopup({ user, setVisible }) {
             // const imageUrls = await uploadImages(formData, path, user.token);
             // const response = await createPost(null, null, text, imageUrls, user.id, user.token);
 
-            const imageUrls = await uploadImages(images, mimiDate);
-            let response = imageUrls.NOT_OK;
-            if (imageUrls.length > 0) {
-                response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
-            }
-            setLoading(false);
-            if (response.status === "OK") {
-                // dispatch({
-                //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
-                //     payload: [res.data, ...posts],
-                // });
-                setText("");
-                setImages("");
-                setVisible(false);
+            const imageUrls = await uploadPostImages(
+                images,
+                `${mimiDate.age} age, ${mimiDate.month} month, ${user.displayName}`
+            );
+            if (imageUrls.NOT_OK) {
+                setLoading(false);
+                setError(imageUrls.NOT_OK);
+            } else if (imageUrls.length > 0) {
+                let response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
+                setLoading(false);
+                if (response.status === "OK") {
+                    // dispatch({
+                    //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
+                    //     payload: [res.data, ...posts],
+                    // });
+                    setText("");
+                    setImages("");
+                    setVisible(false);
+                } else {
+                    setError(response);
+                }
             } else {
-                setError(response);
+                console.log("do nothing");
             }
         } else if (text) {
             // setLoading(true);

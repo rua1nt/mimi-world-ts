@@ -1,9 +1,5 @@
 .right_home {
-    position: fixed;
-    /* left: 82vw; */
-    right: 1vw;
-    top: 4rem;
-    width: 16vw;
+    opacity: 0.9;
 }
 
 .right_home_heading {

@@ -18,16 +18,11 @@ export default function LeftHome({ user }) {
                 </span>
             </Link> */}
             {left.slice(0, 7).map((link, i) => (
-                <LeftLink
-                    key={i}
-                    img={link.img}
-                    text={link.text}
-                    notification={link.notification}
-                />
+                <LeftLink key={i} img={link.img} text={link.text} notification={link.notification} />
             ))}
             {!visible && (
                 <div
-                    className="left_link hover9"
+                    className="left_link hover2"
                     onClick={() => {
                         setVisible(true);
                     }}

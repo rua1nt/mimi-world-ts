@@ -123,14 +123,14 @@ export const stories = [
         image: "../../stories/2.jpeg",
     },
     {
-        profile_picture: "../../stories/profile3.png",
-        profile_name: "Pokemon",
-        image: "../../stories/3.jpg",
-    },
-    {
         profile_picture: "../../stories/profile4.png",
         profile_name: "Doraemon",
         image: "../../stories/4.jpg",
+    },
+    {
+        profile_picture: "../../stories/profile3.png",
+        profile_name: "Pokemon",
+        image: "../../stories/3.jpg",
     },
     {
         profile_picture: "../../stories/profile4.png",
