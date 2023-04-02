@@ -41,16 +41,15 @@ export default function LoginForm({ setVisible }) {
         try {
             setLoading(true);
             // TODO: https://firebase.google.com/docs/auth/web/password-auth?hl=en&authuser=0#sign_in_a_user_with_an_email_address_and_password
-            const { data } = await axios.post(
-                `${process.env.REACT_APP_BACKEND_URL}/login`,
-                { email, password }
-            );
+            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+                email,
+                password,
+            });
             dispatch({ type: "LOGIN", payload: data });
             Cookies.set("user", JSON.stringify(data));
             navigate("/");
         } catch (ex) {
             setLoading(false);
-            // setError(ex.response.data.message);
             setError(ex.message);
         }
     };
@@ -74,8 +73,7 @@ export default function LoginForm({ setVisible }) {
                 <h2 className="login_1_title">MiBook Special Edition 🚀</h2>
                 <img src="../../icons/facebook.svg" alt="" />
                 <span className="login_1_desc">
-                    MiBook helps you connect and share with the people in your
-                    life.
+                    MiBook helps you connect and share with the people in your life.
                 </span>
             </div>
             <div className="login_2">
@@ -116,10 +114,7 @@ export default function LoginForm({ setVisible }) {
 
                     {error && <div className="error_text">{error}</div>}
                     <div className="sign_splitter"></div>
-                    <button
-                        className="blue_btn open_signup"
-                        onClick={() => setVisible(true)}
-                    >
+                    <button className="blue_btn open_signup" onClick={() => setVisible(true)}>
                         Create Account
                     </button>
                 </div>

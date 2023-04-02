@@ -1,7 +1,7 @@
+// import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import LoginInput from "../../comps/inputs/loginInput";
 
 export default function ChangePassword({
@@ -30,8 +30,7 @@ export default function ChangePassword({
             .oneOf([Yup.ref("password")], "Passwords must match."),
     });
 
-    const { email } = userInfos;
-
+    // const { email } = userInfos;
     const changePassword = async () => {
         try {
             setLoading(true);
@@ -43,7 +42,6 @@ export default function ChangePassword({
             navigate("/");
         } catch (ex) {
             setLoading(false);
-            // setError(ex.response.data.message);
             setError(ex.message);
         }
     };

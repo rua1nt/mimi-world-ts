@@ -14,7 +14,6 @@ export const uploadImages = async (formData, path, token) => {
         );
         return data;
     } catch (ex) {
-        // return ex.response.data.message;
         return ex.message;
     }
 };

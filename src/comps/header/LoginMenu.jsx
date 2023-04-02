@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
     signInWithPopup,
-    signInWithRedirect,
+    // signInWithRedirect,
     GoogleAuthProvider,
     FacebookAuthProvider,
 } from "firebase/auth";
@@ -164,15 +164,19 @@ export default function LoginMenu({ user, setShowLoginMenu }) {
                         <span>💩</span>
                     </li>
                     <li>
-                        <span>Add post</span>
+                        <span>Add new post</span>
                         <span>💩</span>
                     </li>
                     <li>
-                        <span>Edit post</span>
+                        <span>Edit a post</span>
                         <span>💩</span>
                     </li>
                     <li>
-                        <span>Delete post</span>
+                        <span>Delete a post</span>
+                        <span>💩</span>
+                    </li>
+                    <li>
+                        <span>Comment a post</span>
                         <span>💩</span>
                     </li>
                 </ul>

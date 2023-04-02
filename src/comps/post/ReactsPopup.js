@@ -1,7 +1,3 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { reactPost } from "../../functions/createPost";
-
 const reactsArray = [
     {
         name: "like",

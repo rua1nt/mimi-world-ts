@@ -6,12 +6,10 @@ export const updateProfilePicture = async (url, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/updateProfilePicture`,
             { url },
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -23,12 +21,10 @@ export const updateCover = async (url, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/updateCover`,
             { url },
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -40,12 +36,10 @@ export const addFriend = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/addFriend/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -56,12 +50,10 @@ export const cancelRequest = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/cancelRequest/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -72,12 +64,10 @@ export const follow = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/follow/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         console.log(ex.message);
         return ex.message;
@@ -89,12 +79,10 @@ export const unfollow = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/unfollow/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -105,12 +93,10 @@ export const acceptRequest = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/acceptRequest/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -121,12 +107,10 @@ export const unfriend = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/unfriend/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -137,12 +121,10 @@ export const deleteRequest = async (id, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/deleteRequest/${id}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
-        return "ok";
+        return { status: "ok", data };
     } catch (ex) {
         return ex.message;
     }
@@ -154,9 +136,7 @@ export const search = async (searchTerm, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/search/${searchTerm}`,
             {},
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
         return data;
@@ -170,9 +150,7 @@ export const addToSearchHistory = async (searchUser, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/addToSearchHistory`,
             { searchUser },
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
         return data;
@@ -183,9 +161,7 @@ export const addToSearchHistory = async (searchUser, token) => {
 export const getSearchHistory = async (token) => {
     try {
         const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getSearchHistory`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
         });
         return data;
     } catch (ex) {
@@ -198,9 +174,7 @@ export const removeFromSearch = async (searchUser, token) => {
             `${process.env.REACT_APP_BACKEND_URL}/removeFromSearch`,
             { searchUser },
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
         return data;
@@ -214,9 +188,7 @@ export const getFriendsPageInfos = async (token) => {
         const { data } = await axios.get(
             `${process.env.REACT_APP_BACKEND_URL}/getFriendsPageInfos`,
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             }
         );
         return { status: "ok", data };

@@ -21,7 +21,8 @@ service cloud.firestore {
         match /posts/{postId} {
             allow read: if true;
             allow create: if request.auth != null;
-            allow update: if request.auth.uid == resource.data.user_id;
+            allow update: if request.auth.uid == resource.data.user_id
+                        || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['comments']));
             allow delete: if request.auth.uid == resource.data.user_id
                         || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.pFull == true;
         }

@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Return, Search } from "../../svg";
 import useClickOutside from "../../helpers/clickOutside";
-import {
-    addToSearchHistory,
-    getSearchHistory,
-    removeFromSearch,
-    search,
-} from "../../functions/userProfile";
+// import {
+//     addToSearchHistory,
+//     getSearchHistory,
+//     removeFromSearch,
+//     search,
+// } from "../../functions/userProfile";
 
 export default function SearchMenu({ color, setShowSearchMenu }) {
     const [iconVisible, setIconVisible] = useState(true);
@@ -100,7 +100,7 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
                     />
                 </div>
             </div>
-            {results == "" && (
+            {results === "" && (
                 <div className="search_history_header">
                     <span>Recent searches</span>
                     <a href="/#">Edit</a>
@@ -108,7 +108,7 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
             )}
             <div className="search_history scrollbar">
                 {searchHistory &&
-                    results == "" &&
+                    results === "" &&
                     searchHistory
                         .sort((a, b) => {
                             return new Date(b.createdAt) - new Date(a.createdAt);

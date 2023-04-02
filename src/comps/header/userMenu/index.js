@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import HelpSupport from "./HelpSupport";
 import SettingsPrivacy from "./SettingsPrivacy";
@@ -40,9 +40,7 @@ export default function UserMenu({ user }) {
                         </div>
                         <div className="mmenu_col">
                             <div className="mmenu_span1">Give feedback</div>
-                            <div className="mmenu_span2">
-                                Help us improve facebook
-                            </div>
+                            <div className="mmenu_span2">Help us improve facebook</div>
                         </div>
                     </div>
                     <div className="mmenu_splitter"></div>
