@@ -28,16 +28,19 @@ export default function Home({ setVisible, posts, loading }) {
             <LeftHome user={user} />
 
             <div className="home_middle" ref={middle}>
-                {/* {user.verified === false && <SendVerification user={user} />} */}
-                {user?.verified && <SendVerification user={user} />}
-                <Stories user={user} />
-                <CreatePost user={user} setVisible={setVisible} />
+                <div className="home_middle__header">
+                    <Stories user={user} />
+                    <CreatePost user={user} setVisible={setVisible} />
+                    <RightHome user={user} />
+                </div>
+                <div className="home_middle__content">
+                    {/* {user.verified === false && <SendVerification user={user} />} */}
+                    {user?.verified && <SendVerification user={user} />}
 
-                <VertTimelinePosts posts={posts} />
-                <DefaultModePost posts={posts} user={user} />
+                    <VertTimelinePosts posts={posts} />
+                    <DefaultModePost posts={posts} user={user} />
+                </div>
             </div>
-
-            <RightHome user={user} />
         </div>
     );
 }

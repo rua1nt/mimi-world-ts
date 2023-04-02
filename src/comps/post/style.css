@@ -5,7 +5,7 @@
 
 .post {
     position: relative;
-    width: 685px;
+    width: 500px;
     background: var(--bg-primary);
     border-radius: 10px;
     box-shadow: 0 1px 2px var(--shadow-1);
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 19px;
     color: var(--color-primary);
@@ -78,6 +78,7 @@
 
 .post_text {
     padding: 0 15px 10px 15px;
+    /* font-size: 15px; */
     white-space: pre-wrap;
 }
 
@@ -730,7 +731,7 @@
     }
 
     .post_profile_name {
-        font-size: 12px !important;
+        font-size: 13px !important;
     }
 
     .post_header_left img {
