@@ -8,13 +8,13 @@ import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import PostError from "./PostError";
 import AddToYourPost from "./AddToYourPost";
 
-// import dataURItoBlob from "../../helpers/dataURItoBlob";
 import useClickOutside from "../../helpers/clickOutside";
+// import dataURItoBlob from "../../helpers/dataURItoBlob";
 // import { createPost } from "../../functions/createPost";
 // import { uploadImages } from "../../functions/uploadImages";
 
 import { fsAddPost } from "../../firebase/fsPost";
-import { uploadImages } from "../../cloudinary/uploadImages";
+import { uploadPostImages } from "../../cloudinary/uploadImages";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
@@ -46,9 +46,7 @@ export default function CreatePostPopup({ user, setVisible }) {
 
         if (background) {
             setLoading(true);
-            // const response = await createPost(
-            //     null, background, text, null, user.id, user.token
-            // );
+            // const response = await createPost(null, background, text, null, user.id, user.token);
             const response = await fsAddPost(null, background, text, null, user, mimiDate);
             setLoading(false);
             if (response.status === "OK") {
@@ -56,57 +54,57 @@ export default function CreatePostPopup({ user, setVisible }) {
                 //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
                 //     payload: [response.data, ...posts],
                 // });
-                setBackground("");
                 setText("");
+                setBackground("");
                 setVisible(false);
             } else {
                 setError(response);
             }
         } else if (images?.length) {
             setLoading(true);
-            // const postImages = images.map((img) => {
-            //     return dataURItoBlob(img);
-            // });
+            // const postImages = images.map((img) => dataURItoBlob(img));
             // const path = `${user.username}/postImages`;
             // let formData = new FormData();
             // formData.append("path", path);
-            // postImages.forEach((image) => {
-            //     formData.append("file", image);
-            // });
+            // postImages.forEach((image) => formData.append("file", image));
             // const imageUrls = await uploadImages(formData, path, user.token);
-            // const response = await createPost(
-            //     null, null, text, imageUrls, user.id, user.token
-            // );
-            const imageUrls = await uploadImages(images, mimiDate);
-            let response = imageUrls.NOT_OK;
-            if (imageUrls.length > 0) {
-                response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
-            }
-            setLoading(false);
-            if (response.status === "OK") {
-                // dispatch({
-                //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
-                //     payload: [res.data, ...posts],
-                // });
-                setText("");
-                setImages("");
-                setVisible(false);
+            // const response = await createPost(null, null, text, imageUrls, user.id, user.token);
+
+            const imageUrls = await uploadPostImages(
+                images,
+                `${mimiDate.age} age, ${mimiDate.month} month, ${user.displayName}`
+            );
+            if (imageUrls.NOT_OK) {
+                setLoading(false);
+                setError(imageUrls.NOT_OK);
+            } else if (imageUrls.length > 0) {
+                let response = await fsAddPost(null, null, text, imageUrls, user, mimiDate);
+                setLoading(false);
+                if (response.status === "OK") {
+                    // dispatch({
+                    //     type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
+                    //     payload: [res.data, ...posts],
+                    // });
+                    setText("");
+                    setImages("");
+                    setVisible(false);
+                } else {
+                    setError(response);
+                }
             } else {
-                setError(response);
+                console.log("do nothing");
             }
         } else if (text) {
             // setLoading(true);
-            // const response = await createPost(
-            //     null, null, text, null, user.id, user.token
-            // );
+            // const response = await createPost(null, null, text, null, user.id, user.token);
             // setLoading(false);
             // if (response.status === "ok") {
             //     dispatch({
             //         type: profile ? "PROFILE_POSTS" : "POSTS_SUCCESS",
             //         payload: [response.data, ...posts],
             //     });
-            //     setBackground("");
             //     setText("");
+            //     setBackground("");
             //     setVisible(false);
             // } else {
             //     setError(response);

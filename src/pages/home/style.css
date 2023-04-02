@@ -2,29 +2,93 @@
     min-height: 100vh;
     background: var(--bg-secondary);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: 250px auto;
 }
 
 .home_middle {
-    margin-top: 75px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 65px 10px 0 10px;
+    /* position: absolute; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+}
+
+.home_middle__header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.home_middle__content {
+    padding: 0 0 0 5px;
+}
+
+
+/* VertTimelinePosts */
+
+.rt-timeline-container {
+    padding: 0;
+    margin: 16px 0;
+}
+
+.rt-timeline li:nth-child(3) {
+    margin-top: 180px;
+}
+
+.rt-label {
+    background: var(--blue-color);
+}
+
+.rt-event {
+    margin: 0 0 48px;
+}
+
+.rt-event .rt-svg-container .rt-arrow,
+.rt-event .rt-dot {
+    color: var(--blue-color);
+}
+
+.rt-header-container {
+    padding: 0;
+}
+
+.rt-image {
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.rt-text-container,
+.rt-footer-container {
+    padding: 0;
+}
+
+/* VertTimelinePosts */
+
+
+@media (max-width: 1380px) {
+    .right_home {
+        display: none;
+    }
 }
 
 /* query1175px */
 @media (max-width: 1239px) {
+    .stories {
+        grid-template-columns: repeat(3, 105px);
+    }
 
-    .stories,
-    .createPost,
-  .post,
+    /* .stories, */
+    /* .createPost, */
+    /* .post, */
     .send_verification {
         width: 83%;
     }
 
-    .home_middle {
+    /* .home_middle {
         margin-left: 5%;
-    }
+    } */
 
     .right_home {
         width: 18vw;
@@ -33,6 +97,18 @@
 
 /* query1030px */
 @media (max-width: 1130px) {
+    .home {
+        grid-template-columns: 70px auto;
+    }
+
+    /* .home_middle {
+        position: relative;
+        margin-left: 10%;
+    } */
+
+    .left_home {
+        width: 70px;
+    }
 
     .left_home .left_link span,
     .left_home .left_link .col,
@@ -41,10 +117,6 @@
     .splitter,
     .fb_copyright {
         display: none;
-    }
-
-    .left_home {
-        width: 70px;
     }
 
     .left_link {
@@ -76,15 +148,20 @@
         transform: scale(1);
     }
 
-    .home_middle {
-        position: relative;
-        /* margin-left: 55px; */
-        margin-left: 10%;
+    .stories {
+        grid-template-columns: repeat(4, 105px);
     }
 
-    .right_home {
+    /* .stories,
+    .createPost,
+    .post,
+    .send_verification {
+        width: 111%;
+    } */
+
+    /* .right_home {
         width: 20vw;
-    }
+    } */
 
     /* .contacts_header_right {
         right: 10%;
@@ -94,31 +171,29 @@
         width: 32px;
     } */
 
-    .stories,
-    .createPost,
-  .post,
-    .send_verification {
-        width: 111%;
-    }
 }
 
-@media (max-width: 960px) {
+/* query960px */
+@media (max-width: 1040px) {
+    .stories {
+        grid-template-columns: repeat(3, 105px);
+    }
 
-    .stories,
+    /* .stories,
     .createPost,
-  .post,
+    .post,
     .send_verification {
         width: 92%;
-    }
+    } */
 
-    .home_middle {
+    /* .home_middle {
         margin-left: 10%;
-    }
+    } */
 
-    .right_home {
-        /* left: 78%; */
+    /* .right_home {
+        left: 78%;
         width: 21vw;
-    }
+    } */
 
     /* .splitter1 {
         width: 20vw;
@@ -133,26 +208,43 @@
     }
 }
 
-@media (max-width: 885px) {
-    .right_home {
-        display: none;
+/* query885px */
+@media (max-width: 930px) {
+    .stories {
+        grid-template-columns: repeat(2, 105px);
     }
 
-    .stories,
+    /* .stories,
     .createPost,
-  .post,
+    .post,
     .send_verification {
         width: 111%;
+    } */
+
+    /* .home_middle {
+        margin-left: 10%;
+    } */
+
+    /* .right_home {
+        display: none;
+    } */
+}
+
+/* query806px */
+@media (max-width: 810px) {
+    .home_middle__header {
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .home_middle {
-        margin-left: 10%;
+        margin-left: 5px;
+        margin-right: 5px;
     }
-}
 
-@media (max-width: 805px) {
     .stories {
-        grid-template-columns: repeat(6, 12.5vw);
+        grid-template-columns: repeat(6, 1fr);
     }
 
     .story_profile_name,
@@ -183,18 +275,22 @@
 }
 
 @media (max-width: 620px) {
+    .home_middle {
+        /* position: absolute; */
+        grid-column: 1/3;
+    }
+
     .left_home {
         display: none;
     }
 
-    .home_middle {
-        position: absolute;
-        margin-left: 0;
-    }
+    /* .stories {
+        grid-template-columns: repeat(6, 14vw);
+    } */
 
-    .stories,
-    .createPost,
-  .post,
+    /* .stories, */
+    /* .createPost, */
+    .post,
     .send_verification {
         width: 100%;
     }
@@ -203,17 +299,13 @@
         display: none;
     }
 
-    .stories {
-        grid-template-columns: repeat(6, 14vw);
-    }
-
     .story,
     .create_story_card {
         height: 30vw;
     }
 
     .createPost_icon {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .open_post {
@@ -224,32 +316,38 @@
         width: 20px;
     }
 }
+
 @media (max-width: 400px) {
-  .createPost,
-  .post {
-    margin-top: 1rem;
-  }
-  .home_middle,
-  .createPost,
-  .post {
-    width: 98%;
-    margin: 1rem auto;
-  }
-  .send_verification {
-    width: 98%;
-    margin: 0 auto;
-  }
-  .stories {
-    grid-template-columns: repeat(6, 13vw);
-    padding-left: 10px;
-  }
-  .home_middle {
-    margin: 56px auto;
-  }
-  .createPost_body {
-    padding: 5px 0;
-  }
+    /* .home_middle {
+        margin: 65px auto;
+    } */
+
+    .stories {
+        /* grid-template-columns: repeat(6, 13vw); */
+        /* padding-left: 10px; */
+        display: none;
+    }
+
+    .createPost {
+        width: 100%;
+    }
+
+    .createPost_body {
+        grid-template: repeat(3, 1fr)/repeat(1, 1fr);
+    }
+
+    .post {
+        width: 98%;
+        margin: 1rem auto;
+    }
+
+    .send_verification {
+        width: 98%;
+        margin: 0 auto;
+    }
+
 }
+
 /*-----Activate popup----*/
 .popup {
     position: relative;

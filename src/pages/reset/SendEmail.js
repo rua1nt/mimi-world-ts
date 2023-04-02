@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function SendEmail({
@@ -24,7 +24,6 @@ export default function SendEmail({
             setLoading(false);
         } catch (ex) {
             setLoading(false);
-            // setError(ex.response.data.message);
             setError(ex.message);
         }
     };
@@ -35,17 +34,10 @@ export default function SendEmail({
             <div className="reset_grid">
                 <div className="reset_left">
                     <div className="reset_form_text">
-                        How do you want to receive the code to reset your
-                        password?
+                        How do you want to receive the code to reset your password?
                     </div>
                     <label htmlFor="email" className="hover1">
-                        <input
-                            type="radio"
-                            name=""
-                            id="email"
-                            checked
-                            readOnly
-                        />
+                        <input type="radio" name="" id="email" checked readOnly />
                         <div className="label_col">
                             <span>Send code via:</span>
                             <span>{userInfos.email}</span>

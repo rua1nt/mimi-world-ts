@@ -26,10 +26,10 @@ export default function OldCovers({ photos, setCoverPicture, setShow }) {
                         {photos &&
                             photos
                                 .filter((img) => img.folder === `${user.uid}/cover_pictures`)
-                                .map((photo) => (
+                                .map((photo, i) => (
                                     <img
                                         src={photo.secure_url}
-                                        key={photo.public_id}
+                                        key={i}
                                         alt=""
                                         onClick={() => {
                                             setCoverPicture(photo.secure_url);
@@ -42,10 +42,10 @@ export default function OldCovers({ photos, setCoverPicture, setShow }) {
                         {photos &&
                             photos
                                 .filter((img) => img.folder !== `${user.uid}/post_images`)
-                                .map((photo) => (
+                                .map((photo, i) => (
                                     <img
                                         src={photo.secure_url}
-                                        key={photo.public_id}
+                                        key={i}
                                         alt=""
                                         onClick={() => {
                                             setCoverPicture(photo.secure_url);

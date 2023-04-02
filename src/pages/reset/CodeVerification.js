@@ -1,7 +1,7 @@
+// import axios from "axios";
 import { Link } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import LoginInput from "../../comps/inputs/loginInput";
 
 export default function CodeVerification({
@@ -21,8 +21,7 @@ export default function CodeVerification({
             .max("5", "Code must be 5 characters."),
     });
 
-    const { email } = userInfos;
-
+    // const { email } = userInfos;
     const verifyCode = async () => {
         try {
             setLoading(true);
@@ -35,7 +34,6 @@ export default function CodeVerification({
             setLoading(false);
         } catch (ex) {
             setLoading(false);
-            // setError(ex.response.data.message);
             setError(ex.message);
         }
     };
@@ -43,9 +41,7 @@ export default function CodeVerification({
     return (
         <div className="reset_form">
             <div className="reset_form_header">Code verification</div>
-            <div className="reset_form_text">
-                Please enter code that been sent to your email.
-            </div>
+            <div className="reset_form_text">Please enter code that been sent to your email.</div>
             <Formik
                 enableReinitialize
                 initialValues={{ code }}

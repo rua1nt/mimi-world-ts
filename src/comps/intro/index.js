@@ -37,9 +37,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
                 `${process.env.REACT_APP_BACKEND_URL}/updateDetails`,
                 { infos },
                 {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
-                    },
+                    headers: { Authorization: `Bearer ${user.token}` },
                 }
             );
             setShowBio(false);
@@ -137,7 +135,11 @@ export default function Intro({ detailss, visitor, setOthername }) {
             {details?.hometown && (
                 <div className="info_profile">
                     <img src="../../../icons/instagram.png" alt="" />
-                    <a href={`https://www.instagram.com/${details?.instagram}`} target="_blank">
+                    <a
+                        href={`https://www.instagram.com/${details?.instagram}`}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
                         {details?.instagram}
                     </a>
                 </div>

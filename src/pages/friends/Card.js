@@ -1,27 +1,27 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { acceptRequest, cancelRequest, deleteRequest } from "../../functions/userProfile";
+// import { useSelector } from "react-redux";
+// import { acceptRequest, cancelRequest, deleteRequest } from "../../functions/userProfile";
 
 export default function Card({ userr, type, getData }) {
-    const { user } = useSelector((state) => ({ ...state }));
+    // const { user } = useSelector((state) => ({ ...state }));
     const cancelRequestHandler = async (userId) => {
         // const res = await cancelRequest(userId, user.token);
         const res = "ok";
-        if (res == "ok") {
+        if (res === "ok") {
             getData();
         }
     };
     const confirmHandler = async (userId) => {
         // const res = await acceptRequest(userId, user.token);
         const res = "ok";
-        if (res == "ok") {
+        if (res === "ok") {
             getData();
         }
     };
     const deleteHandler = async (userId) => {
         // const res = await deleteRequest(userId, user.token);
         const res = "ok";
-        if (res == "ok") {
+        if (res === "ok") {
             getData();
         }
     };

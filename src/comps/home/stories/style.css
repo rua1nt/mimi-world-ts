@@ -1,9 +1,9 @@
 .stories {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(6, 105px);
+    grid-template-columns: repeat(4, 105px);
     gap: 10px;
-    padding: 6px 0;
+    /* padding: 5px 0; */
 }
 
 .create_story_card {
@@ -12,7 +12,7 @@
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
-  background: var(--bg-primary);
+    background: var(--bg-primary);
     cursor: pointer;
     box-shadow: 0 1px 2px var(--sahdow-1);
 }
@@ -47,7 +47,7 @@
 
 /* left = parent - self = (105-72)/2 OR use ~15% */
 .story_create_text {
-  color: var(--color-primary);
+    color: var(--color-primary);
     position: absolute;
     left: 1rem;
     top: 87%;

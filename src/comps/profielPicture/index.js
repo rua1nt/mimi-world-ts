@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import UpdateProfilePicture from "./UpdateProfilePicture";
-import { photosReducer } from "../../functions/reducers";
-import useOnClickOutside from "../../helpers/clickOutside";
+// import { photosReducer } from "../../functions/reducers";
+// import useOnClickOutside from "../../helpers/clickOutside";
 import "./style.css";
 
 export default function ProfilePicture({ username, setShow, pRef, photos }) {
@@ -78,10 +78,10 @@ export default function ProfilePicture({ username, setShow, pRef, photos }) {
                     <div className="old_pictures">
                         {photos
                             .filter((img) => img.folder === `${user.username}/profile_pictures`)
-                            .map((photo) => (
+                            .map((photo, i) => (
                                 <img
                                     src={photo.secure_url}
-                                    key={photo.public_id}
+                                    key={i}
                                     alt=""
                                     onClick={() => setImage(photo.secure_url)}
                                 />
@@ -91,10 +91,10 @@ export default function ProfilePicture({ username, setShow, pRef, photos }) {
                     <div className="old_pictures">
                         {photos
                             .filter((img) => img.folder !== `${user.username}/profile_pictures`)
-                            .map((photo) => (
+                            .map((photo, i) => (
                                 <img
                                     src={photo.secure_url}
-                                    key={photo.public_id}
+                                    key={i}
                                     alt=""
                                     onClick={() => setImage(photo.secure_url)}
                                 />

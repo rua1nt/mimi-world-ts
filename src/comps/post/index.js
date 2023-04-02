@@ -6,7 +6,7 @@ import ReactsPopup from "./ReactsPopup";
 import Comment from "./Comment";
 import CreateComment from "./CreateComment";
 import { Dots, Public } from "../../svg";
-import { comment, getReacts, reactPost } from "../../functions/createPost";
+// import { comment, getReacts, reactPost } from "../../functions/createPost";
 import "./style.css";
 
 export default function Post({ post, user, profile }) {
@@ -14,7 +14,7 @@ export default function Post({ post, user, profile }) {
     const [showMenu, setShowMenu] = useState(false);
     const [check, setCheck] = useState();
     const [total, setTotal] = useState(0);
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(2);
     const [reacts, setReacts] = useState([]);
     const [comments, setComments] = useState([]);
     const [checkSaved, setCheckSaved] = useState();
@@ -58,7 +58,7 @@ export default function Post({ post, user, profile }) {
         // reactPost(post._id, type, user.token);
 
         let nextReacts = [...reacts];
-        if (check == type) {
+        if (check === type) {
             setCheck(null);
             let index = reacts.findIndex((x) => x.react === check);
             if (index !== -1) {
@@ -190,23 +190,19 @@ export default function Post({ post, user, profile }) {
                 <div
                     className="post_action hover1"
                     onMouseOver={() => {
-                        setTimeout(() => {
-                            setVisible(true);
-                        }, 500);
+                        setTimeout(() => setVisible(true), 500);
                     }}
                     onMouseLeave={() => {
-                        setTimeout(() => {
-                            setVisible(false);
-                        }, 500);
+                        setTimeout(() => setVisible(false), 500);
                     }}
                     onClick={() => reactHandler(check ? check : "like")}
                 >
                     {check ? (
                         <img
                             src={`../../../reacts/${check}.svg`}
-                            alt=""
                             className="small_react"
                             style={{ width: "18px" }}
+                            alt=""
                         />
                     ) : (
                         <i className="like_icon"></i>
@@ -246,7 +242,7 @@ export default function Post({ post, user, profile }) {
             </div>
 
             <div className="comments_wrap">
-                <div className="comments_order"></div>
+                <div className="comments_order">Most recent</div>
                 <CreateComment
                     user={user}
                     postId={post._id}
@@ -256,10 +252,12 @@ export default function Post({ post, user, profile }) {
                 {comments &&
                     comments
                         .sort((a, b) => {
-                            return new Date(b.commentAt) - new Date(a.commentAt);
+                            return new Date(b.created_at) - new Date(a.created_at);
                         })
                         .slice(0, count)
-                        .map((comment, i) => <Comment comment={comment} key={i} />)}
+                        .map((comment, i) => (
+                            <Comment postId={post._id} comment={comment} key={i} />
+                        ))}
                 {count < comments.length && (
                     <div className="view_comments" onClick={() => showMore()}>
                         View more comments
