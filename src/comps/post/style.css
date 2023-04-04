@@ -5,7 +5,7 @@
 
 .post {
     position: relative;
-    width: 685px;
+    width: 500px;
     background: var(--bg-primary);
     border-radius: 10px;
     box-shadow: 0 1px 2px var(--shadow-1);
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 19px;
     color: var(--color-primary);
@@ -78,6 +78,8 @@
 
 .post_text {
     padding: 0 15px 10px 15px;
+    /* font-size: 15px; */
+    white-space: pre-wrap;
 }
 
 .post_bg_text {
@@ -454,10 +456,16 @@
     padding: 0 !important;
     opacity: 1 !important;
     flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
 }
 
 .comment_error .postError_error {
     width: 79%;
+}
+
+.comment_circle {
+    margin-top: 5px;
 }
 
 .comment_img_preview {
@@ -596,6 +604,13 @@
     border-radius: 12px;
 }
 
+.comments_order {
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+
 .comment_name {
     font-size: 13px;
     font-weight: 500;
@@ -603,20 +618,46 @@
 
 .comment_text {
     font-size: 15px;
+    white-space: pre-wrap;
 }
 
 .comment_actions {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
     color: var(--color-secondary);
     margin-left: 10px;
 }
 
+.comment_actions>span:nth-child(-n+3) {
+    font-weight: 600;
+}
+
 .comment_actions>span:nth-child(-n+3):hover {
     text-decoration: underline;
+}
+
+.comment_actions {
+    position: relative;
+}
+
+.comment_actions .comment_error {
+    padding: 0 !important;
+    opacity: 1 !important;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+}
+
+.comment_actions .postError_error {
+    font-size: 14px;
+    margin: 5px 0;
+    width: auto;
+}
+
+.comment_actions .blue_btn {
+    padding: 5px 10px;
 }
 
 .comment_menu {
@@ -690,7 +731,7 @@
     }
 
     .post_profile_name {
-        font-size: 12px !important;
+        font-size: 13px !important;
     }
 
     .post_header_left img {

@@ -248,8 +248,8 @@ export default function Profile() {
                                 <GridPosts />
                                 <div className="posts">
                                     {profile.posts?.length ? (
-                                        profile.posts.map((post) => (
-                                            <Post post={post} user={user} key={post._id} profile />
+                                        profile.posts.map((post, i) => (
+                                            <Post post={post} user={user} key={i} profile />
                                         ))
                                     ) : (
                                         <div className="no_posts">No posts available</div>

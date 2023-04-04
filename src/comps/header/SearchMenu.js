@@ -113,8 +113,8 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
                         .sort((a, b) => {
                             return new Date(b.createdAt) - new Date(a.createdAt);
                         })
-                        .map((user) => (
-                            <div className="search_user_item hover1" key={user.uid}>
+                        .map((user, i) => (
+                            <div className="search_user_item hover1" key={i}>
                                 <Link
                                     className="flex"
                                     to={`/profile/${user.uid}`}
@@ -134,12 +134,12 @@ export default function SearchMenu({ color, setShowSearchMenu }) {
             </div>
             <div className="search_results scrollbar">
                 {results &&
-                    results.map((user) => (
+                    results.map((user, i) => (
                         <Link
                             to={`/profile/${user.user_displayName}`}
                             className="search_user_item hover1"
                             onClick={() => addToSearchHistoryHandler(user.uid)}
-                            key={user.uid}
+                            key={i}
                         >
                             <img src={user.user_photoURL} alt="" />
                             <span>{user.user_displayName}</span>

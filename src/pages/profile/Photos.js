@@ -16,8 +16,8 @@ export default function Photos({ photos }) {
 
             <div className="profile_card_grid">
                 {photos.resources &&
-                    photos.resources.slice(0, 9).map((img) => (
-                        <div className="profile_photo_card" key={img.public_id}>
+                    photos.resources.slice(0, 9).map((img, i) => (
+                        <div className="profile_photo_card" key={i}>
                             <img src={img.secure_url} alt="" />
                         </div>
                     ))}

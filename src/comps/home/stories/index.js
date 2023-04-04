@@ -5,27 +5,22 @@ import Story from "./Story";
 import "./style.css";
 
 export default function Stories({ user }) {
-    const query1175px = useMediaQuery({
-        query: "(max-width: 1239px)",
-    });
-    const query1030px = useMediaQuery({
-        query: "(max-width: 1130px)",
-    });
-    const query960px = useMediaQuery({
-        query: "(max-width: 960px)",
-    });
-    const query885px = useMediaQuery({
-        query: "(max-width: 885px)",
-    });
-    const max = query885px
-        ? 5
+    const query1175px = useMediaQuery({ query: "(max-width: 1239px)" });
+    const query1030px = useMediaQuery({ query: "(max-width: 1130px)" });
+    const query960px = useMediaQuery({ query: "(max-width: 1040px)" });
+    const query885px = useMediaQuery({ query: "(max-width: 930px)" });
+    const query806px = useMediaQuery({ query: "(max-width: 810px)" });
+    const max = query806px
+        ? stories.length
+        : query885px
+        ? 1
         : query960px
-        ? 4
+        ? 2
         : query1030px
-        ? 5
+        ? 3
         : query1175px
-        ? 4
-        : stories.length;
+        ? 2
+        : 3;
 
     return (
         <div className="stories">
